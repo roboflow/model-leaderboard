@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Leaderboard</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Model Leaderboard</h1>
+        <p><i>powered by: <a href='https://github.com/roboflow/supervision'><img src='https://supervision.roboflow.com/latest/assets/supervision-lenny.png' height=24 width=24 style='display: inline-block'> supervision</a></i></p>
+        <table id="leaderboard">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Parameters (Mil.)</th>
+                    <th>mAP 50:95</th>
+                    <th>mAP 50</th>
+                    <th>mAP 75</th>
+                    <th>mAP 50:95 (Small)</th>
+                    <th>mAP 50:95 (Medium)</th>
+                    <th>mAP 50:95 (Large)</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
+    <script src="aggregate_results.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

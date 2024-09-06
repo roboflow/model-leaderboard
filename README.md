@@ -15,8 +15,10 @@ model-leaderboard/
 │   │   └── yolov10m/       # And so on...
 │   └── utils.py            # Shared utility code (minimal cross-model dependencies)
 │
+├── static/                 # Static files, serving as the backend for the site
+│   └── ...
 ├── download_data.py        # Script for downloading the ground truth dataset
-├── gradio_app.py           # The front-end for the leaderboard
+├── build_static_site.py    # Must be run to aggregate results for the static site.
 └── requirements.txt        # Dependencies for data download and leaderboard front end
 ```
 
@@ -40,14 +42,15 @@ The only requirements is to store results for `results.json` in the model direct
 ### Key Files:
 
 1. **`download_data.py`**: Downloads the dataset (currently configured for COCO) and places it into the `data/` directory.
-2. **`gradio_app.py`**: The core of the website, this script launches the Gradio app to display the model leaderboard.
+2. **`build_static_site.py`**: Aggregates the results of the models to be shown on the GitHub Pages site.
 3. **`run_overnight.sh`**: An early version of a script to run the entire process, generating model results and comparing to downloaded data. We hacked it together for the first iteration of the leaderboard. Requires `uv`.
+4. **`gradio_app.py`**: The initial version of the leaderboard UI. Displays model results in a gradio page.
 
-4. **Model-Specific Folders**:
+5. **Model-Specific Folders**:
 
    - Each object detection model is housed in its own folder under `models/object_detection/`. These folders include `run.py`, which generates evaluation results in the form of a `results.json` file.
 
-5. **`utils.py`**: Contains shared utility code across models.
+6. **`utils.py`**: Contains shared utility code across models.
 
 ## Getting Started
 
