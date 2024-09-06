@@ -15,6 +15,7 @@ model-leaderboard/
 │   │   └── yolov10m/       # And so on...
 │   └── utils.py            # Shared utility code (minimal cross-model dependencies)
 │
+├── index.html              # Main page for the static side
 ├── static/                 # Static files, serving as the backend for the site
 │   └── ...
 ├── download_data.py        # Script for downloading the ground truth dataset
