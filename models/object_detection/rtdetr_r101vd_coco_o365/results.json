@@ -30,7 +30,7 @@
         "map75": 0.7417091618002429
     },
     "metadata": {
-        "model": "PekingU/rtdetr_r101vd_coco_o365",
+        "model": "RT-DETR, r101vd, o365",
         "param_count": 76556268,
         "run_date": "2024-09-08T12:47:43.965709+00:00"
     }

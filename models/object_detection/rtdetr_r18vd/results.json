@@ -30,7 +30,7 @@
         "map75": 0.6412649735201749
     },
     "metadata": {
-        "model": "PekingU/rtdetr_r18vd",
+        "model": "RT-DETR, r18vd",
         "param_count": 20174608,
         "run_date": "2024-09-08T02:29:11.083160+00:00"
     }
