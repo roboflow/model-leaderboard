@@ -24,7 +24,7 @@ def load_results() -> List[Dict]:
 def get_result_header() -> List[str]:
     return [
         "Model",
-        "Parameters (Mil.)",
+        "Parameters (M)",
         "mAP 50:95",
         "mAP 50",
         "mAP 75",
