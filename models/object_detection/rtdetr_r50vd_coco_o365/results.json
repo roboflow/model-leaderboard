@@ -30,7 +30,7 @@
         "map75": 0.7307438919963094
     },
     "metadata": {
-        "model": "RT-DETR, r50vd, o365",
+        "model": "RT-DETR (r50vd, o365)",
         "param_count": 42891372,
         "run_date": "2024-09-08T12:06:27.201215+00:00"
     }
