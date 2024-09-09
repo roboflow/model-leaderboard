@@ -1,14 +1,3 @@
-
-#
-# rtdetr class-name conversion
-# motorbike -> motorcycle
-# aeroplane -> airplane
-# sofa -> couch
-# pottedplant -> potted plant
-# diningtable -> dining table
-# tvmonitor -> tv
-#
-
 CONFIDENCE_THRESHOLD = 0.001
 
 COCO_CLASS_LIST = {
@@ -94,3 +83,10 @@ COCO_CLASS_LIST = {
     79: "toothbrush",
 }
 
+# RT-DETR uses slightly different naming convention:
+# motorbike -> motorcycle
+# aeroplane -> airplane
+# sofa -> couch
+# pottedplant -> potted plant
+# diningtable -> dining table
+# tvmonitor -> tv
