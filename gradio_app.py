@@ -1,6 +1,6 @@
+import json
 from pathlib import Path
 from typing import Any, Dict, List
-import json
 
 import gradio as gr
 
@@ -20,8 +20,19 @@ def load_results() -> List[Dict]:
     results_list.sort(key=lambda x: x["metadata"]["model"])
     return results_list
 
+
 def get_result_header() -> List[str]:
-    return ["Model", "Parameters (Mil.)", "mAP 50:95", "mAP 50", "mAP 75", "mAP 50:95 (Small)", "mAP 50:95 (Medium)", "mAP 50:95 (Large)"]
+    return [
+        "Model",
+        "Parameters (Mil.)",
+        "mAP 50:95",
+        "mAP 50",
+        "mAP 75",
+        "mAP 50:95 (Small)",
+        "mAP 50:95 (Medium)",
+        "mAP 50:95 (Large)",
+    ]
+
 
 def parse_result(result: Dict) -> List[Any]:
     round_digits = 3
@@ -29,7 +40,7 @@ def parse_result(result: Dict) -> List[Any]:
     param_count = ""
     if "param_count" in result["metadata"]:
         param_count = round(result["metadata"]["param_count"] / 1e6, 2)
-    
+
     return [
         result["metadata"]["model"],
         param_count,
@@ -48,7 +59,13 @@ header = get_result_header()
 
 with gr.Blocks() as demo:
     gr.Markdown("# Model Leaderboard")
-    gr.HTML("<italic>powered by: &nbsp<a href='https://github.com/roboflow/supervision'><img src='https://supervision.roboflow.com/latest/assets/supervision-lenny.png' height=24 width=24 style='display: inline-block'> supervision</a></italic>")
+    gr.HTML(
+        """
+        <italic>powered by: &nbsp<a href='https://github.com/roboflow/supervision'>
+        <img src='https://supervision.roboflow.com/latest/assets/supervision-lenny.png'
+        height=24 width=24 style='display: inline-block'> supervision</a></italic>
+        """
+    )
     gr.DataFrame(headers=header, value=results)
 
 demo.launch()
