@@ -21,7 +21,7 @@ def load_results() -> List[Dict]:
     return results_list
 
 def get_result_header() -> List[str]:
-    return ["Model", "Parameters (Mil.)", "mAP 50:95", "mAP 50", "mAP 75", "mAP 50:95 (Small)", "mAP 50:95 (Medium)", "mAP 50:95 (Large)"]
+    return ["Model", "Parameters (M)", "mAP 50:95", "mAP 50", "mAP 75", "mAP 50:95 (Small)", "mAP 50:95 (Medium)", "mAP 50:95 (Large)"]
 
 def parse_result(result: Dict) -> List[Any]:
     round_digits = 3
