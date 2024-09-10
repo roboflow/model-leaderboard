@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from configs import CLASS_NAMES, CONFIDENCE_THRESHOLD
-from utils import remap_class_ids, write_json_results
+from utils import remap_class_ids, write_result_json
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 HUB_URL = "lyuwenyu/RT-DETR"
@@ -74,4 +74,4 @@ predictions, targets = load_targets_and_make_predictions(model)
 mAP_metric = sv.metrics.MeanAveragePrecision()
 mAP_result = mAP_metric.update(predictions, targets).compute()
 
-write_json_results(MODEL_FULL_NAME, model, mAP_result)
+write_result_json(MODEL_FULL_NAME, model, mAP_result)

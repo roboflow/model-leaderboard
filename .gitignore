@@ -3,9 +3,10 @@ data/*
 **/*.pt
 **/*.pth
 
-**/results.json.old
+**/*.json.old
+
 # yolov9 repo
-**/yolov9
+**/yolov9-repo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
