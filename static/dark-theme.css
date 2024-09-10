@@ -34,6 +34,14 @@ th {
     background-color: #444;
 }
 
+a {
+    color: #4493f8;
+    background-color: #388bfd1a;
+    padding: 2px 4px;
+    margin: 0px 4px;
+    border-radius: 5px;
+}
+
 .subtitle-row {
     color: #ccc;
     display: flex;
