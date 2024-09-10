@@ -8,11 +8,10 @@ import supervision as sv
 import torch
 import torchvision.transforms as T
 from PIL import Image
-from supervision.config import CLASS_NAME_DATA_FIELD
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from configs import CLASS_NAMES, CONFIDENCE_THRESHOLD
+from configs import CONFIDENCE_THRESHOLD
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -76,14 +75,13 @@ def run(
             class_id = labels.detach().cpu().numpy().astype(int)
             xyxy = boxes.detach().cpu().numpy()
             confidence = scores.detach().cpu().numpy()
-            class_names = np.array([CLASS_NAMES[i] for i in class_id[0]])
 
             detections = sv.Detections(
                 xyxy=xyxy[0],
                 confidence=confidence[0],
                 class_id=class_id[0],
-                data={CLASS_NAME_DATA_FIELD: class_names},
             )
+            
             detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
             predictions.append(detections)
 
