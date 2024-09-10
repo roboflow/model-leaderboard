@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "model": "RT-DETRv1 r18vd",
+        "model": "RT-DETRv1 (r18vd)",
         "param_count": 21955472,
         "run_date": "2024-09-10T16:11:52.358781+00:00"
     },
