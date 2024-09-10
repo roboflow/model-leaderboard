@@ -141,7 +141,7 @@ def run(
 
         write_result_json(
             model_id=model_id,
-            model_name=model_id
+            model_name=model_id,
             model=model,
             mAP_result=mAP_result
         )
