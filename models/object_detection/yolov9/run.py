@@ -53,15 +53,6 @@ CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
 
-with open(f"{DATASET_DIR}/data.yaml", "r") as f:
-    dataset_yaml = yaml.safe_load(f)
-    RF_CLASS_NAMES = dataset_yaml["names"]
-
-CLASS_ID_TO_RF_CLASS_ID = {
-    CLASS_NAMES.index(class_name): RF_CLASS_NAMES.index(class_name)
-    for class_name in CLASS_NAMES
-}
-
 
 def run(
     model_ids: List[str],
@@ -101,7 +92,7 @@ def run(
                 "python",
                 "detect.py",
                 "--source",
-                "../../../../data/coco-dataset/test/images/",
+                "../../../../data/coco-val-2017/images/val2017",
                 "--img",
                 "640",
                 "--device",
@@ -116,7 +107,7 @@ def run(
             working_directory="yolov9-repo",
         )
         predictions_dict = load_predictions_dict(
-            Path(f"yolov9-repo/runs/detect/{model_values["model_run_dir"]}")
+            Path(f"yolov9-repo/runs/detect/{model_values['model_run_dir']}")
         )
 
         if dataset is None:
@@ -128,7 +119,7 @@ def run(
             # Load predictions
             detections = predictions_dict[Path(image_path).name]
             detections.class_id = np.array(
-                [CLASS_ID_TO_RF_CLASS_ID[class_id] for class_id in detections.class_id]
+                [CLASS_NAMES[class_id] for class_id in detections.class_id]
             )
             detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
 
