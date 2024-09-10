@@ -7,7 +7,6 @@ from typing import Dict, List, Optional
 import numpy as np
 import supervision as sv
 import torch
-import yaml
 from tqdm import tqdm
 from ultralytics import YOLO
 
