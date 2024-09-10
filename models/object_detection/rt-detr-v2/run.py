@@ -14,7 +14,6 @@ from tqdm import tqdm
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from configs import CLASS_NAMES, CONFIDENCE_THRESHOLD
 from utils import (
-    get_dataset_class_names,
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
@@ -86,7 +85,6 @@ def run(
                 data={CLASS_NAME_DATA_FIELD: class_names},
             )
             detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
-            map_class_ids_to_roboflow_format(detections)
             predictions.append(detections)
 
             target_detections.mask = None
@@ -96,24 +94,6 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(model_values["name"], model, mAP_result)
-
-
-def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
-    """
-    Roboflow dataset has class names in alphabetical order. (airplane=0, apple=1, ...)
-    Most other models use the COCO class order. (person=0, bicycle=1, ...).
-
-    This function reads the class names from the detections, and remaps them to the Roboflow dataset order.
-    """  # noqa: E501 // docs
-    if "class_name" not in detections.data:
-        raise ValueError("Detections should contain class names to reindex class ids.")
-
-    dataset_class_names = get_dataset_class_names(DATASET_DIR)
-    class_ids = [
-        dataset_class_names.index(class_name)
-        for class_name in detections.data["class_name"]
-    ]
-    detections.class_id = np.array(class_ids)
 
 
 if __name__ == "__main__":
