@@ -138,7 +138,13 @@ def run(
         mAP_metric = sv.metrics.MeanAveragePrecision()
         mAP_result = mAP_metric.update(predictions, targets).compute()
         model = YOLO(model_id)
-        write_result_json(model_id, model, mAP_result)
+
+        write_result_json(
+            model_id=model_id,
+            model_name=model_id
+            model=model,
+            mAP_result=mAP_result
+        )
 
 
 def load_predictions_dict(run_dir: Path) -> Dict[str, sv.Detections]:

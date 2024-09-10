@@ -37,17 +37,20 @@ def count_model_params(model: nn.Module) -> int:
     return param_count
 
 
-def _make_result_filename(model_name: str) -> str:
-    return f"results_{model_name}.json"
+def _make_result_filename(model_id: str) -> str:
+    return f"results_{model_id}.json"
 
 
-def result_json_already_exists(model_name: str) -> bool:
-    result_file = _make_result_filename(model_name)
+def result_json_already_exists(model_id: str) -> bool:
+    result_file = _make_result_filename(model_id)
     return os.path.exists(result_file)
 
 
 def write_result_json(
-    model_name: str, model: nn.Module, mAP_result: MeanAveragePrecisionResult
+    model_id: str,
+    model_name: str,
+    model: nn.Module,
+    mAP_result: MeanAveragePrecisionResult
 ) -> None:
     result: dict[str, Any] = {}
 
@@ -81,7 +84,7 @@ def write_result_json(
 
     result["iou_thresholds"] = list(mAP_result.iou_thresholds)
 
-    result_file = _make_result_filename(model_name)
+    result_file = _make_result_filename(model_id)
     if os.path.exists(result_file):
         os.rename(result_file, f"{result_file}.old")
 
