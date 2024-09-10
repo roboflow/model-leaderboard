@@ -1,0 +1,102 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Source Code Pro', Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #333;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2px;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #555;
+}
+
+th {
+    background-color: #444;
+}
+
+a {
+    color: #4493f8;
+    background-color: #388bfd1a;
+    padding: 2px 4px;
+    margin: 0px 4px;
+    border-radius: 5px;
+}
+
+.subtitle-row {
+    color: #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sv-row {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}
+
+tr:nth-child(even) {
+    background-color: #222;
+}
+
+tr:nth-child(odd) {
+    background-color: #111;
+}
+
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle {
+    display: none;
+}
+
+.theme-toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.theme-toggle-label .fas {
+    font-size: 1.5em;
+    margin: 0 5px;
+}
+
+.theme-toggle-label .fa-sun {
+    color: #000;
+}
+
+.theme-toggle-label .fa-moon {
+    color: #fff;
+    display: none;
+}
+
+.theme-toggle:checked + .theme-toggle-label .fa-sun {
+    display: none;
+}
+
+.theme-toggle:checked + .theme-toggle-label .fa-moon {
+    display: inline;
+}
