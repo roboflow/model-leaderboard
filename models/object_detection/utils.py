@@ -20,13 +20,6 @@ def load_detections_dataset(dataset_dir: str) -> sv.DetectionDataset:
     return dataset
 
 
-def get_dataset_class_names(dataset_dir: str) -> List[str]:
-    with open(f"{dataset_dir}/data.yaml", "r") as f:
-        dataset_yaml = yaml.safe_load(f)
-        coco_class_names = dataset_yaml["names"]
-    return coco_class_names
-
-
 def download_file(url: str, output_filename: str) -> None:
     command = ["wget", url, "-O", output_filename]
     subprocess.run(
