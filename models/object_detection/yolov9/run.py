@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 
+import cv2
 import numpy as np
 import supervision as sv
 import torch
@@ -11,7 +12,6 @@ from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from configs import CLASS_NAMES
 from utils import (
     download_file,
     load_detections_dataset,
@@ -117,9 +117,6 @@ def run(
         for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
             # Load predictions
             detections = predictions_dict[Path(image_path).name]
-            detections.class_id = np.array(
-                [CLASS_NAMES[class_id] for class_id in detections.class_id]
-            )
             detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
 
             predictions.append(detections)
@@ -141,12 +138,15 @@ def load_predictions_dict(run_dir: Path) -> Dict[str, sv.Detections]:
     dataset = {}
     for image_path in image_dir.glob("*.jpg"):
         label_path = labels_dir / (image_path.stem + ".txt")
-        detections = labels_to_detections(label_path)
+        detections = labels_to_detections(label_path, image_path)
         dataset[image_path.name] = detections
     return dataset
 
 
-def labels_to_detections(label_path: Path) -> sv.Detections:
+def labels_to_detections(label_path: Path, image_path: Path) -> sv.Detections:
+    img = cv2.imread(str(image_path))
+    h, w = img.shape[0], img.shape[1]
+
     if not label_path.exists():
         print(f"Label file {label_path} not found.")
         return sv.Detections.empty()
@@ -163,10 +163,10 @@ def labels_to_detections(label_path: Path) -> sv.Detections:
         y0 = float(y_center) - float(height) / 2
         x1 = float(x_center) + float(width) / 2
         y1 = float(y_center) + float(height) / 2
-        x0 *= 640
-        y0 *= 640
-        x1 *= 640
-        y1 *= 640
+        x0 *= w
+        y0 *= h
+        x1 *= w
+        y1 *= h
         xyxy.append([x0, y0, x1, y1])
         class_ids.append(class_id)
         confidences.append(confidence)
