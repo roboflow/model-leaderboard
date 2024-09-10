@@ -1,16 +1,15 @@
 import sys
-from typing import Dict
-import numpy as np
-import yaml
 from pathlib import Path
+from typing import Dict
 
+import numpy as np
 import supervision as sv
+import yaml
 from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from utils import write_json_results
-
 
 MODEL_NAME = "yolov9m"
 DATASET_DIR = "../../../data/coco-dataset"
@@ -106,8 +105,10 @@ with open(f"{DATASET_DIR}/data.yaml", "r") as f:
     RF_CLASS_NAMES = dataset_yaml["names"]
 
 CLASS_ID_TO_RF_CLASS_ID = {
-    CLASS_NAMES.index(class_name): RF_CLASS_NAMES.index(class_name) for class_name in CLASS_NAMES
+    CLASS_NAMES.index(class_name): RF_CLASS_NAMES.index(class_name)
+    for class_name in CLASS_NAMES
 }
+
 
 def labels_to_detections(label_path: Path) -> sv.Detections:
     if not label_path.exists():
@@ -119,7 +120,7 @@ def labels_to_detections(label_path: Path) -> sv.Detections:
     xyxy = []
     class_ids = []
     confidences = []
-    
+
     for line in lines:
         class_id, x_center, y_center, width, height, confidence = line.split()
         x0 = float(x_center) - float(width) / 2
@@ -133,14 +134,15 @@ def labels_to_detections(label_path: Path) -> sv.Detections:
         xyxy.append([x0, y0, x1, y1])
         class_ids.append(class_id)
         confidences.append(confidence)
-    
+
     detections = sv.Detections(
         xyxy=np.array(xyxy, dtype=np.float32),
         class_id=np.array(class_ids, dtype=int),
-        confidence=np.array(confidences, dtype=float)
+        confidence=np.array(confidences, dtype=float),
     )
 
     return detections
+
 
 def load_predictions_dict(runs_dir: Path) -> Dict[str, sv.Detections]:
     print(f"Loading predictions dataset from {runs_dir}...")
@@ -153,11 +155,11 @@ def load_predictions_dict(runs_dir: Path) -> Dict[str, sv.Detections]:
         dataset[image_path.name] = detections
     return dataset
 
-def load_targets_and_make_predictions():
 
+def load_targets_and_make_predictions():
     predictions_dict = load_predictions_dict(Path(PREDICTIONS_DATASET_DIR))
 
-    print(f"Loading test dataset...")
+    print("Loading test dataset...")
     dataset = sv.DetectionDataset.from_yolo(
         images_directory_path=f"{DATASET_DIR}/test/images",
         annotations_directory_path=f"{DATASET_DIR}/test/labels",
@@ -169,7 +171,8 @@ def load_targets_and_make_predictions():
     for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
         detections = predictions_dict[Path(image_path).name]
         detections.class_id = np.array(
-            [CLASS_ID_TO_RF_CLASS_ID[class_id] for class_id in detections.class_id])
+            [CLASS_ID_TO_RF_CLASS_ID[class_id] for class_id in detections.class_id]
+        )
         detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
         predictions.append(detections)
 
@@ -177,6 +180,7 @@ def load_targets_and_make_predictions():
         targets.append(target_detections)
 
     return predictions, targets
+
 
 model = YOLO(f"{MODEL_NAME}")
 

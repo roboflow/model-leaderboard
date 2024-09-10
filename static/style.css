@@ -24,3 +24,15 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+.subtitle-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sv-row {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}

@@ -1,6 +1,6 @@
 function populateTable() {
     const tableBody = document.getElementById('table-body');
-    
+
     // Results loaded from aggregate_results.json
     results.forEach(result => {
         const row = document.createElement('tr');
