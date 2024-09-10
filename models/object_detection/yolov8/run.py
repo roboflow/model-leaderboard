@@ -17,7 +17,7 @@ from utils import (
 )
 
 MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
-DATASET_DIR = "../../../data/coco-dataset"
+DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
 
 

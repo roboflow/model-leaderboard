@@ -28,7 +28,7 @@ MODEL_DICT = {
     "rtdetrv2_r101vd": {"name": "RT-DETRv2 (r101vd)", "hub_id": "rtdetrv2_r101vd"},
 }
 HUB_URL = "lyuwenyu/RT-DETR"
-DATASET_DIR = "../../../data/coco-dataset"
+DATASET_DIR = "../../../data/coco-val-2017"
 TRANSFORMS = T.Compose([T.Resize((640, 640)), T.ToTensor()])
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

@@ -49,7 +49,7 @@ MODEL_DICT = {
         "model_run_dir": "yolov9e-out",
     },
 }  # noqa: E501 // docs
-DATASET_DIR = "../../../data/coco-dataset"
+DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"

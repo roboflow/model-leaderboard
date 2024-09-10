@@ -12,15 +12,10 @@ from torch import nn
 
 def load_detections_dataset(dataset_dir: str) -> sv.DetectionDataset:
     print("Loading detections dataset...")
-    dataset = sv.DetectionDataset.from_yolo(
-        images_directory_path=f"{dataset_dir}/test/images",
-        annotations_directory_path=f"{dataset_dir}/test/labels",
-        data_yaml_path=f"{dataset_dir}/data.yaml",
+    dataset = sv.DetectionDataset.from_coco(
+        images_directory_path=f"{dataset_dir}/images/val2017",
+        annotations_path=f"{dataset_dir}/labels/annotations/instances_val2017.json",
     )
-
-    # Save some memory
-    for _, annotation in dataset.annotations.items():
-        annotation.mask = None
 
     return dataset
 
