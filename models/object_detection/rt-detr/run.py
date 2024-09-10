@@ -97,7 +97,7 @@ def run(
             model_id=model_id,
             model_name=model_values["name"],
             model=model,
-            mAP_result=mAP_result
+            mAP_result=mAP_result,
         )
 
 

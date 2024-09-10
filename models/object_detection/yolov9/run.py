@@ -140,10 +140,7 @@ def run(
         model = YOLO(model_id)
 
         write_result_json(
-            model_id=model_id,
-            model_name=model_id,
-            model=model,
-            mAP_result=mAP_result
+            model_id=model_id, model_name=model_id, model=model, mAP_result=mAP_result
         )
 
 
