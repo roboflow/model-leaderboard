@@ -50,7 +50,7 @@ def write_result_json(
     model_id: str,
     model_name: str,
     model: nn.Module,
-    mAP_result: MeanAveragePrecisionResult
+    mAP_result: MeanAveragePrecisionResult,
 ) -> None:
     result: dict[str, Any] = {}
 

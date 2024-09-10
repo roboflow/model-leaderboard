@@ -65,7 +65,7 @@ def run(
 
         mAP_metric = sv.metrics.MeanAveragePrecision()
         mAP_result = mAP_metric.update(predictions, targets).compute()
-        
+
         write_result_json(
             model_id=model_id,
             model_name=model_id
