@@ -52,7 +52,7 @@ MODEL_DICT = {
 DATASET_DIR = "../../../data/coco-dataset"
 CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
-DEVICE = torch.device("0" if torch.cuda.is_available() else "cpu")
+DEVICE = "0" if torch.cuda.is_available() else "cpu"
 
 with open(f"{DATASET_DIR}/data.yaml", "r") as f:
     dataset_yaml = yaml.safe_load(f)
