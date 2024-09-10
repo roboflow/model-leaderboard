@@ -1,0 +1,4 @@
+supervision>=0.24.0rc1
+ultralytics @ git+https://github.com/THU-MIG/yolov10.git@cd2f79c70299c9041fb6d19617ef1296f47575b1
+tqdm
+safetensors

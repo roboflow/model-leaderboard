@@ -1,6 +1,0 @@
-torch>=2.0.1
-torchvision>=0.15.2
-pycocotools
-PyYAML
-tensorboard
-supervision>=0.24.0rc1
