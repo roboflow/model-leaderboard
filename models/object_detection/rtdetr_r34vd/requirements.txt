@@ -1,5 +1,6 @@
-supervision @ git+https://github.com/roboflow/supervision.git@5467db4447ae89146e12477d372b908e0c5f5475
-transformers==4.44.2
-torch==2.4.0
-torchvision==0.19.0
-tqdm==4.66.5
+torch>=2.0.1
+torchvision>=0.15.2
+pycocotools
+PyYAML
+tensorboard
+supervision>=0.24.0rc1

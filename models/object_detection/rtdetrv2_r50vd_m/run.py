@@ -1,20 +1,25 @@
 import sys
 from pathlib import Path
 
+import numpy as np
 import supervision as sv
 import torch
+import torchvision.transforms as T
 import yaml
 from PIL import Image
+from supervision.config import CLASS_NAME_DATA_FIELD
 from tqdm import tqdm
-from transformers import RTDetrForObjectDetection, RTDetrImageProcessor
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from configs import COCO_CLASS_LIST, CONFIDENCE_THRESHOLD
+from configs import CLASS_NAMES, CONFIDENCE_THRESHOLD
 from utils import remap_class_ids, write_json_results
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-MODEL_NAME = "PekingU/rtdetr_r18vd_coco_o365"
+HUB_URL = "lyuwenyu/RT-DETR"
+MODEL_NAME = "rtdetrv2_r50vd_m"
 DATASET_DIR = "../../../data/coco-dataset"
+MODEL_FULL_NAME = "RT-DETRv2 (r50vd_m)"
+TRANSFORMS = T.Compose([T.Resize((640, 640)), T.ToTensor()])
 
 
 def load_targets_and_make_predictions(model: torch.nn.Module):
@@ -33,20 +38,24 @@ def load_targets_and_make_predictions(model: torch.nn.Module):
     targets = []
     for _, image, target_detections in tqdm(dataset, total=len(dataset)):
         img = Image.fromarray(image)
-        inputs = processor(images=img, return_tensors="pt").to(DEVICE)
-
-        with torch.no_grad():
-            outputs = model(**inputs)
-
         width, height = img.size
-        target_size = torch.tensor([[height, width]])
-        results = processor.post_process_object_detection(
-            outputs=outputs, target_sizes=target_size
-        )[0]
+        orig_size = torch.tensor([width, height])[None].to(DEVICE)
+        im_data = TRANSFORMS(img)[None].to(DEVICE)
 
-        detections = sv.Detections.from_transformers(
-            transformers_results=results, id2label=COCO_CLASS_LIST
+        results = model(im_data, orig_size)
+        labels, boxes, scores = results
+        class_id = labels.detach().cpu().numpy().astype(int)
+        xyxy = boxes.detach().cpu().numpy()
+        confidence = scores.detach().cpu().numpy()
+        class_names = np.array([CLASS_NAMES[i] for i in class_id[0]])
+
+        detections = sv.Detections(
+            xyxy=xyxy[0],
+            confidence=confidence[0],
+            class_id=class_id[0],
+            data={CLASS_NAME_DATA_FIELD: class_names},
         )
+        detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
 
         remap_class_ids(detections, coco_class_names)
         detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
@@ -58,12 +67,11 @@ def load_targets_and_make_predictions(model: torch.nn.Module):
     return predictions, targets
 
 
-model = RTDetrForObjectDetection.from_pretrained(MODEL_NAME).to(DEVICE)
-processor = RTDetrImageProcessor.from_pretrained(MODEL_NAME)
-
+model = torch.hub.load(HUB_URL, MODEL_NAME, pretrained=True)
+model = model.to(DEVICE)
 
 predictions, targets = load_targets_and_make_predictions(model)
 mAP_metric = sv.metrics.MeanAveragePrecision()
 mAP_result = mAP_metric.update(predictions, targets).compute()
 
-write_json_results(MODEL_NAME, model, mAP_result)
+write_json_results(MODEL_FULL_NAME, model, mAP_result)
