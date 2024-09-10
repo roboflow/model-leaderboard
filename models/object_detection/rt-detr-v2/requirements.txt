@@ -4,3 +4,4 @@ pycocotools
 PyYAML
 tensorboard
 supervision>=0.24.0rc1
+tqdm
