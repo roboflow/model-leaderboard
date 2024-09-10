@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from configs import CLASS_NAMES, CONFIDENCE_THRESHOLD
-from utils import get_dataset_class_names, load_detections_dataset, remap_class_ids, result_json_already_exists, write_result_json
+from utils import get_dataset_class_names, load_detections_dataset, result_json_already_exists, write_result_json
 
 
 MODEL_DICT = {

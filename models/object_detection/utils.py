@@ -47,25 +47,9 @@ def run_shell_command(command: List[str], working_directory=None) -> None:
         cwd=working_directory
     )
 
-
 def count_model_params(model: nn.Module) -> int:
     param_count = sum(p.numel() for p in model.parameters())
     return param_count
-
-
-def remap_class_ids(detections: sv.Detections, ordered_class_names: List[str]) -> None:
-    """
-    In-place remap the class_ids inside a Detections object, based on the class names.
-    Useful when a model returns the correct class_names, but uses a different class_id indexing.
-    """  # noqa: E501 // docs
-    if "class_name" not in detections.data:
-        raise ValueError("Detections should contain class names to reindex class ids.")
-
-    class_ids = [
-        ordered_class_names.index(class_name)
-        for class_name in detections.data["class_name"]
-    ]
-    detections.class_id = np.array(class_ids)
 
 def _make_result_filename(model_name: str) -> str:
     return f"results_{model_name}.json"
