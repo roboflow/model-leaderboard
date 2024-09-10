@@ -17,9 +17,11 @@ folders=(
     "yolov8l" "yolov8x"
     "yolov9c" "yolov9e"
     "yolov10b" "yolov10l" "yolov10x"
-    "rtdetr_r18vd" "rtdetr_r50vd" "rtdetr_r50vd_coco_o365"
-    "rtdetr_r18vd_coco_o365" "rtdetr_r34vd" "rtdetr_r101vd"
-    "rtdetr_r101vd_coco_o365"
+    "rtdetr_r18vd" "rtdetr_r50vd"
+    "rtdetr_r34vd" "rtdetr_r101vd"
+    "rtdetrv2_r18vd" "rtdetrv2_r50vd"
+    "rtdetrv2_r34vd" "rtdetrv2_r101vd"
+    "rtdetrv2_r50vd_m"
 )
 
 

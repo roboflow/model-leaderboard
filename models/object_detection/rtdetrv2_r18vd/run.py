@@ -16,9 +16,9 @@ from utils import remap_class_ids, write_json_results
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 HUB_URL = "lyuwenyu/RT-DETR"
-MODEL_NAME = "rtdetr_r18vd"
+MODEL_NAME = "rtdetrv2_r18vd"
 DATASET_DIR = "../../../data/coco-dataset"
-MODEL_FULL_NAME = "RT-DETRv1 (r18vd)"
+MODEL_FULL_NAME = "RT-DETRv2 (r18vd)"
 TRANSFORMS = T.Compose([T.Resize((640, 640)), T.ToTensor()])
 
 
