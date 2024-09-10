@@ -68,7 +68,7 @@ const results = [
       "map75": 0.6412649735201749
     },
     "metadata": {
-      "model": "RT-DETR, r18vd",
+      "model": "RT-DETR (r18vd)",
       "param_count": 20174608,
       "run_date": "2024-09-08T02:29:11.083160+00:00"
     }
@@ -179,7 +179,7 @@ const results = [
       "map75": 0.7143678467428763
     },
     "metadata": {
-      "model": "RT-DETR, r34vd",
+      "model": "RT-DETR (r34vd)",
       "param_count": 31424388,
       "run_date": "2024-09-08T11:54:38.600864+00:00"
     }
@@ -438,7 +438,7 @@ const results = [
       "map75": 0.7680537806353849
     },
     "metadata": {
-      "model": "RT-DETR, r50vd",
+      "model": "RT-DETR (r50vd)",
       "param_count": 42891372,
       "run_date": "2024-09-08T11:58:55.063425+00:00"
     }
@@ -549,7 +549,7 @@ const results = [
       "map75": 0.7307438919963094
     },
     "metadata": {
-      "model": "RT-DETR, r50vd, o365",
+      "model": "RT-DETR (r50vd, o365)",
       "param_count": 42891372,
       "run_date": "2024-09-08T12:06:27.201215+00:00"
     }
@@ -586,7 +586,7 @@ const results = [
       "map75": 0.6608498962695231
     },
     "metadata": {
-      "model": "RT-DETR, r18vd, o365",
+      "model": "RT-DETR (r18vd, o365)",
       "param_count": 20174608,
       "run_date": "2024-09-08T11:48:44.649525+00:00"
     }
@@ -623,7 +623,7 @@ const results = [
       "map75": 0.7708873121489459
     },
     "metadata": {
-      "model": "RT-DETR, r101vd",
+      "model": "RT-DETR (r101vd)",
       "param_count": 76556268,
       "run_date": "2024-09-08T12:44:08.168921+00:00"
     }
@@ -697,7 +697,7 @@ const results = [
       "map75": 0.7417091618002429
     },
     "metadata": {
-      "model": "RT-DETR, r101vd, o365",
+      "model": "RT-DETR (r101vd, o365)",
       "param_count": 76556268,
       "run_date": "2024-09-08T12:47:43.965709+00:00"
     }

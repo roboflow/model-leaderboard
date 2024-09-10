@@ -23,7 +23,7 @@ folders=(
 )
 
 
-for folder in ${folders[@]}; do 
+for folder in ${folders[@]}; do
     cd $current_path/models/object_detection/$folder
     # If results.json exists, move it to results.json.old
     if [ -f results.json ]; then

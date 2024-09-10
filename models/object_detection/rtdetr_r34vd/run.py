@@ -9,8 +9,8 @@ from tqdm import tqdm
 from transformers import RTDetrForObjectDetection, RTDetrImageProcessor
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+from configs import COCO_CLASS_LIST, CONFIDENCE_THRESHOLD
 from utils import remap_class_ids, write_json_results
-from configs import COCO_CLASS_LIST,CONFIDENCE_THRESHOLD
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MODEL_NAME = "PekingU/rtdetr_r34vd"
