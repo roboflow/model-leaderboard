@@ -3,7 +3,6 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
-import numpy as np
 import supervision as sv
 import torch
 import torchvision.transforms as T
@@ -81,7 +80,7 @@ def run(
                 confidence=confidence[0],
                 class_id=class_id[0],
             )
-            
+
             detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
             predictions.append(detections)
 
