@@ -67,10 +67,7 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
-            model_id=model_id,
-            model_name=model_id,
-            model=model,
-            mAP_result=mAP_result
+            model_id=model_id, model_name=model_id, model=model, mAP_result=mAP_result
         )
 
 
