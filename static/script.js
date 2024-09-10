@@ -45,11 +45,12 @@ function populateTable() {
     });
 
     // Fancy table
-    let table = new DataTable('#leaderboard', {
+    new DataTable('#leaderboard', {
         scrollY: '60vh',   // Set table height to 50% of the viewport height
         scrollCollapse: true,  // Collapse the table if it has fewer rows
         paging: false  // Disable pagination
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', populateTable);
