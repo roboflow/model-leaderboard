@@ -20,7 +20,14 @@ CONFIDENCE_THRESHOLD = 0.001
 
 
 def run_on_image(model, image) -> sv.Detections:
-    result = model(image, verbose=False)[0]
+    model_params = dict(
+        imgsz=640,
+        iou=0.6,
+        max_det=300,
+        conf=0.001,
+        verbose=False,
+    )
+    result = model(image, **model_params)[0]
     detections = sv.Detections.from_ultralytics(result)
     detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
     return detections
