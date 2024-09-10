@@ -3,7 +3,6 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
-import numpy as np
 import supervision as sv
 from tqdm import tqdm
 from ultralytics import YOLO

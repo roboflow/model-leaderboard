@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 from typing import Any, List
 
 import supervision as sv
-import yaml
 from supervision.metrics import MeanAveragePrecisionResult
 from torch import nn
 
