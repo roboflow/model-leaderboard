@@ -7,56 +7,45 @@ import numpy as np
 import supervision as sv
 import torch
 import torchvision.transforms as T
-import yaml
 from PIL import Image
 from supervision.config import CLASS_NAME_DATA_FIELD
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from configs import CLASS_NAMES, CONFIDENCE_THRESHOLD
-from utils import get_dataset_class_names, load_detections_dataset, result_json_already_exists, write_result_json
-
+from utils import (
+    get_dataset_class_names,
+    load_detections_dataset,
+    result_json_already_exists,
+    write_result_json,
+)
 
 MODEL_DICT = {
-    "rtdetrv2_r18vd": {
-        "name": "RT-DETRv2 (r18vd)",
-        "hub_id": "rtdetrv2_r18vd"
-    },
-    "rtdetrv2_r34vd": {
-        "name": "RT-DETRv2 (r34vd)",
-        "hub_id": "rtdetrv2_r34vd"
-    },
-    "rtdetrv2_r50vd": {
-        "name": "RT-DETRv2 (r50vd)",
-        "hub_id": "rtdetrv2_r50vd"
-    },
-    "rtdetrv2_r50vd_m": {
-        "name": "RT-DETRv2 (r50vd_m)",
-        "hub_id": "rtdetrv2_r50vd_m"
-    },
-    "rtdetrv2_r101vd": {
-        "name": "RT-DETRv2 (r101vd)",
-        "hub_id": "rtdetrv2_r101vd"
-    }
+    "rtdetrv2_r18vd": {"name": "RT-DETRv2 (r18vd)", "hub_id": "rtdetrv2_r18vd"},
+    "rtdetrv2_r34vd": {"name": "RT-DETRv2 (r34vd)", "hub_id": "rtdetrv2_r34vd"},
+    "rtdetrv2_r50vd": {"name": "RT-DETRv2 (r50vd)", "hub_id": "rtdetrv2_r50vd"},
+    "rtdetrv2_r50vd_m": {"name": "RT-DETRv2 (r50vd_m)", "hub_id": "rtdetrv2_r50vd_m"},
+    "rtdetrv2_r101vd": {"name": "RT-DETRv2 (r101vd)", "hub_id": "rtdetrv2_r101vd"},
 }
 HUB_URL = "lyuwenyu/RT-DETR"
 DATASET_DIR = "../../../data/coco-dataset"
 TRANSFORMS = T.Compose([T.Resize((640, 640)), T.ToTensor()])
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
-    dataset: Optional[sv.DetectionDataset] = None
+    dataset: Optional[sv.DetectionDataset] = None,
 ) -> None:
     """
     Run the evaluation for the given models and dataset.
-    
+
     Arguments:
         model_ids: List of model ids to evaluate. Evaluate all models if None.
         skip_if_result_exists: If True, skip the evaluation if the result json already exists.
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
-    """
+    """  # noqa: E501 // docs
     if not model_ids:
         model_ids = list(MODEL_DICT.keys())
 
@@ -68,7 +57,7 @@ def run(
             print(f"Skipping {model_id}. Result already exists!")
             continue
 
-        if dataset is None: 
+        if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
         model = torch.hub.load(HUB_URL, model_values["hub_id"], pretrained=True)
@@ -76,7 +65,7 @@ def run(
 
         predictions = []
         targets = []
-        print(f"Evaluating...")
+        print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             img = Image.fromarray(image)
             width, height = img.size
@@ -115,7 +104,7 @@ def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
     Most other models use the COCO class order. (person=0, bicycle=1, ...).
 
     This function reads the class names from the detections, and remaps them to the Roboflow dataset order.
-    """
+    """  # noqa: E501 // docs
     if "class_name" not in detections.data:
         raise ValueError("Detections should contain class names to reindex class ids.")
 
@@ -129,10 +118,14 @@ def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("model_ids", nargs="*",
+    parser.add_argument(
+        "model_ids",
+        nargs="*",
         help="Model ids to evaluate. If not provided, evaluate all models.",
     )
-    parser.add_argument("--skip_if_result_exists", action="store_true",
+    parser.add_argument(
+        "--skip_if_result_exists",
+        action="store_true",
         help="If specified, skip the evaluation if the result json already exists.",
     )
     args = parser.parse_args()

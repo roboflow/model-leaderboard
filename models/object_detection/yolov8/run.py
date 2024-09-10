@@ -1,7 +1,7 @@
+import argparse
 import sys
 from pathlib import Path
 from typing import List, Optional
-import argparse
 
 import numpy as np
 import supervision as sv
@@ -9,8 +9,12 @@ from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from utils import get_dataset_class_names, result_json_already_exists, write_result_json, load_detections_dataset
-
+from utils import (
+    get_dataset_class_names,
+    load_detections_dataset,
+    result_json_already_exists,
+    write_result_json,
+)
 
 MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
 DATASET_DIR = "../../../data/coco-dataset"
@@ -28,16 +32,16 @@ def run_on_image(model, image) -> sv.Detections:
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
-    dataset:Optional[sv.DetectionDataset] = None
+    dataset: Optional[sv.DetectionDataset] = None,
 ) -> None:
     """
     Run the evaluation for the given models and dataset.
-    
+
     Arguments:
         model_ids: List of model ids to evaluate. Evaluate all models if None.
         skip_if_result_exists: If True, skip the evaluation if the result json already exists.
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
-    """
+    """  # noqa: E501 // docs
     if not model_ids:
         model_ids = MODEL_IDS
 
@@ -48,16 +52,15 @@ def run(
             print(f"Skipping {model_id}. Result already exists!")
             continue
 
-        if dataset is None: 
+        if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
         model = YOLO(model_id)
 
         predictions = []
         targets = []
-        print(f"Evaluating...")
+        print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
-
             # Run model
             detections = run_on_image(model, image)
             predictions.append(detections)
@@ -74,7 +77,7 @@ def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
     Most other models use the COCO class order. (person=0, bicycle=1, ...).
 
     This function reads the class names from the detections, and remaps them to the Roboflow dataset order.
-    """
+    """  # noqa: E501 // docs
     if "class_name" not in detections.data:
         raise ValueError("Detections should contain class names to reindex class ids.")
 
@@ -88,10 +91,14 @@ def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("model_ids", nargs="*",
+    parser.add_argument(
+        "model_ids",
+        nargs="*",
         help="Model ids to evaluate. If not provided, evaluate all models.",
     )
-    parser.add_argument("--skip_if_result_exists", action="store_true",
+    parser.add_argument(
+        "--skip_if_result_exists",
+        action="store_true",
         help="If specified, skip the evaluation if the result json already exists.",
     )
     args = parser.parse_args()

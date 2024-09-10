@@ -1,29 +1,29 @@
-import os
 import json
+import os
 import subprocess
 from datetime import datetime, timezone
 from typing import Any, List
 
-import numpy as np
 import supervision as sv
+import yaml
 from supervision.metrics import MeanAveragePrecisionResult
 from torch import nn
-import yaml
 
 
 def load_detections_dataset(dataset_dir: str) -> sv.DetectionDataset:
-    print(f"Loading detections dataset...")
+    print("Loading detections dataset...")
     dataset = sv.DetectionDataset.from_yolo(
         images_directory_path=f"{dataset_dir}/test/images",
         annotations_directory_path=f"{dataset_dir}/test/labels",
         data_yaml_path=f"{dataset_dir}/data.yaml",
     )
-    
+
     # Save some memory
     for _, annotation in dataset.annotations.items():
         annotation.mask = None
 
     return dataset
+
 
 def get_dataset_class_names(dataset_dir: str) -> List[str]:
     with open(f"{dataset_dir}/data.yaml", "r") as f:
@@ -31,37 +31,36 @@ def get_dataset_class_names(dataset_dir: str) -> List[str]:
         coco_class_names = dataset_yaml["names"]
     return coco_class_names
 
+
 def download_file(url: str, output_filename: str) -> None:
     command = ["wget", url, "-O", output_filename]
     subprocess.run(
         command, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
 
+
 def run_shell_command(command: List[str], working_directory=None) -> None:
     subprocess.run(
-        command, 
-        check=True,
-        text=True,
-        stdout=None,
-        stderr=None,
-        cwd=working_directory
+        command, check=True, text=True, stdout=None, stderr=None, cwd=working_directory
     )
+
 
 def count_model_params(model: nn.Module) -> int:
     param_count = sum(p.numel() for p in model.parameters())
     return param_count
 
+
 def _make_result_filename(model_name: str) -> str:
     return f"results_{model_name}.json"
+
 
 def result_json_already_exists(model_name: str) -> bool:
     result_file = _make_result_filename(model_name)
     return os.path.exists(result_file)
 
+
 def write_result_json(
-    model_name: str,
-    model: nn.Module,
-    mAP_result: MeanAveragePrecisionResult
+    model_name: str, model: nn.Module, mAP_result: MeanAveragePrecisionResult
 ) -> None:
     result: dict[str, Any] = {}
 

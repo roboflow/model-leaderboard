@@ -1,23 +1,26 @@
-import os
+import argparse
 import shutil
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
-import argparse
-import yaml
 
 import numpy as np
 import supervision as sv
+import torch
+import yaml
 from tqdm import tqdm
 from ultralytics import YOLO
-import torch
-
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from utils import get_dataset_class_names, result_json_already_exists, write_result_json, load_detections_dataset, run_shell_command, download_file
 from configs import CLASS_NAMES
-
-
+from utils import (
+    download_file,
+    get_dataset_class_names,
+    load_detections_dataset,
+    result_json_already_exists,
+    run_shell_command,
+    write_result_json,
+)
 
 MODEL_DICT = {
     "yolov9t": {
@@ -28,24 +31,24 @@ MODEL_DICT = {
     "yolov9s": {
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-s-converted.pt",
         "model_filename": "yolov9s-converted.pt",
-        "model_run_dir": "yolov9s-out"
+        "model_run_dir": "yolov9s-out",
     },
     "yolov9m": {
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-m-converted.pt",
         "model_filename": "yolov9m-converted.pt",
-        "model_run_dir": "yolov9m-out"
+        "model_run_dir": "yolov9m-out",
     },
     "yolov9c": {
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-c-converted.pt",
         "model_filename": "yolov9c-converted.pt",
-        "model_run_dir": "yolov9c-out"
+        "model_run_dir": "yolov9c-out",
     },
     "yolov9e": {
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-e-converted.pt",
         "model_filename": "yolov9e-converted.pt",
-        "model_run_dir": "yolov9e-out"
+        "model_run_dir": "yolov9e-out",
     },
-}
+}  # noqa: E501 // docs
 DATASET_DIR = "../../../data/coco-dataset"
 CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
@@ -64,16 +67,16 @@ CLASS_ID_TO_RF_CLASS_ID = {
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
-    dataset:Optional[sv.DetectionDataset] = None
+    dataset: Optional[sv.DetectionDataset] = None,
 ) -> None:
     """
     Run the evaluation for the given models and dataset.
-    
+
     Arguments:
         model_ids: List of model ids to evaluate. Evaluate all models if None.
         skip_if_result_exists: If True, skip the evaluation if the result json already exists.
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
-    """
+    """  # noqa: E501 // docs
     if not model_ids:
         model_ids = list(MODEL_DICT.keys())
 
@@ -90,23 +93,29 @@ def run(
         download_file(model_values["model_url"], model_values["model_filename"])
 
         # Make predictions
-        shutil.rmtree(f"yolov9-repo/runs/detect/{model_values['model_run_dir']}", ignore_errors=True)
-        run_shell_command([
-            "python",
-            "detect.py",
-            "--source",
-            "../../../../data/coco-dataset/test/images/",
-            "--img",
-            "640",
-            "--device",
-            DEVICE,
-            "--weights",
-            f"../{model_values['model_filename']}",
-            "--name",
-            model_values["model_run_dir"],
-            "--save-txt",
-            "--save-conf"
-        ], working_directory="yolov9-repo")
+        shutil.rmtree(
+            f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
+            ignore_errors=True,
+        )
+        run_shell_command(
+            [
+                "python",
+                "detect.py",
+                "--source",
+                "../../../../data/coco-dataset/test/images/",
+                "--img",
+                "640",
+                "--device",
+                DEVICE,
+                "--weights",
+                f"../{model_values['model_filename']}",
+                "--name",
+                model_values["model_run_dir"],
+                "--save-txt",
+                "--save-conf",
+            ],
+            working_directory="yolov9-repo",
+        )
         predictions_dict = load_predictions_dict(
             Path(f"yolov9-repo/runs/detect/{model_values["model_run_dir"]}")
         )
@@ -117,7 +126,6 @@ def run(
         predictions = []
         targets = []
         for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
-
             # Load predictions
             detections = predictions_dict[Path(image_path).name]
             detections.class_id = np.array(
@@ -180,14 +188,13 @@ def labels_to_detections(label_path: Path) -> sv.Detections:
     return detections
 
 
-
 def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
     """
     Roboflow dataset has class names in alphabetical order. (airplane=0, apple=1, ...)
     Most other models use the COCO class order. (person=0, bicycle=1, ...).
 
     This function reads the class names from the detections, and remaps them to the Roboflow dataset order.
-    """
+    """  # noqa: E501 // docs
     if "class_name" not in detections.data:
         raise ValueError("Detections should contain class names to reindex class ids.")
 
@@ -198,12 +205,17 @@ def map_class_ids_to_roboflow_format(detections: sv.Detections) -> None:
     ]
     detections.class_id = np.array(class_ids)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("model_ids", nargs="*",
+    parser.add_argument(
+        "model_ids",
+        nargs="*",
         help="Model ids to evaluate. If not provided, evaluate all models.",
     )
-    parser.add_argument("--skip_if_result_exists", action="store_true",
+    parser.add_argument(
+        "--skip_if_result_exists",
+        action="store_true",
         help="If specified, skip the evaluation if the result json already exists.",
     )
     args = parser.parse_args()
