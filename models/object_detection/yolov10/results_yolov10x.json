@@ -1,6 +1,7 @@
 {
     "metadata": {
         "model": "yolov10x",
+        "license": "APGL-3.0",
         "param_count": 31738160,
         "run_date": "2024-09-11T06:58:14.018727+00:00"
     },

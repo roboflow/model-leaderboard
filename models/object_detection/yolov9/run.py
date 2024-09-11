@@ -47,6 +47,8 @@ MODEL_DICT = {
         "model_run_dir": "yolov9e-out",
     },
 }  # noqa: E501 // docs
+
+LICENSE = "GPL-3.0"
 DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
@@ -127,7 +129,11 @@ def run(
         model = YOLO(model_id)
 
         write_result_json(
-            model_id=model_id, model_name=model_id, model=model, mAP_result=mAP_result
+            model_id=model_id,
+            model_name=model_id,
+            model=model,
+            mAP_result=mAP_result,
+            license_name=LICENSE,
         )
 
 

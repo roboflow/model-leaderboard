@@ -24,6 +24,7 @@ MODEL_DICT = {
     "rtdetrv2_r50vd_m": {"name": "RT-DETRv2 (r50vd_m)", "hub_id": "rtdetrv2_r50vd_m"},
     "rtdetrv2_r101vd": {"name": "RT-DETRv2 (r101vd)", "hub_id": "rtdetrv2_r101vd"},
 }
+LICENSE = "Apache-2.0"
 HUB_URL = "lyuwenyu/RT-DETR"
 DATASET_DIR = "../../../data/coco-val-2017"
 TRANSFORMS = T.Compose([T.Resize((640, 640)), T.ToTensor()])
@@ -95,6 +96,7 @@ def run(
             model_name=model_values["name"],
             model=model,
             mAP_result=mAP_result,
+            license_name=LICENSE,
         )
 
 

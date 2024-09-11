@@ -1,9 +1,10 @@
 const results = [
   {
     "metadata": {
-      "model": "yolov10b",
-      "param_count": 20534512,
-      "run_date": "2024-09-11T06:26:25.254425+00:00"
+      "model": "yolov8l",
+      "license": "APGL-3.0",
+      "param_count": 43668288,
+      "run_date": "2024-09-10T23:36:29.969043+00:00"
     },
     "map50_95": 0.5143792118069956,
     "map50": 0.6824004061676368,
@@ -38,9 +39,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10x",
-      "param_count": 31738160,
-      "run_date": "2024-09-11T06:58:14.018727+00:00"
+      "model": "yolov8x",
+      "license": "APGL-3.0",
+      "param_count": 68200608,
+      "run_date": "2024-09-10T23:52:10.141435+00:00"
     },
     "map50_95": 0.5322172579705878,
     "map50": 0.7001374705335366,
@@ -75,9 +77,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10n",
-      "param_count": 2762608,
-      "run_date": "2024-09-11T06:00:26.460240+00:00"
+      "model": "yolov8m",
+      "license": "APGL-3.0",
+      "param_count": 25886080,
+      "run_date": "2024-09-10T23:24:56.134038+00:00"
     },
     "map50_95": 0.3765088416879911,
     "map50": 0.5260609848471127,
@@ -112,9 +115,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10l",
-      "param_count": 25839728,
-      "run_date": "2024-09-11T06:40:36.736680+00:00"
+      "model": "yolov8s",
+      "license": "APGL-3.0",
+      "param_count": 11156544,
+      "run_date": "2024-09-10T23:18:11.913012+00:00"
     },
     "map50_95": 0.5193880242072942,
     "map50": 0.6877678233859065,
@@ -149,9 +153,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10m",
-      "param_count": 16543024,
-      "run_date": "2024-09-11T06:15:13.254833+00:00"
+      "model": "yolov8n",
+      "license": "APGL-3.0",
+      "param_count": 3151904,
+      "run_date": "2024-09-10T23:14:14.800283+00:00"
     },
     "map50_95": 0.4985133021605519,
     "map50": 0.6674225563674506,
@@ -186,9 +191,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10s",
-      "param_count": 8096880,
-      "run_date": "2024-09-11T06:06:20.613349+00:00"
+      "model": "RT-DETRv1 (r50vd)",
+      "license": "Apache-2.0",
+      "param_count": 49972332,
+      "run_date": "2024-09-10T16:18:12.499365+00:00"
     },
     "map50_95": 0.45374339278894915,
     "map50": 0.6202786326213161,
@@ -224,6 +230,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv1 (r34vd)",
+      "license": "Apache-2.0",
       "param_count": 33212676,
       "run_date": "2024-09-10T16:14:42.535005+00:00"
     },
@@ -335,6 +342,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv1 (r101vd)",
+      "license": "Apache-2.0",
       "param_count": 92486124,
       "run_date": "2024-09-10T16:21:37.375759+00:00"
     },
@@ -371,9 +379,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8m",
-      "param_count": 25886080,
-      "run_date": "2024-09-10T23:24:56.134038+00:00"
+      "model": "RT-DETRv1 (r18vd)",
+      "license": "Apache-2.0",
+      "param_count": 21955472,
+      "run_date": "2024-09-10T16:11:52.358781+00:00"
     },
     "map50_95": 0.4850764482852273,
     "map50": 0.6557558710184571,
@@ -408,9 +417,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8s",
-      "param_count": 11156544,
-      "run_date": "2024-09-10T23:18:11.913012+00:00"
+      "model": "yolov10s",
+      "license": "APGL-3.0",
+      "param_count": 8096880,
+      "run_date": "2024-09-11T06:06:20.613349+00:00"
     },
     "map50_95": 0.4349514933109458,
     "map50": 0.6034741727406848,
@@ -445,9 +455,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8n",
-      "param_count": 3151904,
-      "run_date": "2024-09-10T23:14:14.800283+00:00"
+      "model": "yolov10l",
+      "license": "APGL-3.0",
+      "param_count": 25839728,
+      "run_date": "2024-09-11T06:40:36.736680+00:00"
     },
     "map50_95": 0.36107992040614717,
     "map50": 0.5177048447680661,
@@ -482,9 +493,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8x",
-      "param_count": 68200608,
-      "run_date": "2024-09-10T23:52:10.141435+00:00"
+      "model": "yolov10m",
+      "license": "APGL-3.0",
+      "param_count": 16543024,
+      "run_date": "2024-09-11T06:15:13.254833+00:00"
     },
     "map50_95": 0.5224729352634083,
     "map50": 0.6928428439393775,
@@ -519,9 +531,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8l",
-      "param_count": 43668288,
-      "run_date": "2024-09-10T23:36:29.969043+00:00"
+      "model": "yolov10x",
+      "license": "APGL-3.0",
+      "param_count": 31738160,
+      "run_date": "2024-09-11T06:58:14.018727+00:00"
     },
     "map50_95": 0.5113536598644233,
     "map50": 0.6818119743607345,
@@ -556,9 +569,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv2 (r34vd)",
-      "param_count": 33212676,
-      "run_date": "2024-09-10T16:30:46.673344+00:00"
+      "model": "yolov10n",
+      "license": "APGL-3.0",
+      "param_count": 2762608,
+      "run_date": "2024-09-11T06:00:26.460240+00:00"
     },
     "map50_95": 0.4867825440454518,
     "map50": 0.6591044524702075,
@@ -593,9 +607,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv2 (r18vd)",
-      "param_count": 21955472,
-      "run_date": "2024-09-10T16:26:50.070114+00:00"
+      "model": "yolov10b",
+      "license": "APGL-3.0",
+      "param_count": 20534512,
+      "run_date": "2024-09-11T06:26:25.254425+00:00"
     },
     "map50_95": 0.4687995594739722,
     "map50": 0.6370584442700049,
@@ -631,6 +646,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r50vd)",
+      "license": "Apache-2.0",
       "param_count": 49972332,
       "run_date": "2024-09-10T16:35:20.553966+00:00"
     },
@@ -667,9 +683,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv2 (r101vd)",
-      "param_count": 92486124,
-      "run_date": "2024-09-10T16:44:47.186839+00:00"
+      "model": "RT-DETRv2 (r18vd)",
+      "license": "Apache-2.0",
+      "param_count": 21955472,
+      "run_date": "2024-09-10T16:26:50.070114+00:00"
     },
     "map50_95": 0.524330135379127,
     "map50": 0.7039527758683548,
@@ -705,6 +722,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r50vd_m)",
+      "license": "Apache-2.0",
       "param_count": 38364780,
       "run_date": "2024-09-10T16:39:31.489397+00:00"
     },
@@ -741,9 +759,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo_nas_m",
-      "param_count": 51182658,
-      "run_date": "2024-09-11T15:13:41.408248+00:00"
+      "model": "RT-DETRv2 (r101vd)",
+      "license": "Apache-2.0",
+      "param_count": 92486124,
+      "run_date": "2024-09-10T16:44:47.186839+00:00"
     },
     "map50_95": 0.47600776753268037,
     "map50": 0.6371598084661176,
@@ -778,9 +797,10 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo_nas_l",
-      "param_count": 66976392,
-      "run_date": "2024-09-11T15:34:44.524051+00:00"
+      "model": "RT-DETRv2 (r34vd)",
+      "license": "Apache-2.0",
+      "param_count": 33212676,
+      "run_date": "2024-09-10T16:30:46.673344+00:00"
     },
     "map50_95": 0.4823908978773399,
     "map50": 0.6436635942062905,

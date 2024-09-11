@@ -1,6 +1,7 @@
 {
     "metadata": {
         "model": "RT-DETRv1 (r18vd)",
+        "license": "Apache-2.0",
         "param_count": 21955472,
         "run_date": "2024-09-10T16:11:52.358781+00:00"
     },
