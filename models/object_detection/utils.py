@@ -51,11 +51,13 @@ def write_result_json(
     model_name: str,
     model: nn.Module,
     mAP_result: MeanAveragePrecisionResult,
+    license_name: str,
 ) -> None:
     result: dict[str, Any] = {}
 
     result["metadata"] = {
         "model": model_name,
+        "license": license_name,
         "param_count": count_model_params(model),
         "run_date": datetime.now(timezone.utc).isoformat(),
     }

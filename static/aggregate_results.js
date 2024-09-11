@@ -2,6 +2,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov8l",
+      "license": "APGL-3.0",
       "param_count": 43668288,
       "run_date": "2024-09-10T23:36:29.969043+00:00"
     },
@@ -39,6 +40,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov8x",
+      "license": "APGL-3.0",
       "param_count": 68200608,
       "run_date": "2024-09-10T23:52:10.141435+00:00"
     },
@@ -76,6 +78,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov8m",
+      "license": "APGL-3.0",
       "param_count": 25886080,
       "run_date": "2024-09-10T23:24:56.134038+00:00"
     },
@@ -113,6 +116,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov8s",
+      "license": "APGL-3.0",
       "param_count": 11156544,
       "run_date": "2024-09-10T23:18:11.913012+00:00"
     },
@@ -150,6 +154,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov8n",
+      "license": "APGL-3.0",
       "param_count": 3151904,
       "run_date": "2024-09-10T23:14:14.800283+00:00"
     },
@@ -187,6 +192,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv1 (r50vd)",
+      "license": "Apache-2.0",
       "param_count": 49972332,
       "run_date": "2024-09-10T16:18:12.499365+00:00"
     },
@@ -224,6 +230,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv1 (r34vd)",
+      "license": "Apache-2.0",
       "param_count": 33212676,
       "run_date": "2024-09-10T16:14:42.535005+00:00"
     },
@@ -261,6 +268,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv1 (r101vd)",
+      "license": "Apache-2.0",
       "param_count": 92486124,
       "run_date": "2024-09-10T16:21:37.375759+00:00"
     },
@@ -298,6 +306,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv1 (r18vd)",
+      "license": "Apache-2.0",
       "param_count": 21955472,
       "run_date": "2024-09-10T16:11:52.358781+00:00"
     },
@@ -335,6 +344,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov10s",
+      "license": "APGL-3.0",
       "param_count": 8096880,
       "run_date": "2024-09-11T06:06:20.613349+00:00"
     },
@@ -372,6 +382,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov10l",
+      "license": "APGL-3.0",
       "param_count": 25839728,
       "run_date": "2024-09-11T06:40:36.736680+00:00"
     },
@@ -409,6 +420,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov10m",
+      "license": "APGL-3.0",
       "param_count": 16543024,
       "run_date": "2024-09-11T06:15:13.254833+00:00"
     },
@@ -446,6 +458,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov10x",
+      "license": "APGL-3.0",
       "param_count": 31738160,
       "run_date": "2024-09-11T06:58:14.018727+00:00"
     },
@@ -483,6 +496,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov10n",
+      "license": "APGL-3.0",
       "param_count": 2762608,
       "run_date": "2024-09-11T06:00:26.460240+00:00"
     },
@@ -520,6 +534,7 @@ const results = [
   {
     "metadata": {
       "model": "yolov10b",
+      "license": "APGL-3.0",
       "param_count": 20534512,
       "run_date": "2024-09-11T06:26:25.254425+00:00"
     },
@@ -557,6 +572,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r50vd)",
+      "license": "Apache-2.0",
       "param_count": 49972332,
       "run_date": "2024-09-10T16:35:20.553966+00:00"
     },
@@ -594,6 +610,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r18vd)",
+      "license": "Apache-2.0",
       "param_count": 21955472,
       "run_date": "2024-09-10T16:26:50.070114+00:00"
     },
@@ -631,6 +648,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r50vd_m)",
+      "license": "Apache-2.0",
       "param_count": 38364780,
       "run_date": "2024-09-10T16:39:31.489397+00:00"
     },
@@ -668,6 +686,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r101vd)",
+      "license": "Apache-2.0",
       "param_count": 92486124,
       "run_date": "2024-09-10T16:44:47.186839+00:00"
     },
@@ -705,6 +724,7 @@ const results = [
   {
     "metadata": {
       "model": "RT-DETRv2 (r34vd)",
+      "license": "Apache-2.0",
       "param_count": 33212676,
       "run_date": "2024-09-10T16:30:46.673344+00:00"
     },

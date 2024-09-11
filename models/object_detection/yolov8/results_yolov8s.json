@@ -1,6 +1,7 @@
 {
     "metadata": {
         "model": "yolov8s",
+        "license": "APGL-3.0",
         "param_count": 11156544,
         "run_date": "2024-09-10T23:18:11.913012+00:00"
     },

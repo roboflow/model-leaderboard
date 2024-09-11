@@ -17,6 +17,7 @@ from utils import (
 MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
 DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
+LICENSE = "APGL-3.0"
 
 
 def run_on_image(model, image) -> sv.Detections:
@@ -74,7 +75,11 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
-            model_id=model_id, model_name=model_id, model=model, mAP_result=mAP_result
+            model_id=model_id,
+            model_name=model_id,
+            model=model,
+            mAP_result=mAP_result,
+            license_name=LICENSE,
         )
 
 
