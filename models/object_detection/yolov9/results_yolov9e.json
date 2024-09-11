@@ -1,6 +1,7 @@
 {
     "metadata": {
         "model": "yolov9e",
+        "license": "GPL-3.0",
         "param_count": 58206592,
         "run_date": "2024-09-10T18:30:48.264219+00:00"
     },
