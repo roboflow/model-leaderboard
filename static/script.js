@@ -30,6 +30,9 @@ function populateTable() {
         const largeMap50_95Cell = document.createElement('td');
         largeMap50_95Cell.textContent = result.large_objects.map50_95.toFixed(3);
 
+        const licenseCell = document.createElement('td');
+        licenseCell.textContent = result.metadata.license;
+
         // Append cells to row
         row.appendChild(modelCell);
         row.appendChild(paramCell);
@@ -39,6 +42,7 @@ function populateTable() {
         row.appendChild(smallMap50_95Cell);
         row.appendChild(mediumMap50_95Cell);
         row.appendChild(largeMap50_95Cell);
+        row.appendChild(licenseCell);
 
         // Append row to table body
         tableBody.appendChild(row);
