@@ -48,7 +48,8 @@ function populateTable() {
     new DataTable('#leaderboard', {
         scrollY: '60vh',   // Set table height to 50% of the viewport height
         scrollCollapse: true,  // Collapse the table if it has fewer rows
-        paging: false  // Disable pagination
+        paging: false,  // Disable pagination
+        order: [[2, 'desc']]  // Sort by MAP@50-95
     });
 }
 
