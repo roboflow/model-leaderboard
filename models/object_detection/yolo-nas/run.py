@@ -18,7 +18,17 @@ from utils import (
 )
 
 LICENSE = "Apache-2.0"
-MODEL_IDS = ["yolo_nas_s", "yolo_nas_m", "yolo_nas_l"]
+MODEL_DICT = {
+    "yolo_nas_s": {
+        "name": "YOLO-NAS S",
+    },
+    "yolo_nas_m": {
+        "name": "YOLO-NAS M",
+    },
+    "yolo_nas_l": {
+        "name": "YOLO-NAS L",
+    },
+}
 DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
 
@@ -48,10 +58,11 @@ def run(
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
     if not model_ids:
-        model_ids = MODEL_IDS
+        model_ids = list(MODEL_DICT.keys())
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        model_values = MODEL_DICT[model_id]
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
@@ -78,7 +89,7 @@ def run(
 
         write_result_json(
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_values["name"],
             model=model,
             mAP_result=mAP_result,
             license_name=LICENSE,
