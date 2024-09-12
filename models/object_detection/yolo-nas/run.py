@@ -35,8 +35,10 @@ CONFIDENCE_THRESHOLD = 0.001
 
 def run_on_image(model, image) -> sv.Detections:
     model_params = dict(
-        iou=0.6,
-        conf=0.001,
+        conf=0.01,
+        iou=0.7,
+        nms_top_k=1000,
+        max_predictions=300,
     )
     result = model.predict(image, **model_params)
     detections = sv.Detections.from_yolo_nas(result)
