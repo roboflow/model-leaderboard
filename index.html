@@ -7,11 +7,10 @@
     <title>Model Leaderboard</title>
     <link rel="stylesheet" href="static/light-theme.css">
     <link rel="stylesheet" href="static/dark-theme.css" id="theme-link">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -43,6 +42,7 @@
             <span>benchmarked on: <a href="https://cocodataset.org/#download">COCO 2017</a><br />
                 (validation set, 5k images)</span>
         </div>
+
         <table id="leaderboard">
             <thead>
                 <tr>
@@ -62,12 +62,17 @@
         </table>
     </div>
 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
     <script src="static/aggregate_results.js"></script>
     <script src="static/script.js"></script>
     <script src="static/theme-toggle.js"></script>
+
 </body>
 
 </html>

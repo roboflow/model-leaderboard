@@ -53,6 +53,10 @@ DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    conf=CONFIDENCE_THRESHOLD,
+)
 
 
 def run(
@@ -95,7 +99,7 @@ def run(
                 "--source",
                 "../../../../data/coco-val-2017/images/val2017",
                 "--img",
-                "640",
+                str(RUN_PARAMETERS["imgsz"]),
                 "--device",
                 DEVICE,
                 "--weights",
@@ -134,6 +138,7 @@ def run(
             model=model,
             mAP_result=mAP_result,
             license_name=LICENSE,
+            run_parameters=RUN_PARAMETERS,
         )
 
 

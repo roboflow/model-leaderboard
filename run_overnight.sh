@@ -8,20 +8,10 @@ current_path=$(pwd)
 
 # Iteartion order. Start with quick-running ones to surface errors faster.
 folders=(
-    "yolov8n"
-    "yolov9t"
-    "yolov10n"
-    "yolov8s" "yolov8m"
-    "yolov9s" "yolov9m"
-    "yolov10s" "yolov10m"
-    "yolov8l" "yolov8x"
-    "yolov9c" "yolov9e"
-    "yolov10b" "yolov10l" "yolov10x"
-    "rtdetr_r18vd" "rtdetr_r50vd"
-    "rtdetr_r34vd" "rtdetr_r101vd"
-    "rtdetrv2_r18vd" "rtdetrv2_r50vd"
-    "rtdetrv2_r34vd" "rtdetrv2_r101vd"
-    "rtdetrv2_r50vd_m"
+    "yolov8"
+    "yolov9"
+    "yolov10"
+    "rt-detr"
 )
 
 

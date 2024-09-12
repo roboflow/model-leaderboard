@@ -2,6 +2,13 @@
     "metadata": {
         "model": "yolov8x",
         "license": "APGL-3.0",
+        "run_parameters": {
+            "imgsz": 640,
+            "iou": 0.6,
+            "max_det": 300,
+            "conf": 0.001,
+            "verbose": false
+        },
         "param_count": 68200608,
         "run_date": "2024-09-10T23:52:10.141435+00:00"
     },
