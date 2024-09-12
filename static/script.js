@@ -43,7 +43,7 @@ function populateTable() {
 
         const inferenceParamCell = document.createElement('td');
         const gearIcon = document.createElement('i');
-        gearIcon.className = 'fas fa-sliders';
+        gearIcon.className = 'fas fa-gear';
         gearIcon.style.cursor = 'pointer';
 
         const tooltip = document.createElement('div');
