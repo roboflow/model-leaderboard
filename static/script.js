@@ -1,3 +1,44 @@
+function formatRunParams(runParams) {
+    if (!runParams) {
+        return '';
+    }
+    return Object.entries(runParams)
+        .map(([key, value]) => `<li>${key}: ${value}</li>`)
+        .join('');
+}
+
+function showTooltip(event) {
+    const tooltip = event.target.nextElementSibling;
+    tooltip.style.display = 'block';
+
+    const updateTooltipPosition = () => {
+        FloatingUIDOM.computePosition(event.target, tooltip, {
+            placement: 'top',
+            middleware: [FloatingUIDOM.offset(10), FloatingUIDOM.flip(), FloatingUIDOM.shift()],
+        }).then(({ x, y }) => {
+            Object.assign(tooltip.style, {
+                left: `${x}px`,
+                top: `${y}px`,
+            });
+        }).catch(err => console.error('Error computing position:', err));
+    };
+
+    updateTooltipPosition();
+    window.addEventListener('scroll', updateTooltipPosition);
+
+    tooltip._removeScrollListener = () => {
+        window.removeEventListener('scroll', updateTooltipPosition);
+    };
+}
+
+function hideTooltip(event) {
+    const tooltip = event.target.nextElementSibling;
+    tooltip.style.display = '';
+    if (tooltip._removeScrollListener) {
+        tooltip._removeScrollListener();
+    }
+}
+
 function populateTable() {
     const tableBody = document.getElementById('table-body');
 
@@ -11,6 +52,35 @@ function populateTable() {
 
         const paramCell = document.createElement('td');
         paramCell.textContent = (result.metadata.param_count / 1e6).toFixed(2);
+
+        const inferenceParamCell = document.createElement('td');
+        const gearIcon = document.createElement('i');
+        gearIcon.className = 'fas fa-gear';
+        gearIcon.style.cursor = 'pointer';
+
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip-text';
+        tooltip.style.display = 'none';
+
+        const formattedParams = formatRunParams(result.metadata.run_parameters);
+        tooltip.innerHTML = `<ul>${formattedParams}</ul>`;
+
+        inferenceParamCell.appendChild(gearIcon);
+        inferenceParamCell.appendChild(tooltip);
+
+        [
+            ['mouseenter', showTooltip],
+            ['mouseleave', hideTooltip],
+            ['focus', showTooltip],
+            ['blur', hideTooltip],
+          ].forEach(([event, listener]) => {
+            gearIcon.addEventListener(event, listener);
+          });
+
+        const combinedCell = document.createElement('td');
+        combinedCell.appendChild(gearIcon);
+        combinedCell.appendChild(tooltip);
+        combinedCell.appendChild(document.createTextNode(' ' + result.metadata.model));
 
         const map50_95Cell = document.createElement('td');
         map50_95Cell.textContent = result.map50_95.toFixed(3);
@@ -34,7 +104,7 @@ function populateTable() {
         licenseCell.textContent = result.metadata.license;
 
         // Append cells to row
-        row.appendChild(modelCell);
+        row.appendChild(combinedCell);
         row.appendChild(paramCell);
         row.appendChild(map50_95Cell);
         row.appendChild(map50Cell);
@@ -56,6 +126,5 @@ function populateTable() {
         order: [[2, 'desc']]  // Sort by MAP@50-95
     });
 }
-
 
 document.addEventListener('DOMContentLoaded', populateTable);
