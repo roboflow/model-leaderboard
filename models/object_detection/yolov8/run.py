@@ -18,17 +18,17 @@ MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
 DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
 LICENSE = "APGL-3.0"
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    iou=0.6,
+    max_det=300,
+    conf=CONFIDENCE_THRESHOLD,
+    verbose=False,
+)
 
 
 def run_on_image(model, image) -> sv.Detections:
-    model_params = dict(
-        imgsz=640,
-        iou=0.6,
-        max_det=300,
-        conf=0.001,
-        verbose=False,
-    )
-    result = model(image, **model_params)[0]
+    result = model(image, **RUN_PARAMETERS)[0]
     detections = sv.Detections.from_ultralytics(result)
     detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
     return detections
@@ -80,6 +80,7 @@ def run(
             model=model,
             mAP_result=mAP_result,
             license_name=LICENSE,
+            run_params=RUN_PARAMETERS,
         )
 
 

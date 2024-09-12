@@ -154,6 +154,13 @@ const results = [
   {
     "metadata": {
       "model": "yolov8n",
+      "run_parameters": {
+        "imgsz": 640,
+        "iou": 0.6,
+        "max_det": 300,
+        "conf": 0.001,
+        "verbose": false
+    },
       "license": "APGL-3.0",
       "param_count": 3151904,
       "run_date": "2024-09-10T23:14:14.800283+00:00"

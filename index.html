@@ -7,11 +7,15 @@
     <title>Model Leaderboard</title>
     <link rel="stylesheet" href="static/light-theme.css">
     <link rel="stylesheet" href="static/dark-theme.css" id="theme-link">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300; /* Adjust this value to make the font softer */
+        }
+    </style>
 </head>
 
 <body>
@@ -62,12 +66,14 @@
         </table>
     </div>
 
+    <script src="https://unpkg.com/@floating-ui/dom@latest"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
     <script src="static/aggregate_results.js"></script>
     <script src="static/script.js"></script>
     <script src="static/theme-toggle.js"></script>
+
 </body>
 
 </html>

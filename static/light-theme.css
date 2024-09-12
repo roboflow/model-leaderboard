@@ -90,3 +90,34 @@ a {
 .theme-toggle:checked + .theme-toggle-label .fa-moon {
     display: none;
 }
+
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-text ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tooltip-text li {
+    margin: 0;
+    padding: 0;
+}
+
+.fas.fa-cog:hover + .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
