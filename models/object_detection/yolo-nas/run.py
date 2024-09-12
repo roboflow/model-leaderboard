@@ -17,6 +17,7 @@ from utils import (
     write_result_json,
 )
 
+LICENSE = "Apache-2.0"
 MODEL_IDS = ["yolo_nas_s", "yolo_nas_m", "yolo_nas_l"]
 DATASET_DIR = "../../../data/coco-val-2017"
 CONFIDENCE_THRESHOLD = 0.001
@@ -76,7 +77,11 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
-            model_id=model_id, model_name=model_id, model=model, mAP_result=mAP_result
+            model_id=model_id,
+            model_name=model_id,
+            model=model,
+            mAP_result=mAP_result,
+            license_name=LICENSE,
         )
 
 

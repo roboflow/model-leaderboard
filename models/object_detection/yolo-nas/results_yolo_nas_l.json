@@ -1,6 +1,7 @@
 {
     "metadata": {
         "model": "yolo_nas_l",
+        "license": "Apache-2.0",
         "param_count": 66976392,
         "run_date": "2024-09-11T15:34:44.524051+00:00"
     },
