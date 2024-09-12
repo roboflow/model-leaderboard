@@ -1,4 +1,4 @@
 super_gradients==3.7.1
-supervision==0.23.0
+supervision>=0.24.0rc1
 torch==2.2.2
-tqdm==4.66.4
+tqdm
