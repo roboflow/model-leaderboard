@@ -127,4 +127,32 @@ function populateTable() {
     });
 }
 
+function tooltipHeader(){
+        var tooltip = $('.tooltip');
+        var delay;
+
+        $('th').hover(function(event) {
+            var tooltipText = $(this).data('header-tooltip');
+            delay = setTimeout(function() {
+                tooltip.text(tooltipText)
+                       .css({
+                           top: event.pageY + 10 + 'px',
+                           left: event.pageX + 10 + 'px'
+                       })
+                       .fadeIn(200);
+            }, 700);
+        }, function() {
+            clearTimeout(delay);
+            tooltip.fadeOut(200);
+        });
+
+        $('th').mousemove(function(event) {
+            tooltip.css({
+                top: event.pageY + 10 + 'px',
+                left: event.pageX + 10 + 'px'
+            });
+        });
+    };
+
 document.addEventListener('DOMContentLoaded', populateTable);
+document.addEventListener('DOMContentLoaded', tooltipHeader);
