@@ -7,24 +7,36 @@ function formatRunParams(runParams) {
         .join('');
 }
 
-
 function showTooltip(event) {
     const tooltip = event.target.nextElementSibling;
     tooltip.style.display = 'block';
-    FloatingUI.computePosition(event.target, tooltip, {
-        placement: 'top',
-        middleware: [FloatingUI.offset(10), FloatingUI.flip(), FloatingUI.shift()],
-    }).then(({ x, y }) => {
-        Object.assign(tooltip.style, {
-            left: `${x}px`,
-            top: `${y}px`,
-        });
-    });
+
+    const updateTooltipPosition = () => {
+        FloatingUIDOM.computePosition(event.target, tooltip, {
+            placement: 'top',
+            middleware: [FloatingUIDOM.offset(10), FloatingUIDOM.flip(), FloatingUIDOM.shift()],
+        }).then(({ x, y }) => {
+            Object.assign(tooltip.style, {
+                left: `${x}px`,
+                top: `${y}px`,
+            });
+        }).catch(err => console.error('Error computing position:', err));
+    };
+
+    updateTooltipPosition();
+    window.addEventListener('scroll', updateTooltipPosition);
+
+    tooltip._removeScrollListener = () => {
+        window.removeEventListener('scroll', updateTooltipPosition);
+    };
 }
 
 function hideTooltip(event) {
     const tooltip = event.target.nextElementSibling;
-    tooltip.style.display = 'none';
+    tooltip.style.display = '';
+    if (tooltip._removeScrollListener) {
+        tooltip._removeScrollListener();
+    }
 }
 
 function populateTable() {
@@ -49,12 +61,6 @@ function populateTable() {
         const tooltip = document.createElement('div');
         tooltip.className = 'tooltip-text';
         tooltip.style.display = 'none';
-        tooltip.style.position = 'absolute';
-        tooltip.style.backgroundColor = 'black';
-        tooltip.style.color = 'white';
-        tooltip.style.padding = '5px';
-        tooltip.style.borderRadius = '6px';
-        tooltip.style.zIndex = '1000';
 
         const formattedParams = formatRunParams(result.metadata.run_parameters);
         tooltip.innerHTML = `<ul>${formattedParams}</ul>`;
@@ -62,14 +68,19 @@ function populateTable() {
         inferenceParamCell.appendChild(gearIcon);
         inferenceParamCell.appendChild(tooltip);
 
-        gearIcon.addEventListener('mouseenter', showTooltip);
-        gearIcon.addEventListener('mouseleave', hideTooltip);
+        [
+            ['mouseenter', showTooltip],
+            ['mouseleave', hideTooltip],
+            ['focus', showTooltip],
+            ['blur', hideTooltip],
+          ].forEach(([event, listener]) => {
+            gearIcon.addEventListener(event, listener);
+          });
 
         const combinedCell = document.createElement('td');
         combinedCell.appendChild(gearIcon);
         combinedCell.appendChild(tooltip);
         combinedCell.appendChild(document.createTextNode(' ' + result.metadata.model));
-
 
         const map50_95Cell = document.createElement('td');
         map50_95Cell.textContent = result.map50_95.toFixed(3);
