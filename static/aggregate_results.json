@@ -1,4 +1,4 @@
-const results = [
+[
   {
     "metadata": {
       "model": "yolov8l",
@@ -759,4 +759,4 @@ const results = [
       0.95
     ]
   }
-];
+]
