@@ -17,8 +17,15 @@ for model_dir in Path("models/object_detection").iterdir():
             results = json.load(f)
             results_list.append(results)
 
-aggregate_results = "const results = " + json.dumps(results_list, indent=2) + ";"
+json_results = json.dumps(results_list, indent=2)
+js_results = "const results = " + json_results + ";"
+
+# Used to generate programmatic model comparison pages
+with open("static/aggregate_results.json", "w") as f:
+    f.write(json_results)
+
+# Displayed in the table
 with open("static/aggregate_results.js", "w") as f:
-    f.write(aggregate_results)
+    f.write(js_results)
 
 print("Results aggregated and saved to static/aggregate_results.js")
