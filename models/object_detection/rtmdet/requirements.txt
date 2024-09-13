@@ -1,7 +1,7 @@
 
 
-https://download.openmmlab.com/mmcv/dist/cu102/torch1.8.0/mmcv-2.0.0-cp39-cp39-manylinux1_x86_64.whl
 https://download.pytorch.org/whl/cu118/torch-2.0.0%2Bcu118-cp39-cp39-linux_x86_64.whl
+https://download.openmmlab.com/mmcv/dist/cu118/torch2.0.0/mmcv-2.0.0-cp39-cp39-manylinux1_x86_64.whl
 
 addict==2.4.0
 aliyun-python-sdk-core==2.15.2
