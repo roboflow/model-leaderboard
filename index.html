@@ -46,15 +46,15 @@
         <table id="leaderboard">
             <thead>
                 <tr>
-                    <th>Model</th>
-                    <th>Parameters (M)</th>
-                    <th>mAP 50:95</th>
-                    <th>mAP 50</th>
-                    <th>mAP 75</th>
-                    <th>mAP 50:95 (Small)</th>
-                    <th>mAP 50:95 (Medium)</th>
-                    <th>mAP 50:95 (Large)</th>
-                    <th>License</th>
+                    <th data-header-tooltip="Model">Model</th>
+                    <th data-header-tooltip="Parameters (M)">Parameters (M)</th>
+                    <th data-header-tooltip="Mean Average Precision at IoU 50:95">mAP 50:95</th>
+                    <th data-header-tooltip="Mean Average Precision at IoU 50">mAP 50</th>
+                    <th data-header-tooltip="Mean Average Precision at IoU 75">mAP 75</th>
+                    <th data-header-tooltip="Mean Average Precision at IoU 50:95 for Small Objects">mAP 50:95 (Small)</th>
+                    <th data-header-tooltip="Mean Average Precision at IoU 50:95 for Medium Objects">mAP 50:95 (Medium)</th>
+                    <th data-header-tooltip="Mean Average Precision at IoU 50:95 for Large Objects">mAP 50:95 (Large)</th>
+                    <th data-header-tooltip="License">License</th>
                 </tr>
             </thead>
             <tbody id="table-body">
@@ -62,12 +62,12 @@
         </table>
     </div>
 
+    <div class="tooltip"></div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.7"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10"></script>
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
     <script src="static/aggregate_results.js"></script>
     <script src="static/script.js"></script>

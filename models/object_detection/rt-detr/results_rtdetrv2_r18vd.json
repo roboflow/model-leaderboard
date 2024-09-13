@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "model": "RT-DETRv2 (r18vd)",
+        "model": "RT-DETRv2-S",
         "license": "Apache-2.0",
         "run_parameters": {
             "imgsz": 640,
