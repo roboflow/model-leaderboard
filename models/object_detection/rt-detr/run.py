@@ -20,11 +20,11 @@ MODEL_DICT = {
     "rtdetr_r34vd": {"name": "RT-DETRv1 r34vd", "hub_id": "rtdetr_r34vd"},
     "rtdetr_r50vd": {"name": "RT-DETRv1 r50vd", "hub_id": "rtdetr_r50vd"},
     "rtdetr_r101vd": {"name": "RT-DETRv1 r101vd", "hub_id": "rtdetr_r101vd"},
-    "rtdetrv2_r18vd": {"name": "RT-DETRv2 (r18vd)", "hub_id": "rtdetrv2_r18vd"},
-    "rtdetrv2_r34vd": {"name": "RT-DETRv2 (r34vd)", "hub_id": "rtdetrv2_r34vd"},
-    "rtdetrv2_r50vd": {"name": "RT-DETRv2 (r50vd)", "hub_id": "rtdetrv2_r50vd"},
-    "rtdetrv2_r50vd_m": {"name": "RT-DETRv2 (r50vd_m)", "hub_id": "rtdetrv2_r50vd_m"},
-    "rtdetrv2_r101vd": {"name": "RT-DETRv2 (r101vd)", "hub_id": "rtdetrv2_r101vd"},
+    "rtdetrv2_r18vd": {"name": "RT-DETRv2-S", "hub_id": "rtdetrv2_r18vd"},
+    "rtdetrv2_r34vd": {"name": "RT-DETRv2-M", "hub_id": "rtdetrv2_r34vd"},
+    "rtdetrv2_r50vd": {"name": "RT-DETRv2-M*", "hub_id": "rtdetrv2_r50vd_m"},
+    "rtdetrv2_r50vd_m": {"name": "RT-DETRv2-L", "hub_id": "rtdetrv2_r50vd"},
+    "rtdetrv2_r101vd": {"name": "RT-DETRv2-X", "hub_id": "rtdetrv2_r101vd"},
 }
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
