@@ -7,6 +7,9 @@ data/*
 
 # yolov9 repo
 **/yolov9-repo
+# mmyolo-weights
+**/mmyolo-weights
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
