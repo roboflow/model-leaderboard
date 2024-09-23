@@ -11,6 +11,7 @@ DESC = """
     <italic>powered by: &nbsp<a href='https://github.com/roboflow/supervision'>
     <img src='https://supervision.roboflow.com/latest/assets/supervision-lenny.png'
     height=24 width=24 style='display: inline-block'> supervision</a></italic>
+    &nbsp&nbsp&nbsp&nbsp
         <a href="https://github.com/roboflow/supervision">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/roboflow/supervision"
         style="margin-right: 10px;">
