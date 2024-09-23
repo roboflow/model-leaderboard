@@ -10,13 +10,12 @@ from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from configs import CONFIDENCE_THRESHOLD,DATASET_DIR
+from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
-
 
 MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
 LICENSE = "APGL-3.0"

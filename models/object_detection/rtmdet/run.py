@@ -4,21 +4,20 @@ from pathlib import Path
 from typing import List, Optional
 
 import supervision as sv
-from mmdet.apis import inference_detector, init_detector
-from tqdm import tqdm
-from supervision.metrics import F1Score, MeanAveragePrecision
 import torch
+from mmdet.apis import inference_detector, init_detector
+from supervision.metrics import F1Score, MeanAveragePrecision
+from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from configs import CONFIDENCE_THRESHOLD,DATASET_DIR
+from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     run_shell_command,
     write_result_json,
 )
-
 
 MODEL_DICT: dict = {
     "rtmdet_tiny_syncbn_fast_8xb32-300e_coco": {
@@ -134,7 +133,6 @@ def run(
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
-
 
 
 if __name__ == "__main__":

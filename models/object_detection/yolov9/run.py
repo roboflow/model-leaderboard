@@ -7,8 +7,8 @@ from typing import Dict, List, Optional
 import cv2
 import numpy as np
 import supervision as sv
-from supervision.metrics import MeanAveragePrecision,F1Score
 import torch
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 

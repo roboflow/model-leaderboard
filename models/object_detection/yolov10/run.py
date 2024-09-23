@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List, Optional
 
 import supervision as sv
-from supervision.metrics import MeanAveragePrecision,F1Score
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLOv10
 

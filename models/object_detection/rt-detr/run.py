@@ -2,16 +2,17 @@ import argparse
 import sys
 from pathlib import Path
 from typing import List, Optional
+
 import supervision as sv
-from supervision.metrics import MeanAveragePrecision,F1Score
 import torch
 import torchvision.transforms as T
 from PIL import Image
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from configs import CONFIDENCE_THRESHOLD,DATASET_DIR
+from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
