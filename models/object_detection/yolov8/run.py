@@ -4,19 +4,21 @@ from pathlib import Path
 from typing import List, Optional
 
 import supervision as sv
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from configs import CONFIDENCE_THRESHOLD,DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
 
+
 MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
-DATASET_DIR = "../../../data/coco-val-2017"
-CONFIDENCE_THRESHOLD = 0.001
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
@@ -71,7 +73,10 @@ def run(
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
@@ -79,8 +84,9 @@ def run(
             model_name=model_id,
             model=model,
             mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
             license_name=LICENSE,
-            run_params=RUN_PARAMETERS,
+            run_parameters=RUN_PARAMETERS,
         )
 
 

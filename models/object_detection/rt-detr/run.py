@@ -2,13 +2,16 @@ import argparse
 import sys
 from pathlib import Path
 from typing import List, Optional
-
 import supervision as sv
+from supervision.metrics import MeanAveragePrecision,F1Score
 import torch
 import torchvision.transforms as T
-from configs import CONFIDENCE_THRESHOLD
 from PIL import Image
 from tqdm import tqdm
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from configs import CONFIDENCE_THRESHOLD,DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -27,11 +30,9 @@ MODEL_DICT = {
     "rtdetrv2_r101vd": {"name": "RT-DETRv2-X", "hub_id": "rtdetrv2_r101vd"},
 }
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 LICENSE = "Apache-2.0"
 HUB_URL = "lyuwenyu/RT-DETR"
-DATASET_DIR = "../../../data/coco-val-2017"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
@@ -100,7 +101,9 @@ def run(
             target_detections.mask = None
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_metric = F1Score()
+        f1_result = f1_metric.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
@@ -108,6 +111,7 @@ def run(
             model_name=model_values["name"],
             model=model,
             mAP_result=mAP_result,
+            f1_score_result=f1_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )

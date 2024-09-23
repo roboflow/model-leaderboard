@@ -6,15 +6,19 @@ from typing import List, Optional
 import supervision as sv
 from mmdet.apis import inference_detector, init_detector
 from tqdm import tqdm
+from supervision.metrics import F1Score, MeanAveragePrecision
+import torch
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-import torch
+
+from configs import CONFIDENCE_THRESHOLD,DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     run_shell_command,
     write_result_json,
 )
+
 
 MODEL_DICT: dict = {
     "rtmdet_tiny_syncbn_fast_8xb32-300e_coco": {
@@ -44,12 +48,8 @@ MODEL_DICT: dict = {
     },
 }
 
-DATASET_DIR = "../../../data/coco-val-2017"
-CONFIDENCE_THRESHOLD = 0.001
 LICENSE = "GPL-3.0"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
@@ -119,17 +119,22 @@ def run(
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
             model_id=model_id,
-            model_name=model_values["model_name"],
+            model_name=model_id,
             model=model,
             mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
+
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Optional
 
 import supervision as sv
+from supervision.metrics import MeanAveragePrecision,F1Score
 from tqdm import tqdm
 from ultralytics import YOLOv10
 
@@ -67,7 +68,9 @@ def run(
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
@@ -75,6 +78,7 @@ def run(
             model_name=model_id,
             model=model,
             mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
