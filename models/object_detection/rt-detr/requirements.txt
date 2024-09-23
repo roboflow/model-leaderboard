@@ -2,6 +2,6 @@ torch>=2.0.1
 torchvision>=0.15.2
 PyYAML
 tensorboard
-supervision>=0.24.0rc1
+supervision @ git+https://github.com/roboflow/supervision.git@develop
 tqdm
 pycocotools
