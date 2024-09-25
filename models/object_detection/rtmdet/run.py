@@ -126,7 +126,7 @@ def run(
 
         write_result_json(
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_values["model_name"],
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,

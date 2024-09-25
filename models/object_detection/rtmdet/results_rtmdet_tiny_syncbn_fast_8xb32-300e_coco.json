@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "model": "rtmdet_tiny_syncbn_fast_8xb32-300e_coco",
+        "model": "RTMDet-tiny",
         "license": "GPL-3.0",
         "run_parameters": {
             "imgsz": 640,
