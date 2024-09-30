@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import List, Optional
 
 import supervision as sv
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLOv10
 
@@ -16,17 +17,13 @@ from utils import (
 
 MODEL_IDS = ["yolov10n", "yolov10s", "yolov10m", "yolov10b", "yolov10l", "yolov10x"]
 DATASET_DIR = "../../../data/coco-val-2017"
-CONFIDENCE_THRESHOLD = 0.001
 LICENSE = "APGL-3.0"
-RUN_PARAMETERS = dict(
-    imgsz=640, iou=0.6, max_det=300, conf=CONFIDENCE_THRESHOLD, verbose=False
-)
+RUN_PARAMETERS = dict(imgsz=640, iou=0.6, max_det=300, conf=0.001, verbose=False)
 
 
 def run_on_image(model, image) -> sv.Detections:
     result = model(image, **RUN_PARAMETERS)[0]
     detections = sv.Detections.from_ultralytics(result)
-    detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
     return detections
 
 
@@ -67,7 +64,9 @@ def run(
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
@@ -75,6 +74,7 @@ def run(
             model_name=model_id,
             model=model,
             mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
