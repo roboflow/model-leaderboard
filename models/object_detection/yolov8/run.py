@@ -10,7 +10,7 @@ from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
+from configs import DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -23,7 +23,7 @@ RUN_PARAMETERS = dict(
     imgsz=640,
     iou=0.6,
     max_det=300,
-    conf=CONFIDENCE_THRESHOLD,
+    conf=0.001,
     verbose=False,
 )
 
@@ -31,7 +31,6 @@ RUN_PARAMETERS = dict(
 def run_on_image(model, image) -> sv.Detections:
     result = model(image, **RUN_PARAMETERS)[0]
     detections = sv.Detections.from_ultralytics(result)
-    detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
     return detections
 
 
