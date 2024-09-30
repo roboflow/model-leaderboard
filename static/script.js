@@ -73,9 +73,9 @@ function populateTable() {
             ['mouseleave', hideTooltip],
             ['focus', showTooltip],
             ['blur', hideTooltip],
-          ].forEach(([event, listener]) => {
+        ].forEach(([event, listener]) => {
             gearIcon.addEventListener(event, listener);
-          });
+        });
 
         const combinedCell = document.createElement('td');
         combinedCell.appendChild(gearIcon);
@@ -100,10 +100,33 @@ function populateTable() {
         const largeMap50_95Cell = document.createElement('td');
         largeMap50_95Cell.textContent = result.large_objects.map50_95.toFixed(3);
 
+        const f1_50Cell = document.createElement('td');
+        f1_50Cell.textContent = result.f1_50.toFixed(3);
+
+        const f1_75Cell = document.createElement('td');
+        f1_75Cell.textContent = result.f1_75.toFixed(3);
+
+        const f1SmallObjects50Cell = document.createElement('td');
+        f1SmallObjects50Cell.textContent = result.f1_small_objects.f1_50.toFixed(3);
+
+        const f1SmallObjects75Cell = document.createElement('td');
+        f1SmallObjects75Cell.textContent = result.f1_small_objects.f1_75.toFixed(3);
+
+        const f1MediumObjects50Cell = document.createElement('td');
+        f1MediumObjects50Cell.textContent = result.f1_medium_objects.f1_50.toFixed(3);
+
+        const f1MediumObjects75Cell = document.createElement('td');
+        f1MediumObjects75Cell.textContent = result.f1_medium_objects.f1_75.toFixed(3);
+
+        const f1LargeObjects50Cell = document.createElement('td');
+        f1LargeObjects50Cell.textContent = result.f1_large_objects.f1_50.toFixed(3);
+
+        const f1LargeObjects75Cell = document.createElement('td');
+        f1LargeObjects75Cell.textContent = result.f1_large_objects.f1_75.toFixed(3);
+
         const licenseCell = document.createElement('td');
         licenseCell.textContent = result.metadata.license;
 
-        // Append cells to row
         row.appendChild(combinedCell);
         row.appendChild(paramCell);
         row.appendChild(map50_95Cell);
@@ -112,9 +135,16 @@ function populateTable() {
         row.appendChild(smallMap50_95Cell);
         row.appendChild(mediumMap50_95Cell);
         row.appendChild(largeMap50_95Cell);
+        row.appendChild(f1_50Cell);
+        row.appendChild(f1_75Cell);
+        row.appendChild(f1SmallObjects50Cell);
+        row.appendChild(f1SmallObjects75Cell);
+        row.appendChild(f1MediumObjects50Cell);
+        row.appendChild(f1MediumObjects75Cell);
+        row.appendChild(f1LargeObjects50Cell);
+        row.appendChild(f1LargeObjects75Cell);
         row.appendChild(licenseCell);
 
-        // Append row to table body
         tableBody.appendChild(row);
     });
 
@@ -127,4 +157,32 @@ function populateTable() {
     });
 }
 
+function tooltipHeader() {
+    var tooltip = $('.tooltip');
+    var delay;
+
+    $('th').hover(function (event) {
+        var tooltipText = $(this).data('header-tooltip');
+        delay = setTimeout(function () {
+            tooltip.text(tooltipText)
+                .css({
+                    top: event.pageY + 10 + 'px',
+                    left: event.pageX + 10 + 'px'
+                })
+                .fadeIn(200);
+        }, 700);
+    }, function () {
+        clearTimeout(delay);
+        tooltip.fadeOut(200);
+    });
+
+    $('th').mousemove(function (event) {
+        tooltip.css({
+            top: event.pageY + 10 + 'px',
+            left: event.pageX + 10 + 'px'
+        });
+    });
+};
+
 document.addEventListener('DOMContentLoaded', populateTable);
+document.addEventListener('DOMContentLoaded', tooltipHeader);

@@ -1,1 +1,2 @@
 CONFIDENCE_THRESHOLD = 0.001
+DATASET_DIR = "../../../data/coco-val-2017"

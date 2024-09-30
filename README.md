@@ -4,7 +4,7 @@ This project is a **model leaderboard** website for evaluating a variety of mode
 
 ## Project Structure
 
-```
+```text
 model-leaderboard/
 │
 ├── data/                  # Directory for storing datasets (e.g., COCO)
@@ -25,7 +25,7 @@ model-leaderboard/
 
 Each model is expected to have:
 
-```
+```text
 model_name/
 │
 ├── requirements.txt        # Dependencies for running the model
@@ -40,14 +40,14 @@ Each model is expected to be run in a separate python virtual environment, with 
 Before we automate the models to be run regularly, the naming standards are relaxed.
 The only requirements is to store results for `results.json` in the model directory. For consistency, we advice to keep the scripts in `run.py`.
 
-### Key Files:
+### Key Files
 
 1. **`download_data.py`**: Downloads the dataset (currently configured for COCO) and places it into the `data/` directory.
 2. **`build_static_site.py`**: Aggregates the results of the models to be shown on the GitHub Pages site.
 3. **`run_overnight.sh`**: An early version of a script to run the entire process, generating model results and comparing to downloaded data. We hacked it together for the first iteration of the leaderboard. Requires `uv`.
 4. **`gradio_app.py`**: The initial version of the leaderboard UI. Displays model results in a gradio page.
 
-5. **Model-Specific Folders**:
+5. **Model-Specific Folders**"
 
    - Each object detection model is housed in its own folder under `models/object_detection/`. These folders include `run.py`, which generates evaluation results in the form of a `results.json` file.
 

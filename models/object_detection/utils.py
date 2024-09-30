@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from typing import Any, List
 
 import supervision as sv
-from supervision.metrics import MeanAveragePrecisionResult
+from supervision.metrics import F1ScoreResult, MeanAveragePrecisionResult
 from torch import nn
 
 
@@ -51,6 +51,7 @@ def write_result_json(
     model_name: str,
     model: nn.Module,
     mAP_result: MeanAveragePrecisionResult,
+    f1_score_result: F1ScoreResult,
     license_name: str,
     run_parameters: dict[str, Any] = {},
 ) -> None:
@@ -87,6 +88,26 @@ def write_result_json(
     }
 
     result["iou_thresholds"] = list(mAP_result.iou_thresholds)
+
+    result["f1_50"] = f1_score_result.f1_50
+    result["f1_75"] = f1_score_result.f1_75
+
+    result["f1_small_objects"] = {
+        "f1_50": f1_score_result.small_objects.f1_50,
+        "f1_75": f1_score_result.small_objects.f1_75,
+    }
+
+    result["f1_medium_objects"] = {
+        "f1_50": f1_score_result.medium_objects.f1_50,
+        "f1_75": f1_score_result.medium_objects.f1_75,
+    }
+
+    result["f1_large_objects"] = {
+        "f1_50": f1_score_result.large_objects.f1_50,
+        "f1_75": f1_score_result.large_objects.f1_75,
+    }
+
+    result["f1_iou_thresholds"] = list(f1_score_result.iou_thresholds)
 
     result_file = _make_result_filename(model_id)
     if os.path.exists(result_file):

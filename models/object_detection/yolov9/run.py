@@ -8,6 +8,7 @@ import cv2
 import numpy as np
 import supervision as sv
 import torch
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 
@@ -50,12 +51,11 @@ MODEL_DICT = {
 
 LICENSE = "GPL-3.0"
 DATASET_DIR = "../../../data/coco-val-2017"
-CONFIDENCE_THRESHOLD = 0.001
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
 RUN_PARAMETERS = dict(
     imgsz=640,
-    conf=CONFIDENCE_THRESHOLD,
+    conf=0.001,
 )
 
 
@@ -123,12 +123,13 @@ def run(
         for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
             # Load predictions
             detections = predictions_dict[Path(image_path).name]
-            detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
 
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
         model = YOLO(model_id)
 
@@ -137,6 +138,7 @@ def run(
             model_name=model_id,
             model=model,
             mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )

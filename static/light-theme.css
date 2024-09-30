@@ -91,6 +91,16 @@ a {
     display: none;
 }
 
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 1000;
+}
 
 .tooltip-text {
     display: none;
