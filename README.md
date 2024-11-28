@@ -19,7 +19,7 @@ model-leaderboard/
 ├── static/                 # Static files, serving as the backend for the site
 │   └── ...
 ├── download_data.py        # Script for downloading the ground truth dataset
-├── build_static_site.py    # Must be run to aggregate results for the static site.
+├── build_static_site.py    # Must be run to aggregate results for the static site
 └── requirements.txt        # Dependencies for data download and leaderboard front end
 ```
 
