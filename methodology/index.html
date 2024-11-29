@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Vision Model Leaderboard</title>
+    <title>FAQ ○ Computer Vision Model Leaderboard</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="/static/common.css">
     <link rel="stylesheet" href="/static/light-theme.css">
@@ -13,18 +13,18 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
 
-    <meta name="description" content="Benchmarks showing the performance of popular computer vision models across metrics like mAP and F1 score.">
+    <meta name="description" content="Learn about the methodology behind the Computer Vision Model Leaderboard, including how benchmarks are calculated.">
 
-    <meta property="og:title" content="Computer Vision Model Leaderboard" />
-    <meta property="og:url" content="https://leaderboard.roboflow.com" />
-    <meta property="og:description" content="Benchmarks showing the performance of popular computer vision models across metrics like mAP and F1 score." />
+    <meta property="og:title" content="FAQ ○ Computer Vision Model Leaderboard" />
+    <meta property="og:url" content="https://leaderboard.roboflow.com/methodology" />
+    <meta property="og:description" content="Learn about the methodology behind the Computer Vision Model Leaderboard, including how benchmarks are calculated." />
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://leaderboard.roboflow.com" />
-    <meta property="twitter:title" content="Computer Vision Model Leaderboard" >
-    <meta property="twitter:description" content="Benchmarks showing the performance of popular computer vision models across metrics like mAP and F1 score.">
+    <meta property="twitter:url" content="https://leaderboard.roboflow.com/methodology" />
+    <meta property="twitter:title" content="FAQ ○ Computer Vision Model Leaderboard" >
+    <meta property="twitter:description" content="Learn about the methodology behind the Computer Vision Model Leaderboard, including how benchmarks are calculated.">
 
-    <link rel="canonical" href="https://leaderboard.roboflow.com" />
+    <link rel="canonical" href="https://leaderboard.roboflow.com/methodology" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KH26XBHQR9"></script>
@@ -37,8 +37,8 @@
             <h1><a href="/" class="no-decoration">Computer Vision Model Leaderboard</a></h1>
 
             <div style="margin-left: auto; margin-right: 16px; display: flex; flex-direction: row;" aria-label="breadcrumb">
-                <a class="sv-row" href="/methodology">
-                    Methodology
+                <a class="sv-row" href="/">
+                    Leaderboard
                 </a>
                 <a class="sv-row" href="/faq">
                     FAQ
@@ -71,31 +71,23 @@
                 (validation set, 5k images)</span>
         </div>
 
-        <table id="leaderboard">
-            <thead>
-                <tr>
-                    <th data-header-tooltip="Model">Model</th>
-                    <th data-header-tooltip="Parameters (M)">Parameters (M)</th>
-                    <th data-header-tooltip="Mean Average Precision at IoU 50:95">mAP 50:95</th>
-                    <th data-header-tooltip="Mean Average Precision at IoU 50">mAP 50</th>
-                    <th data-header-tooltip="Mean Average Precision at IoU 75">mAP 75</th>
-                    <th data-header-tooltip="Mean Average Precision at IoU 50:95 for Small Objects">mAP 50:95 (Small)</th>
-                    <th data-header-tooltip="Mean Average Precision at IoU 50:95 for Medium Objects">mAP 50:95 (Medium)</th>
-                    <th data-header-tooltip="Mean Average Precision at IoU 50:95 for Large Objects">mAP 50:95 (Large)</th>
-                    <th data-header-tooltip="F1 Score at IoU 50">F1 50</th>
-                    <th data-header-tooltip="F1 Score at IoU 75">F1 75</th>
-                    <th data-header-tooltip="F1 Score at IoU 50 for Small Objects">F1 50 (Small)</th>
-                    <th data-header-tooltip="F1 Score at IoU 75 for Small Objects">F1 75 (Small)</th>
-                    <th data-header-tooltip="F1 Score at IoU 50 for Medium Objects">F1 50 (Medium)</th>
-                    <th data-header-tooltip="F1 Score at IoU 75 for Medium Objects">F1 75 (Medium)</th>
-                    <th data-header-tooltip="F1 Score at IoU 50 for Large Objects">F1 50 (Large)</th>
-                    <th data-header-tooltip="F1 Score at IoU 75 for Large Objects">F1 75 (Large)</th>
-                    <th data-header-tooltip="License">License</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-            </tbody>
-        </table>
+        <h2>Methodology</h2>
+        <p>
+            The Roboflow computer vision model leaderboard benchmarks popular object detection models against the Microsoft COCO dataset. The Microsoft COCO dataset is commonly used to evaluate and compare the performance of object detection models.
+        </p>
+        <p>
+            Benchmark data in the table was computed independently by the Roboflow team, following public inference instructions from each model vendor. We aim to achieve as close to the original benchmark results as possible by following all instructions.
+        </p>
+        <p>
+            This project is open source, with <a href="https://github.com/roboflow/model-leaderboard?tab=readme-ov-file#2-run-the-model">code available that we use for benchmarking</a>. This means you can verify the results of the data in the leaderboard table.
+        </p>
+        <p>
+            We used the validation set of the COCO dataset, to evaluate model performance on common objects. This means that the benchmark is less relevant for evaluating domain adaptiveness: how a new architecture does on a specific domain.
+        </p>
+        <p>
+            The Roboflow 100 benchmark was designed to measure model performance across domains. If you are interested in learning more about domain-specific model benchmarking, refer to the <a href="https://www.rf100.org/">Roboflow 100 website</a>.
+        </p>
+
     </div>
 
     <div class="tooltip"></div>
