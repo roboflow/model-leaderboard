@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology ○ Computer Vision Model Leaderboard</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/static/light-theme.css">
+    <link rel="stylesheet" href="/static/dark-theme.css" id="theme-link">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap">
+
+    <meta name="description" content="Frequently asked questions about the Computer Vision Model Leaderboard, covering metrics, models, and usage.">
+
+    <meta property="og:title" content="Methodology ○ Computer Vision Model Leaderboard" />
+    <meta property="og:url" content="https://leaderboard.roboflow.com/faq" />
+    <meta property="og:description" content="Frequently asked questions about the Computer Vision Model Leaderboard, covering metrics, models, and usage." />
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://leaderboard.roboflow.com/faq" />
+    <meta property="twitter:title" content="Methodology ○ Computer Vision Model Leaderboard" >
+    <meta property="twitter:description" content="Frequently asked questions about the Computer Vision Model Leaderboard, covering metrics, models, and usage.">
+
+    <link rel="canonical" href="https://leaderboard.roboflow.com/faq" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KH26XBHQR9"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-KH26XBHQR9'); </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-row">
+            <h1><a href="/" class="no-decoration">Computer Vision Model Leaderboard</a></h1>
+
+            <div style="margin-left: auto; margin-right: 16px; display: flex; flex-direction: row;" aria-label="breadcrumb">
+                <a class="sv-row" href="/">
+                    Leaderboard
+                </a>
+                <a class="sv-row" href="/methodology">
+                    Methodology
+                </a>
+            </div>
+
+            <div class="theme-toggle-container">
+                <input type="checkbox" id="theme-toggle" class="theme-toggle">
+                <label for="theme-toggle" class="theme-toggle-label">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </div>
+        <div class="subtitle-row">
+            <p class="sv-row">
+                powered by&nbsp;
+                <img src='https://supervision.roboflow.com/latest/assets/supervision-lenny.png' height=24 width=24
+                    style='display: inline-block'>
+                <a class="sv-row" href='https://github.com/roboflow/supervision'>
+                    supervision
+                </a>
+                &nbsp;|&nbsp;
+                <i class="fab fa-github" style="font-size: 24px; width: 24px; height: 24px;"></i>
+                <a class="sv-row" href='https://github.com/roboflow/model-leaderboard'>
+                    model-leaderboard
+                </a>
+            </p>
+            <span>benchmarked on: <a href="https://cocodataset.org/#download">COCO 2017</a><br />
+                (validation set, 5k images)</span>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is mAP?</h3>
+        <p>
+            Mean Average Precision (mAP) is a metric used to evaluate the object detection models. It is the average of the precision-recall curves at different IoU thresholds.
+        </p>
+
+        <h3>What is the difference between mAP 50, mAP 75 and mAP 50:95?</h3>
+        <p>
+            mAP can be evaluated at multiple <a href="https://blog.roboflow.com/mean-average-precision/#:~:text=The%20Intersection%20over%20Union">IoU thresholds</a>. mAP 50, for example, evaluates it while considering detections that overlap with an IoU of 0.5 or greater - everything else is a false positive. mAP 50:95 is an average of all considered IoU thresholds - 0.5, 0.6, … 0.8, 0.9, 0.95. It is the primary metric showing how well the model performs, across increasing levels of rigour.
+        </p>
+
+        <h3>What do the small, medium, and large labels next to the mAP scores mean?</h3>
+        <p>
+            The small, medium, and large labels next to the mAP scores indicate the size of the objects in the images. This is important because object detection models can struggle with detecting small objects. The COCO dataset has three categories of object sizes: small (less than 32x32 pixels), medium (between 32x32 and 96x96 pixels), and large (greater than 96x96 pixels). You can learn more about the definition on the <a href="https://cocodataset.org/#detection-eval">COCO detection evaluation description page</a>.
+        </p>
+
+        <h3>What is F1 Score?</h3>
+        <p>
+            Recall measures how many of the target objects were detected. Even if the model detected more cars than there were in the image, but captured all targets among them - the recall will be 100%.
+
+            Precision measures how many of the detected objects are correct. If the model found a box on some cars in an image, but classified 20% as bicycles, precision is 80%, regardless of how many were found.
+
+            What if you want high recall and high precision? F1 Score simply combines the two into a single metric. With a high F1 score, you can be sure that model produced both high precision and recall in its results.
+
+        <p>Here is the formula for F1 Score, where P is precision and R is recall:</p>
+
+        <div style="display:flex; justify-content: center; font-size: 2em;">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                    <mi>F1</mi>
+                    <mo>=</mo>
+                    <mfrac>
+                        <mrow><mn>2</mn><mi>P</mi><mi>R</mi></mrow>
+                        <mrow><mi>P</mi><mo>+</mo><mi>R</mi></mrow>
+                    </mfrac>
+                </mrow>
+            </math>
+        </div>
+
+        <h3>Is this project open source?</h3>
+        <p>
+            Yes! You can find the code for this project on <a href="https://github.com/roboflow/model-leaderboard">GitHub</a>.
+        </p>
+
+        <h3>What is the gear icon next to model names?</h3>
+        <p>
+            Hovering over it shows the parameters used to run the model. We aim to make the parameters as similar as possible to the ones used by the original authors.
+        </p>
+
+        <h3>What parameters were used to run each model?</h3>
+        <p>
+            We aim to make the parameters as similar as possible to the ones used by the original authors. Hover over the gear icon next to the model name to see the parameters used.
+        </p>
+
+        <h3>Can I suggest a model to benchmark?</h3>
+        <p>
+            Yes! If there is a model that you would like to see benchmarked, you may <a href="https://github.com/roboflow/model-leaderboard/pulls">open a PR</a> with the model instructions. Please have a look at the <a href="https://github.com/roboflow/model-leaderboard?tab=readme-ov-file#model-leaderboard-website">README</a> to learn about the structure of the repository.
+        </p>
+    </div>
+
+    <div class="tooltip"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
+    <script src="/static/aggregate_results.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/theme-toggle.js"></script>
+
+</body>
+
+</html>
