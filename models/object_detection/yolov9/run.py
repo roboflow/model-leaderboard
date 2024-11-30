@@ -51,7 +51,7 @@ MODEL_DICT = {
 
 LICENSE = "GPL-3.0"
 DATASET_DIR = "../../../data/coco-val-2017"
-REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
+REPO_URL = "https://github.com/WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
 RUN_PARAMETERS = dict(
     imgsz=640,
