@@ -29,3 +29,4 @@ with open("static/aggregate_results.js", "w") as f:
     f.write(js_results)
 
 print("Results aggregated and saved to static/aggregate_results.js")
+print("Results aggregated and saved to static/aggregate_results.json")
