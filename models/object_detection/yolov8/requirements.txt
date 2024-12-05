@@ -1,3 +1,3 @@
-ultralytics>=8.1.47
+ultralytics>=8.1.47,<=8.3.40
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 tqdm
