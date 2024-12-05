@@ -1,4 +1,4 @@
-ultralytics>=8.2.86
+ultralytics>=8.2.86,<=8.3.40
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 
 # From YOLOv9 repo
