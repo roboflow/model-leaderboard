@@ -1,4 +1,4 @@
-ultralytics>=8.3.0
+ultralytics>=8.3.0,<=8.3.40
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 tqdm
 dill
