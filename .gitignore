@@ -174,3 +174,7 @@ cython_debug/
 
 # ruff cache
 .ruff_cache
+
+# exclude torch pt files
+*.pt
+*.pth
