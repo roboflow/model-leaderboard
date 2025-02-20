@@ -3,7 +3,6 @@ import os
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
-
 import cv2
 import numpy as np
 import supervision as sv
@@ -13,6 +12,7 @@ from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+from configs import DATASET_DIR
 from utils import (
     download_file,
     load_detections_dataset,
@@ -49,7 +49,7 @@ MODEL_DICT = {
     },
 }
 LICENSE = "GPL-3.0"
-from configs import DATASET_DIR
+
 
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
