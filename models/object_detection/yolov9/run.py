@@ -1,9 +1,9 @@
 import argparse
-import shutil
+import os
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
-import os
+
 import cv2
 import numpy as np
 import supervision as sv
@@ -50,13 +50,10 @@ MODEL_DICT = {
 }
 LICENSE = "GPL-3.0"
 from configs import DATASET_DIR
+
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
-RUN_PARAMETERS = dict(
-    imgsz=640,
-    conf=0.001,
-    iou=0.7
-)
+RUN_PARAMETERS = dict(imgsz=640, conf=0.001, iou=0.7)
 
 
 def run(
@@ -100,9 +97,12 @@ def run(
                 f"../{model_values['model_filename']}",
                 "--name",
                 model_values["model_run_dir"],
-                "--conf-thres", str(RUN_PARAMETERS["conf"]),
-                "--iou-thres", str(RUN_PARAMETERS["iou"]),
-                "--max-det", "300",
+                "--conf-thres",
+                str(RUN_PARAMETERS["conf"]),
+                "--iou-thres",
+                str(RUN_PARAMETERS["iou"]),
+                "--max-det",
+                "300",
                 "--save-txt",
                 "--save-conf",
                 # "--augment",
@@ -120,7 +120,7 @@ def run(
         targets = []
         for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
             # Load predictions
-            
+
             detections = predictions_dict[Path(image_path).name]
 
             predictions.append(detections)
