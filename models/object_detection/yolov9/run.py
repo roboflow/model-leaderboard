@@ -1,5 +1,5 @@
 import argparse
-import shutil
+import os
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -13,6 +13,7 @@ from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+from configs import DATASET_DIR
 from utils import (
     download_file,
     load_detections_dataset,
@@ -47,16 +48,13 @@ MODEL_DICT = {
         "model_filename": "yolov9e-converted.pt",
         "model_run_dir": "yolov9e-out",
     },
-}  # noqa: E501 // docs
-
+}
 LICENSE = "GPL-3.0"
-DATASET_DIR = "../../../data/coco-val-2017"
+
+
 REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
-RUN_PARAMETERS = dict(
-    imgsz=640,
-    conf=0.001,
-)
+RUN_PARAMETERS = dict(imgsz=640, conf=0.001, iou=0.7)
 
 
 def run(
@@ -88,16 +86,10 @@ def run(
         download_file(model_values["model_url"], model_values["model_filename"])
 
         # Make predictions
-        shutil.rmtree(
-            f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
-            ignore_errors=True,
-        )
         run_shell_command(
             [
                 "python",
-                "detect.py",
-                "--source",
-                "../../../../data/coco-val-2017/images/val2017",
+                "val.py",
                 "--img",
                 str(RUN_PARAMETERS["imgsz"]),
                 "--device",
@@ -106,15 +98,22 @@ def run(
                 f"../{model_values['model_filename']}",
                 "--name",
                 model_values["model_run_dir"],
+                "--conf-thres",
+                str(RUN_PARAMETERS["conf"]),
+                "--iou-thres",
+                str(RUN_PARAMETERS["iou"]),
+                "--max-det",
+                "300",
                 "--save-txt",
                 "--save-conf",
+                # "--augment",
             ],
             working_directory="yolov9-repo",
         )
-        predictions_dict = load_predictions_dict(
-            Path(f"yolov9-repo/runs/detect/{model_values['model_run_dir']}")
-        )
 
+        predictions_dict = load_predictions_dict(
+            Path(f"yolov9-repo/runs/val/{model_values['model_run_dir']}")
+        )
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
@@ -122,6 +121,7 @@ def run(
         targets = []
         for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
             # Load predictions
+
             detections = predictions_dict[Path(image_path).name]
 
             predictions.append(detections)
@@ -146,7 +146,7 @@ def run(
 
 def load_predictions_dict(run_dir: Path) -> Dict[str, sv.Detections]:
     print(f"Loading predictions dataset from {run_dir}...")
-    image_dir = run_dir
+    image_dir = Path(os.path.join(os.path.join(DATASET_DIR, "images/"), "val2017"))
     labels_dir = run_dir / "labels"
     dataset = {}
     for image_path in image_dir.glob("*.jpg"):
