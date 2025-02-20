@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "model": "D\u2011FINE\u2011M",
+        "model": "D-FINE-M",
         "license": "Apache-2.0",
         "run_parameters": {
             "imgsz": 640,

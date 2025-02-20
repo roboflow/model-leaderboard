@@ -2089,7 +2089,7 @@ const results = [
   },
   {
     "metadata": {
-      "model": "D\u2011FINE\u2011M",
+      "model": "D-FINE-M",
       "license": "Apache-2.0",
       "run_parameters": {
         "imgsz": 640,
@@ -2157,7 +2157,7 @@ const results = [
   },
   {
     "metadata": {
-      "model": "D\u2011FINE\u2011X",
+      "model": "D-FINE-X",
       "license": "Apache-2.0",
       "run_parameters": {
         "imgsz": 640,
@@ -2225,7 +2225,7 @@ const results = [
   },
   {
     "metadata": {
-      "model": "D\u2011FINE\u2011L",
+      "model": "D-FINE-L",
       "license": "Apache-2.0",
       "run_parameters": {
         "imgsz": 640,
@@ -2293,7 +2293,7 @@ const results = [
   },
   {
     "metadata": {
-      "model": "D\u2011FINE\u2011S",
+      "model": "D-FINE-S",
       "license": "Apache-2.0",
       "run_parameters": {
         "imgsz": 640,
@@ -2361,7 +2361,7 @@ const results = [
   },
   {
     "metadata": {
-      "model": "D\u2011FINE\u2011N",
+      "model": "D-FINE-N",
       "license": "Apache-2.0",
       "run_parameters": {
         "imgsz": 640,
