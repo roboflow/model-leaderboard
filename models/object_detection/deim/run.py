@@ -12,7 +12,9 @@ from PIL import Image
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/")))
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
+)
 
 from engine.core import YAMLConfig
 
@@ -111,6 +113,7 @@ def download_weight(url, model_filename):
             model_filename,
         ]
     )
+
 
 def run_on_image(model, image_array):
     im_pil = Image.fromarray(image_array)
