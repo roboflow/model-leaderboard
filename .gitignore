@@ -11,7 +11,8 @@ data/*
 **/D-FINE
 # mmyolo-weights
 **/mmyolo-weights
-
+## deim repo
+**/DEIM_repo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
