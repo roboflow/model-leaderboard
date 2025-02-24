@@ -12,10 +12,10 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import DATASET_DIR
 from utils import (
+    download_file,
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
-    download_file
 )
 
 MODEL_URLS: dict[str, str] = {
@@ -61,7 +61,7 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        
+
         print("Downloading model...")
         if not Path(model_id).exists():
             download_file(MODEL_URLS[model_id], model_id)
@@ -77,7 +77,7 @@ def run(
             dataset = load_detections_dataset(DATASET_DIR)
 
         model = YOLO(model_id)
-        
+
         predictions = []
         targets = []
         print("Evaluating...")

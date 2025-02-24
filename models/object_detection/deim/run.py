@@ -154,7 +154,7 @@ def run(
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
         model_values = MODEL_DICT[model_id]
-        
+
         if not Path("DEIM-repo").is_dir():
             run_shell_command(["git", "clone", REPO_URL, "DEIM-repo"])
 
