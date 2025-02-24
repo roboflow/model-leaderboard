@@ -28,6 +28,7 @@ from utils import (
     write_result_json,
 )
 
+REPO_URL = "https://github.com/ShihuaHuang95/DEIM.git"
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
@@ -153,6 +154,9 @@ def run(
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
         model_values = MODEL_DICT[model_id]
+        
+        if not Path("DEIM-repo").is_dir():
+            run_shell_command(["git", "clone", REPO_URL, "DEIM-repo"])
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
