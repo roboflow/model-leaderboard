@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/sunsmarterjie/yolov12",
+        "paper_url": "https://arxiv.org/abs/2502.12524",
         "model": "yolov12n",
         "license": "APGL-3.0",
         "run_parameters": {

@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/WongKinYiu/yolov9",
+        "paper_url": "https://arxiv.org/abs/2402.13616",
         "model": "yolov9t",
         "license": "GPL-3.0",
         "run_parameters": {

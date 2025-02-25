@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/Peterande/D-FINE",
+        "paper_url": "https://arxiv.org/abs/2410.13842",
         "model": "D-FINE-S",
         "license": "Apache-2.0",
         "run_parameters": {

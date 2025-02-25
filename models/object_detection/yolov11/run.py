@@ -26,6 +26,8 @@ RUN_PARAMETERS = dict(
     conf=0.001,
     verbose=False,
 )
+GIT_REPO_URL = "https://github.com/ultralytics/ultralytics"
+PAPER_URL = ""
 
 
 def run_on_image(model, image) -> sv.Detections:
@@ -80,6 +82,8 @@ def run(
         write_result_json(
             model_id=model_id,
             model_name=model_id,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,

@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/ultralytics/ultralytics",
+        "paper_url": "",
         "model": "yolo11l",
         "license": "APGL-3.0",
         "run_parameters": {

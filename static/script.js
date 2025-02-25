@@ -39,6 +39,48 @@ function hideTooltip(event) {
     }
 }
 
+function createBadgeCell(metadata) {
+    const cell = document.createElement('td');
+    cell.style.whiteSpace = 'nowrap';
+
+    // Create a wrapper div for badges to maintain table cell structure
+    const badgeWrapper = document.createElement('div');
+    badgeWrapper.style.display = 'flex';
+    badgeWrapper.style.flexDirection = 'column';
+    badgeWrapper.style.gap = '4px';
+    badgeWrapper.style.alignItems = 'flex-start';  // Align badges to the left
+
+    if (metadata.github_url) {
+        const githubBadge = document.createElement('img');
+        githubBadge.src = '/static/github.svg';
+        githubBadge.style.height = '20px';
+        const githubLink = document.createElement('a');
+        githubLink.href = metadata.github_url;
+        githubLink.className = 'badge-link';
+        githubLink.appendChild(githubBadge);
+        badgeWrapper.appendChild(githubLink);
+    }
+
+    // Always add arXiv badge - either with link or "no paper" text
+    const arxivBadge = document.createElement('img');
+    if (metadata.paper_url && metadata.paper_url.includes('arxiv.org')) {
+        const arxivId = metadata.paper_url.split('abs/')[1];
+        arxivBadge.src = `https://img.shields.io/badge/arXiv-${arxivId}-b31b1b.svg`;
+        const paperLink = document.createElement('a');
+        paperLink.href = metadata.paper_url;
+        paperLink.className = 'badge-link';
+        paperLink.appendChild(arxivBadge);
+        badgeWrapper.appendChild(paperLink);
+    } else {
+        arxivBadge.src = `https://img.shields.io/badge/arXiv-no_paper-lightgrey.svg`;
+        arxivBadge.style.height = '20px';
+        badgeWrapper.appendChild(arxivBadge);
+    }
+
+    cell.appendChild(badgeWrapper);
+    return cell;
+}
+
 function populateTable() {
     const tableBody = document.getElementById('table-body');
 
@@ -127,8 +169,11 @@ function populateTable() {
         const licenseCell = document.createElement('td');
         licenseCell.textContent = result.metadata.license;
 
+        const badgeCell = createBadgeCell(result.metadata || {});
+
         row.appendChild(combinedCell);
         row.appendChild(paramCell);
+        row.appendChild(badgeCell);
         row.appendChild(map50_95Cell);
         row.appendChild(map50Cell);
         row.appendChild(map75Cell);
@@ -150,10 +195,10 @@ function populateTable() {
 
     // Fancy table
     new DataTable('#leaderboard', {
-        scrollY: '60vh',   // Set table height to 50% of the viewport height
-        scrollCollapse: true,  // Collapse the table if it has fewer rows
-        paging: false,  // Disable pagination
-        order: [[2, 'desc']]  // Sort by MAP@50-95
+        scrollY: '60vh',
+        scrollCollapse: true,
+        paging: false,
+        order: [[3, 'desc']]  // Updated index to 3 since badges column is now at index 2
     });
 }
 

@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/ShihuaHuang95/DEIM",
+        "paper_url": "https://arxiv.org/abs/2412.04234",
         "model": "DEIM-RT-DETRv2-M*",
         "license": "Apache-2.0",
         "run_parameters": {

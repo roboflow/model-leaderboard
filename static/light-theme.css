@@ -29,6 +29,11 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 
+td {
+    vertical-align: middle;
+    height: 100%;
+}
+
 th {
     background-color: #f2f2f2;
 }
@@ -39,6 +44,12 @@ a {
     padding: 2px 4px;
     margin: 0px 4px;
     border-radius: 5px;
+}
+
+a.badge-link {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 .subtitle-row {
@@ -130,4 +141,15 @@ a {
 .fas.fa-cog:hover + .tooltip-text {
     visibility: visible;
     opacity: 1;
+}
+
+a.badge-link {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.badge-link {
+    display: inline-block;
+    line-height: 0;
 }

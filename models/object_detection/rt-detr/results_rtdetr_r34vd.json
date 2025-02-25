@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/lyuwenyu/RT-DETR",
+        "paper_url": "https://arxiv.org/abs/2304.08069",
         "model": "RT-DETRv1 r34vd",
         "license": "Apache-2.0",
         "run_parameters": {

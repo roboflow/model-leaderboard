@@ -35,6 +35,8 @@ RUN_PARAMETERS = dict(
     conf=0.001,
     verbose=False,
 )
+GIT_REPO_URL = "https://github.com/sunsmarterjie/yolov12"
+PAPER_URL = "https://arxiv.org/abs/2502.12524"
 
 
 def run_on_image(model, image) -> sv.Detections:

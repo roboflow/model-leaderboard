@@ -53,6 +53,8 @@ RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
 )
+GIT_REPO_URL = "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet"
+PAPER_URL = "https://arxiv.org/abs/2212.07784"
 
 
 def run_on_image(model, image) -> sv.Detections:
@@ -127,6 +129,8 @@ def run(
         write_result_json(
             model_id=model_id,
             model_name=model_values["model_name"],
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,

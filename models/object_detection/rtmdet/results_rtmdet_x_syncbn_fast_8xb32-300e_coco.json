@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
+        "paper_url": "https://arxiv.org/abs/2212.07784",
         "model": "RTMDet-x",
         "license": "GPL-3.0",
         "run_parameters": {
