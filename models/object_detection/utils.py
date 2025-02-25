@@ -2,7 +2,7 @@ import json
 import os
 import subprocess
 from datetime import datetime, timezone
-from typing import Any, List
+from typing import Any, List, Optional
 
 import supervision as sv
 from supervision.metrics import F1ScoreResult, MeanAveragePrecisionResult
@@ -49,6 +49,8 @@ def result_json_already_exists(model_id: str) -> bool:
 def write_result_json(
     model_id: str,
     model_name: str,
+    model_git_url: str,
+    paper_url: Optional[str],
     model: nn.Module,
     mAP_result: MeanAveragePrecisionResult,
     f1_score_result: F1ScoreResult,
@@ -60,6 +62,8 @@ def write_result_json(
     result["metadata"] = {
         "model": model_name,
         "license": license_name,
+        "github_url": model_git_url,
+        "paper_url": paper_url,
         "run_parameters": run_parameters,
         "param_count": count_model_params(model),
         "run_date": datetime.now(timezone.utc).isoformat(),

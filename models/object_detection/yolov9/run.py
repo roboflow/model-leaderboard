@@ -57,6 +57,8 @@ RUN_PARAMETERS = dict(
     imgsz=640,
     conf=0.001,
 )
+GIT_REPO_URL = "https://github.com/WongKinYiu/yolov9"
+PAPER_URL = "https://arxiv.org/abs/2402.13616"
 
 
 def run(
@@ -136,6 +138,8 @@ def run(
         write_result_json(
             model_id=model_id,
             model_name=model_id,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,

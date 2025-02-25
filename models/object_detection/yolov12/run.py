@@ -12,6 +12,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import DATASET_DIR
 from utils import (
+    download_file,
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
@@ -34,6 +35,8 @@ RUN_PARAMETERS = dict(
     conf=0.001,
     verbose=False,
 )
+GIT_REPO_URL = "https://github.com/sunsmarterjie/yolov12"
+PAPER_URL = "https://arxiv.org/abs/2502.12524"
 
 
 def run_on_image(model, image) -> sv.Detections:
@@ -60,6 +63,13 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+
+        print("Downloading model...")
+        if not Path(model_id).exists():
+            download_file(MODEL_URLS[model_id], model_id)
+            print(f"Model {model_id} downloaded!")
+        else:
+            print(f"Model {model_id} already exists!")
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")

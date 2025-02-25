@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/THU-MIG/yolov10",
+        "paper_url": "https://arxiv.org/abs/2405.14458",
         "model": "yolov10s",
         "license": "APGL-3.0",
         "run_parameters": {

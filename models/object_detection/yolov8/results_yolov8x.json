@@ -1,5 +1,7 @@
 {
     "metadata": {
+        "github_url": "https://github.com/ultralytics/ultralytics",
+        "paper_url": "https://github.com/ultralytics/ultralytics/issues/204",
         "model": "yolov8x",
         "license": "APGL-3.0",
         "run_parameters": {

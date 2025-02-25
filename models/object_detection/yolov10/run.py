@@ -18,6 +18,10 @@ from utils import (
 MODEL_IDS = ["yolov10n", "yolov10s", "yolov10m", "yolov10b", "yolov10l", "yolov10x"]
 DATASET_DIR = "../../../data/coco-val-2017"
 LICENSE = "APGL-3.0"
+
+GIT_REPO_URL = "https://github.com/THU-MIG/yolov10"
+PAPER_URL = "https://arxiv.org/abs/2405.14458"
+
 RUN_PARAMETERS = dict(imgsz=640, iou=0.6, max_det=300, conf=0.001, verbose=False)
 
 
@@ -72,6 +76,8 @@ def run(
         write_result_json(
             model_id=model_id,
             model_name=model_id,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,
