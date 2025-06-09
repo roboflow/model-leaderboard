@@ -28,7 +28,7 @@ for folder in ${folders[@]}; do
         uv pip install -r requirements.txt
         
         # Force install custom supervision version
-        pip install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
+        uv pip install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
         
         python run.py
         deactivate

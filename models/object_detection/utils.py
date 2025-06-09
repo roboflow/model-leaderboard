@@ -14,6 +14,7 @@ def load_detections_dataset(dataset_dir: str) -> sv.DetectionDataset:
     dataset = sv.DetectionDataset.from_coco(
         images_directory_path=f"{dataset_dir}/images/val2017",
         annotations_path=f"{dataset_dir}/labels/annotations/instances_val2017.json",
+        force_masks = True
     )
 
     return dataset
