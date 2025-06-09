@@ -4,10 +4,11 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "yolov8"
     "yolov9"
     "yolov10"
     "rt-detr"
+    "yolov8"
+
 )
 
 for folder in ${folders[@]}; do
