@@ -18,20 +18,23 @@ for folder in ${folders[@]}; do
     fi
 
     if [ ! -f results.json ]; then
-        # Create virtual environment
-        python3 -m venv .venv
+        # Create virtual environment using virtualenv
+        virtualenv .venv
 
-        # Define full paths to Python and Pip in venv
+        # Define full paths
         VENV_PY=./.venv/bin/python
         VENV_PIP=./.venv/bin/pip
+
+        # Upgrade pip
+        $VENV_PY -m pip install --upgrade pip
 
         # Install dependencies
         $VENV_PIP install -r requirements.txt
 
-        # Force install custom supervision version
+        # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
 
-        # Run the script inside the venv
+        # Run script
         $VENV_PY run.py
     else
         echo "results.json already exists in $folder"
