@@ -5,9 +5,9 @@ current_path=$(pwd)
 
 folders=(
     "yolov9"
-    "yolov10"
     "rt-detr"
     "yolov8"
+    "yolov10"
 
 )
 
