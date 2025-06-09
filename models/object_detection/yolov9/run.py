@@ -71,3 +71,19 @@ def run(
             run_parameters=RUN_PARAMETERS,
         )
 
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "model_ids",
+        nargs="*",
+        help="Model ids to evaluate. If not provided, evaluate all models.",
+    )
+    parser.add_argument(
+        "--skip_if_result_exists",
+        action="store_true",
+        help="If specified, skip the evaluation if the result json already exists.",
+    )
+    args = parser.parse_args()
+
+    run(args.model_ids, args.skip_if_result_exists)
