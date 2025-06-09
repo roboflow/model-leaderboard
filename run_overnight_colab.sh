@@ -19,7 +19,7 @@ for folder in ${folders[@]}; do
 
     if [ ! -f results.json ]; then
         # Create virtual environment
-        uv venv
+        python3 -m venv .venv
 
         # Define full paths to Python and Pip in venv
         VENV_PY=./.venv/bin/python
