@@ -59,11 +59,11 @@ RUN_PARAMETERS = dict(
 )
 GIT_REPO_URL = "https://github.com/WongKinYiu/yolov9"
 PAPER_URL = "https://arxiv.org/abs/2402.13616"
-
 def run_on_image(model, image) -> sv.Detections:
     result = model.predict(image, **RUN_PARAMETERS)[0]
     detections = sv.Detections.from_ultralytics(result)
     return detections
+
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
@@ -82,13 +82,21 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        model_values = MODEL_DICT[model_id]
+
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
             continue
 
-        if dataset is None:
-            dataset = load_detections_dataset(DATASET_DIR)
+        if not Path("yolov9-repo").is_dir():
+            run_shell_command(["git", "clone", REPO_URL, "yolov9-repo"])
+        download_file(model_values["model_url"], model_values["model_filename"])
 
+        # Make predictions
+        shutil.rmtree(
+            f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
+            ignore_errors=True,
+        )
         print(f"Loading model {model_id}...")
         model = YOLO(f"{model_id}.pt")  
 
@@ -112,19 +120,6 @@ def run(
             model=model,
             mAP_result=mAP,
             f1_score_result=f1,
-            license_name=LICENSE,
-            run_parameters=RUN_PARAMETERS,
-        )
-
-
-        write_result_json(
-            model_id=model_id,
-            model_name=model_id,
-            model_git_url=GIT_REPO_URL,
-            paper_url=PAPER_URL,
-            model=model,
-            mAP_result=mAP_result,
-            f1_score_result=f1_score_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
