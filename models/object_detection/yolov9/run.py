@@ -12,7 +12,7 @@ from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 
-#sys.path.append(str(Path(__file__).resolve().parent.parent))
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 from utils import (
     download_file,
     load_detections_dataset,
@@ -60,7 +60,10 @@ RUN_PARAMETERS = dict(
 GIT_REPO_URL = "https://github.com/WongKinYiu/yolov9"
 PAPER_URL = "https://arxiv.org/abs/2402.13616"
 
-
+def run_on_image(model, image) -> sv.Detections:
+    result = model.predict(image, **RUN_PARAMETERS)[0]
+    detections = sv.Detections.from_ultralytics(result)
+    return detections
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
@@ -79,61 +82,40 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        model_values = MODEL_DICT[model_id]
-
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
             continue
 
-        if not Path("yolov9-repo").is_dir():
-            run_shell_command(["git", "clone", REPO_URL, "yolov9-repo"])
-        download_file(model_values["model_url"], model_values["model_filename"])
-
-        # Make predictions
-        shutil.rmtree(
-            f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
-            ignore_errors=True,
-        )
-        run_shell_command(
-            [
-                "python",
-                "detect.py",
-                "--source",
-                "../../../../data/coco-val-2017/images/val2017",
-                "--img",
-                str(RUN_PARAMETERS["imgsz"]),
-                "--device",
-                DEVICE,
-                "--weights",
-                f"../{model_values['model_filename']}",
-                "--name",
-                model_values["model_run_dir"],
-                "--save-txt",
-                "--save-conf",
-            ],
-            working_directory="yolov9-repo",
-        )
-        predictions_dict = load_predictions_dict(
-            Path(f"yolov9-repo/runs/detect/{model_values['model_run_dir']}")
-        )
-
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        predictions = []
-        targets = []
-        for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
-            # Load predictions
-            detections = predictions_dict[Path(image_path).name]
+        print(f"Loading model {model_id}...")
+        model = YOLO(f"{model_id}.pt")  
 
+        predictions, targets = [], []
+        print("Running inference on dataset...")
+        for _, image, target in tqdm(dataset, total=len(dataset)):
+            detections = run_on_image(model, image)
             predictions.append(detections)
-            targets.append(target_detections)
+            targets.append(target)
 
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
-        f1_score_result = f1_score.update(predictions, targets).compute()
-        mAP_result = mAP_metric.update(predictions, targets).compute()
-        model = YOLO(model_id)
+        f1 = f1_score.update(predictions, targets).compute()
+        mAP = mAP_metric.update(predictions, targets).compute()
+
+        write_result_json(
+            model_id=model_id,
+            model_name=model_id,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
+            model=model,
+            mAP_result=mAP,
+            f1_score_result=f1,
+            license_name=LICENSE,
+            run_parameters=RUN_PARAMETERS,
+        )
+
 
         write_result_json(
             model_id=model_id,
