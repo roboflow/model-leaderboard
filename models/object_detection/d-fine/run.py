@@ -22,10 +22,10 @@ from utils import (
     run_shell_command,
     write_result_json,
 )
-run_shell_command(["git", "clone", "https://github.com/Peterande/D-FINE.git", "dfine"])
+run_shell_command(["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE/"])
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE/")))
-sys.path.append("dfine")
+sys.path.append("./D-FINE/")
 
 from src.core import YAMLConfig
 LICENSE = "Apache-2.0"
