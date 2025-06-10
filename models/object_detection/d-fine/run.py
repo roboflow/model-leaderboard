@@ -25,7 +25,7 @@ from utils import (
 run_shell_command(["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE/"])
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE/")))
-sys.path.append("./D-FINE/")
+#sys.path.append("./D-FINE/")
 
 from src.core import YAMLConfig
 LICENSE = "Apache-2.0"
@@ -44,17 +44,18 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 MODEL_DICT = {
-    "D-FINE-N": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_n_coco.pth",
-        "model_filename": "dfine_n_coco.pth",
-        "model_name": "D-FINE-N",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
-    },
+
     "D-FINE-S": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_s_coco.pth",
         "model_filename": "dfine_s_coco.pth",
         "model_name": "D-FINE-S",
         "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_s_coco.yml",
+    },
+    "D-FINE-N": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_n_coco.pth",
+        "model_filename": "dfine_n_coco.pth",
+        "model_name": "D-FINE-N",
+        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
     "D-FINE-M": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_coco.pth",
