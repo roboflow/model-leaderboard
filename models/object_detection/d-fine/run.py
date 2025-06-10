@@ -195,7 +195,13 @@ def run(
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
-
+        # Clear model and free up GPU memory after each model's evaluation
+        del model
+        del cfg # Delete the config object 
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache() # Clear CUDA cache
+            print(f"CUDA memory freed for {model_id}.")
+        print(f"Finished evaluating {model_id}. Cleaning up resources.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
