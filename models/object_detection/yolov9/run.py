@@ -97,8 +97,10 @@ def run(
             f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
             ignore_errors=True,
         )
-        print(f"Loading model {model_id}...")
-        model = YOLO(f"{model_id}.pt")  
+        print(f"Loading model {model_values["model_filename"]}...")
+        model = YOLO(model_values["model_filename"])  
+        if dataset is None:
+            dataset = load_detections_dataset(DATASET_DIR)
 
         predictions, targets = [], []
         print("Running inference on dataset...")
