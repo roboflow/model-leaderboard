@@ -60,7 +60,7 @@ RUN_PARAMETERS = dict(
 GIT_REPO_URL = "https://github.com/WongKinYiu/yolov9"
 PAPER_URL = "https://arxiv.org/abs/2402.13616"
 def run_on_image(model, image) -> sv.Detections:
-    result = model.predict(image, **RUN_PARAMETERS)[0]
+    result = model.predict(image, **RUN_PARAMETERS,verbose=False)[0]
     detections = sv.Detections.from_ultralytics(result)
     return detections
 
