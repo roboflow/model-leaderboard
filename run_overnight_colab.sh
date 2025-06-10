@@ -5,10 +5,15 @@ current_path=$(pwd)
 
 folders=(
     "yolov9"
-    "rt-detr"
     "yolov8"
     "yolov10"
-
+    "yolov11"
+    "yolov12"
+    "d-fine"
+    "deim"
+    "rt-detr"
+    "rtmdet"
+    
 )
 
 for folder in ${folders[@]}; do
