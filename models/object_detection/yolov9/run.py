@@ -50,7 +50,7 @@ MODEL_DICT = {
 }  # noqa: E501 // docs
 
 LICENSE = "GPL-3.0"
-from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
+DATASET_DIR = "../../../data/coco-val-2017"
 REPO_URL = "https://github.com/WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
 RUN_PARAMETERS = dict(
@@ -59,10 +59,7 @@ RUN_PARAMETERS = dict(
 )
 GIT_REPO_URL = "https://github.com/WongKinYiu/yolov9"
 PAPER_URL = "https://arxiv.org/abs/2402.13616"
-def run_on_image(model, image) -> sv.Detections:
-    result = model.predict(image, **RUN_PARAMETERS,verbose=False)[0]
-    detections = sv.Detections.from_ultralytics(result)
-    return detections
+
 
 def run(
     model_ids: List[str],
@@ -97,22 +94,46 @@ def run(
             f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
             ignore_errors=True,
         )
-        print(f"Loading model {model_values['model_filename']}...")
-        model = YOLO(model_values["model_filename"])  
+        run_shell_command(
+            [
+                "python",
+                "detect.py",
+                "--source",
+                "../../../../data/coco-val-2017/images/val2017",
+                "--img",
+                str(RUN_PARAMETERS["imgsz"]),
+                "--device",
+                DEVICE,
+                "--weights",
+                f"../{model_values['model_filename']}",
+                "--name",
+                model_values["model_run_dir"],
+                "--save-txt",
+                "--save-conf",
+            ],
+            working_directory="yolov9-repo",
+        )
+        predictions_dict = load_predictions_dict(
+            Path(f"yolov9-repo/runs/detect/{model_values['model_run_dir']}")
+        )
+
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        predictions, targets = [], []
-        print("Running inference on dataset...")
-        for _, image, target in tqdm(dataset, total=len(dataset)):
-            detections = run_on_image(model, image)
+        predictions = []
+        targets = []
+        for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
+            # Load predictions
+            detections = predictions_dict[Path(image_path).name]
+
             predictions.append(detections)
-            targets.append(target)
+            targets.append(target_detections)
 
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
-        f1 = f1_score.update(predictions, targets).compute()
-        mAP = mAP_metric.update(predictions, targets).compute()
+        f1_score_result = f1_score.update(predictions, targets).compute()
+        mAP_result = mAP_metric.update(predictions, targets).compute()
+        model = YOLO(model_id)
 
         write_result_json(
             model_id=model_id,
@@ -120,8 +141,8 @@ def run(
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
             model=model,
-            mAP_result=mAP,
-            f1_score_result=f1,
+            mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
