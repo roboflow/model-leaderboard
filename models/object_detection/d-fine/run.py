@@ -11,12 +11,7 @@ import torchvision.transforms as T
 from PIL import Image
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
-run_shell_command(["git", "clone", "https://github.com/Peterande/D-FINE.git", "dfine"])
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE/")))
-sys.path.append("dfine")
-
-from src.core import YAMLConfig
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -27,7 +22,12 @@ from utils import (
     run_shell_command,
     write_result_json,
 )
+run_shell_command(["git", "clone", "https://github.com/Peterande/D-FINE.git", "dfine"])
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE/")))
+sys.path.append("dfine")
+
+from src.core import YAMLConfig
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
