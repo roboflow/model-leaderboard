@@ -44,6 +44,12 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 MODEL_DICT = {
+    "D-FINE-L": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_coco.pth",
+        "model_filename": "dfine_l_coco.pth",
+        "model_name": "D-FINE-L",
+        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_l_coco.yml",
+    },
     "D-FINE-M": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_coco.pth",
         "model_filename": "dfine_m_coco.pth",
@@ -63,12 +69,7 @@ MODEL_DICT = {
         "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
 
-    "D-FINE-L": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_coco.pth",
-        "model_filename": "dfine_l_coco.pth",
-        "model_name": "D-FINE-L",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_l_coco.yml",
-    },
+
     "D-FINE-X": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
         "model_filename": "dfine_x_coco.pth",
@@ -107,6 +108,93 @@ def run_on_image(model, image_array):
     )
     return detections
 
+def evaluate_single_model(model_id: str, skip_if_result_exists: bool, dataset: Optional[sv.DetectionDataset]):
+    """
+    Function to be run in a separate process for each model.
+    """
+    print(f"\nEvaluating model: {model_id}")
+    model_values = MODEL_DICT[model_id]
+
+    if skip_if_result_exists and result_json_already_exists(model_id):
+        print(f"Skipping {model_id}. Result already exists!")
+        return
+
+    if dataset is None:
+        dataset = load_detections_dataset(DATASET_DIR)
+
+    if not os.path.exists(model_values["model_filename"]):
+        download_weight(model_values["model_url"], model_values["model_filename"])
+
+    # Re-initialize cfg and model for each iteration
+    cfg = YAMLConfig(
+        model_values["model_yaml"], resume=model_values["model_filename"]
+    )
+
+    if "HGNetv2" in cfg.yaml_cfg:
+        cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
+
+    if model_values["model_filename"]:
+        checkpoint = torch.load(model_values["model_filename"], map_location=DEVICE)
+        if "ema" in checkpoint:
+            state = checkpoint["ema"]["module"]
+        else:
+            state = checkpoint["model"]
+    else:
+        raise AttributeError("Only support resume to load model.state_dict by now.")
+    if "ema" in checkpoint:
+        state = checkpoint["ema"]["module"]
+    else:
+        state = checkpoint["model"]
+
+    cfg.model.load_state_dict(state)
+
+    class Model(nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.model = cfg.model.deploy()
+            self.postprocessor = cfg.postprocessor.deploy()
+
+        def forward(self, images, orig_target_sizes):
+            outputs = self.model(images)
+            outputs = self.postprocessor(outputs, orig_target_sizes)
+            return outputs
+
+    model = Model().to(DEVICE)
+
+    predictions = []
+    targets = []
+    print(f"Evaluating {model_id}...")
+    for _, image, target_detections in tqdm(dataset, total=len(dataset)):
+        detections = run_on_image(model, image)
+        detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
+        predictions.append(detections)
+        targets.append(target_detections)
+
+    mAP_metric = MeanAveragePrecision()
+    f1_score = F1Score()
+
+    f1_score_result = f1_score.update(predictions, targets).compute()
+    mAP_result = mAP_metric.update(predictions, targets).compute()
+
+    write_result_json(
+        model_id=model_id,
+        model_name=model_values["model_name"],
+        model_git_url=GIT_REPO_URL,
+        paper_url=PAPER_URL,
+        model=model, # Consider if 'model' object needs to be passed, it might be large.
+        mAP_result=mAP_result,
+        f1_score_result=f1_score_result,
+        license_name=LICENSE,
+        run_parameters=RUN_PARAMETERS,
+    )
+
+    del model
+    del cfg
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        print(f"CUDA memory freed for {model_id}.")
+    print(f"Finished evaluating {model_id}. Cleaning up resources.")
+
 
 def run(
     model_ids: List[str],
@@ -125,84 +213,7 @@ def run(
         model_ids = list(MODEL_DICT.keys())
 
     for model_id in model_ids:
-        print(f"\nEvaluating model: {model_id}")
-        model_values = MODEL_DICT[model_id]
-
-        if skip_if_result_exists and result_json_already_exists(model_id):
-            print(f"Skipping {model_id}. Result already exists!")
-            continue
-
-        if dataset is None:
-            dataset = load_detections_dataset(DATASET_DIR)
-
-        if not os.path.exists(model_values["model_filename"]):
-            download_weight(model_values["model_url"], model_values["model_filename"])
-
-        cfg = YAMLConfig(
-            model_values["model_yaml"], resume=model_values["model_filename"]
-        )
-
-        if "HGNetv2" in cfg.yaml_cfg:
-            cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
-
-        if model_values["model_filename"]:
-            checkpoint = torch.load(model_values["model_filename"], map_location=DEVICE)
-            if "ema" in checkpoint:
-                state = checkpoint["ema"]["module"]
-            else:
-                state = checkpoint["model"]
-        else:
-            raise AttributeError("Only support resume to load model.state_dict by now.")
-
-        cfg.model.load_state_dict(state)
-
-        class Model(nn.Module):
-            def __init__(self):
-                super().__init__()
-                self.model = cfg.model.deploy()
-                self.postprocessor = cfg.postprocessor.deploy()
-
-            def forward(self, images, orig_target_sizes):
-                outputs = self.model(images)
-                outputs = self.postprocessor(outputs, orig_target_sizes)
-                return outputs
-
-        model = Model().to(DEVICE)
-
-        predictions = []
-        targets = []
-        print("Evaluating...")
-        for _, image, target_detections in tqdm(dataset, total=len(dataset)):
-            detections = run_on_image(model, image)
-            detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
-            predictions.append(detections)
-            targets.append(target_detections)
-
-        mAP_metric = MeanAveragePrecision()
-        f1_score = F1Score()
-
-        f1_score_result = f1_score.update(predictions, targets).compute()
-        mAP_result = mAP_metric.update(predictions, targets).compute()
-
-        write_result_json(
-            model_id=model_id,
-            model_name=model_values["model_name"],
-            model_git_url=GIT_REPO_URL,
-            paper_url=PAPER_URL,
-            model=model,
-            mAP_result=mAP_result,
-            f1_score_result=f1_score_result,
-            license_name=LICENSE,
-            run_parameters=RUN_PARAMETERS,
-        )
-        # Clear model and free up GPU memory after each model's evaluation
-        del model
-        del cfg # Delete the config object 
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache() # Clear CUDA cache
-            print(f"CUDA memory freed for {model_id}.")
-        print(f"Finished evaluating {model_id}. Cleaning up resources.")
-
+        evaluate_single_model(model_id,skip_if_result_exists,dataset)
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
