@@ -86,7 +86,7 @@ def run(
             continue
 
         if not Path("yolov9-repo").is_dir():
-            run_shell_command(["git", "clone", REPO_URL, "yolov9-repo"])
+            run_shell_command(["git", "clone", "https://github.com/AlexBodner/yolov9.git", "yolov9-repo"])
             sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./yolov9-repo/")))
         download_file(model_values["model_url"], model_values["model_filename"])
 
