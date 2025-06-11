@@ -5,4 +5,4 @@ tensorboard
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 tqdm
 pycocotools
-install faster-coco-eval
+faster-coco-eval
