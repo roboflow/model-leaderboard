@@ -131,6 +131,8 @@ def run(
 
 
 if __name__ == "__main__":
+    multiprocessing.set_start_method("spawn", force=True)
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "model_ids",
