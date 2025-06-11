@@ -22,10 +22,11 @@ from utils import (
 
 MODEL_DICT = {
     "rtdetr_r18vd": {"name": "RT-DETRv1 r18vd", "hub_id": "rtdetr_r18vd"},
+    "rtdetrv2_r18vd": {"name": "RT-DETRv2-S", "hub_id": "rtdetrv2_r18vd"},
+
     "rtdetr_r34vd": {"name": "RT-DETRv1 r34vd", "hub_id": "rtdetr_r34vd"},
     "rtdetr_r50vd": {"name": "RT-DETRv1 r50vd", "hub_id": "rtdetr_r50vd"},
     "rtdetr_r101vd": {"name": "RT-DETRv1 r101vd", "hub_id": "rtdetr_r101vd"},
-    "rtdetrv2_r18vd": {"name": "RT-DETRv2-S", "hub_id": "rtdetrv2_r18vd"},
     "rtdetrv2_r34vd": {"name": "RT-DETRv2-M*", "hub_id": "rtdetrv2_r34vd"},
     "rtdetrv2_r50vd": {"name": "RT-DETRv2-M", "hub_id": "rtdetrv2_r50vd_m"},
     "rtdetrv2_r50vd_m": {"name": "RT-DETRv2-L", "hub_id": "rtdetrv2_r50vd"},
@@ -124,7 +125,7 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        process = multiprocessing.Process(target=run_single_model, args=(model_ids, skip_if_result_exists,dataset))
+        process = multiprocessing.Process(target=run_single_model, args=(model_id, skip_if_result_exists,dataset))
         process.start()
         process.join()
 
