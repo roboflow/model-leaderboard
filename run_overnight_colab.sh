@@ -4,9 +4,9 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "deim"
     "rt-detr"
-    "rtmdet"
+    "rtmdet"    
+    "deim"
     "yolov8" # works
     "yolov10"  # works
     "yolov11"  # works
