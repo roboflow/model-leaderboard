@@ -7,12 +7,12 @@ folders=(
     "rt-detr"
     "rtmdet"    
     "deim"
-    "yolov8" # works
-    "yolov10"  # works
-    "yolov11"  # works
-    "yolov12"   # works
-    "yolov9" # works
-    "d-fine"  
+    "yolov8" 
+    "yolov10" 
+    "yolov11" 
+    "yolov12"   
+    "yolov9" # ran
+    "d-fine"  # ran
 )
 
 for folder in ${folders[@]}; do
