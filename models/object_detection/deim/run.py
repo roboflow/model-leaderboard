@@ -31,8 +31,8 @@ RUN_PARAMETERS = dict(
 )
 GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 PAPER_URL = "https://arxiv.org/abs/2412.04234"
-
-run_shell_command(["git", "clone",REPO_URL, "./DEIM-repo/"])
+if not Path("./DEIM-repo/").is_dir():
+    run_shell_command(["git", "clone",REPO_URL, "./DEIM-repo/"])
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
