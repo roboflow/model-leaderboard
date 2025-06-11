@@ -44,6 +44,12 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 MODEL_DICT = {
+        "D-FINE-X": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
+        "model_filename": "dfine_x_coco.pth",
+        "model_name": "D-FINE-X",
+        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_x_coco.yml",
+    },
     "D-FINE-L": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_coco.pth",
         "model_filename": "dfine_l_coco.pth",
@@ -70,12 +76,7 @@ MODEL_DICT = {
     },
 
 
-    "D-FINE-X": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
-        "model_filename": "dfine_x_coco.pth",
-        "model_name": "D-FINE-X",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_x_coco.yml",
-    },
+
 }  # noqa: E501 // docs
 
 
