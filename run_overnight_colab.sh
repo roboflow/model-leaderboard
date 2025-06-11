@@ -42,7 +42,7 @@ for folder in ${folders[@]}; do
 
         # Run script
         $VENV_PY run.py
-        cp -r "$current_path/models/object_detection/$folder" /content/driveMyDrive/
+        cp -r "$current_path/models/object_detection/$folder" /content/drive/MyDrive/
     
     else
         echo "results.json already exists in $folder"
