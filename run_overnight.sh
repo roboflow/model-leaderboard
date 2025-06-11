@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-# This script is made to be run overnight, producing results.json for every model in the object_detection folder.
+# This script is made to be run over night, producing results.py for every model in the object_detection folder.
+# I hacked it together for initial launch only, but it might be useful as a starting point for later automated solutions.
 
 current_path=$(pwd)
 
-# Iteration order. Start with quick-running ones to surface errors faster.
+# Iteartion order. Start with quick-running ones to surface errors faster.
 folders=(
     "yolov8"
     "yolov9"
@@ -13,23 +14,22 @@ folders=(
     "rt-detr"
 )
 
+
 for folder in ${folders[@]}; do
-    cd "$current_path/models/object_detection/$folder"
-    
+    cd $current_path/models/object_detection/$folder
     # If results.json exists, move it to results.json.old
     if [ -f results.json ]; then
         mv results.json results.json.old
     fi
 
-    # If results.json doesn't exist, set up and run
+    # If folder stards with yolov9, use special rules
     if [ ! -f results.json ]; then
+        if [[ $folder == yolov9* ]]; then
+            bash run_predictions.sh
+        fi
         uv venv
         source .venv/bin/activate
         uv pip install -r requirements.txt
-        
-        # Force install custom supervision version
-        uv pip install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
-        
         python run.py
         deactivate
     else
