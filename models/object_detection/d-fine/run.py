@@ -44,7 +44,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 MODEL_DICT = {
-        "D-FINE-X": {
+    "D-FINE-X": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
         "model_filename": "dfine_x_coco.pth",
         "model_name": "D-FINE-X",
