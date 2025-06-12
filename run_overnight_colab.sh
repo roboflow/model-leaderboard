@@ -43,7 +43,7 @@ for folder in ${folders[@]}; do
         export MPLBACKEND=Agg
         $VENV_PIP install -U openmim
 
-        $VENV_MIM  install mmcv==2.0.0
+        #$VENV_MIM install mmcv==2.0.0
 
         # Run script
         $VENV_PY run.py
