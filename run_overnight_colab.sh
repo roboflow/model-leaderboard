@@ -44,7 +44,7 @@ for folder in ${folders[@]}; do
         # Run script
         $VENV_PY run.py
         # Copy only .json files to Drive
-            find "$current_path/models/object_detection/$folder" -name "*.json" -exec cp --parents {} /content/drive/MyDrive/ \;
+        find "$current_path/models/object_detection/$folder" -name "*.json" -exec cp --parents {} /content/drive/MyDrive/ \;
         done    
     else
         echo "results.json already exists in $folder"
