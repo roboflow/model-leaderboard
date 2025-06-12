@@ -48,7 +48,7 @@ for folder in ${folders[@]}; do
         #$VENV_MIM install mmcv==2.0.0
         git clone https://github.com/open-mmlab/mmcv.git
         cd mmcv
-        MMCV_WITH_OPS=1 $VENV_PIP install -e .
+        MMCV_WITH_OPS=1 $VENV_PIP install --editable . --use-pep517
         cd ..
         # Run script
         $VENV_PY run.py
