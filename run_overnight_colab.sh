@@ -41,7 +41,7 @@ for folder in ${folders[@]}; do
         # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
         export MPLBACKEND=Agg
-        #$VENV_PIP install -U openmim
+        $VENV_PIP install -U openmim
 
         $VENV_MIM  install mmcv==2.0.0
 
