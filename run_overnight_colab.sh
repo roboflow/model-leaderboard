@@ -30,6 +30,7 @@ for folder in ${folders[@]}; do
         # Define full paths
         VENV_PY=./.venv/bin/python
         VENV_PIP=./.venv/bin/pip
+        VENV_MIM=./.venv/bin/mim  # << fix
 
         # Upgrade pip
         $VENV_PY -m pip install --upgrade pip
@@ -40,9 +41,9 @@ for folder in ${folders[@]}; do
         # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
         export MPLBACKEND=Agg
-        $VENV_PIP install -U openmim
+        #$VENV_PIP install -U openmim
 
-        mim install mmcv==2.0.0
+        $VENV_MIM  install mmcv==2.0.0
 
         # Run script
         $VENV_PY run.py
