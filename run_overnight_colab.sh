@@ -40,6 +40,7 @@ for folder in ${folders[@]}; do
         # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
         export MPLBACKEND=Agg
+        mim install mmcv==2.0.0
 
         # Run script
         $VENV_PY run.py
