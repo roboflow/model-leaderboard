@@ -4,7 +4,6 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "rt-detr"
     "rtmdet"    
     "deim"
     "yolov8" 
@@ -13,6 +12,8 @@ folders=(
     "yolov12"   
     "yolov9" # ran
     "d-fine"  # ran
+    "rt-detr" # ran
+
 )
 
 for folder in ${folders[@]}; do
