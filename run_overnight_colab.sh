@@ -4,7 +4,6 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "rtmdet"    
     "deim"
     "yolov8" 
     "yolov10" 
@@ -13,6 +12,8 @@ folders=(
     "yolov9" # ran
     "d-fine"  # ran
     "rt-detr" # ran
+    "rtmdet" # ran    
+
 
 )
 
@@ -44,13 +45,11 @@ for folder in ${folders[@]}; do
         # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
         export MPLBACKEND=Agg
-        $VENV_PIP install -U openmim
+        if [[ $folder == rtmdet* ]]; then
+            $VENV_PIP install -U openmim
 
-        $VENV_PY -m mim install mmcv==2.0.0
-        #git clone https://github.com/open-mmlab/mmcv.git
-        #cd mmcv
-        #MMCV_WITH_OPS=1 $VENV_PIP install --editable . --use-pep517
-        #cd ..
+            $VENV_PY -m mim install mmcv==2.0.0
+        fi
         # Run script
         $VENV_PY run.py
         # Copy only .json files to Drive
