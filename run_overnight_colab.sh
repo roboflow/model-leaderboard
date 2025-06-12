@@ -44,7 +44,9 @@ for folder in ${folders[@]}; do
         $VENV_PIP install -U openmim
 
         #$VENV_MIM install mmcv==2.0.0
-
+        git clone https://github.com/open-mmlab/mmcv.git
+        cd mmcv && MMCV_WITH_OPS=1 $VENV_PIP install -e .
+        cd ..
         # Run script
         $VENV_PY run.py
         # Copy only .json files to Drive

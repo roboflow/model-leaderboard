@@ -9,4 +9,3 @@ mmengine==0.10.5
 mmyolo==0.6.0
 openmim
 #mmcv==2.0.0
-#mmdet
