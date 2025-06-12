@@ -26,11 +26,13 @@ for folder in ${folders[@]}; do
     if [ ! -f results.json ]; then
         # Create virtual environment using virtualenv
         virtualenv .venv
+        project_dir="$current_path/models/object_detection/$folder"
 
         # Define full paths
-        VENV_PY=./.venv/bin/python
-        VENV_PIP=./.venv/bin/pip
-        VENV_MIM=./.venv/bin/mim  # << fix
+        venv_dir="$project_dir/.venv"
+
+        VENV_PY="$venv_dir/bin/python"
+        VENV_PIP="$venv_dir/bin/pip"
 
         # Upgrade pip
         $VENV_PY -m pip install --upgrade pip
