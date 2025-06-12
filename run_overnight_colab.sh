@@ -46,7 +46,7 @@ for folder in ${folders[@]}; do
         export MPLBACKEND=Agg
         $VENV_PIP install -U openmim
 
-        $VENV_MIM install mmcv==2.0.0
+        $VENV_PY -m mim install mmcv==2.0.0
         #git clone https://github.com/open-mmlab/mmcv.git
         #cd mmcv
         #MMCV_WITH_OPS=1 $VENV_PIP install --editable . --use-pep517
