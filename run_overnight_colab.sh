@@ -33,6 +33,7 @@ for folder in ${folders[@]}; do
 
         VENV_PY="$venv_dir/bin/python"
         VENV_PIP="$venv_dir/bin/pip"
+        VENV_MIM="$venv_dir/bin/mim"  # << fix
 
         # Upgrade pip
         $VENV_PY -m pip install --upgrade pip
