@@ -62,17 +62,15 @@ def run_on_image(model, image) -> sv.Detections:
     detections = sv.Detections.from_mmdetection(result)
     return detections
 
+import sys
 
 def download_weight(config_name):
     run_shell_command(
         [
-            "mim",
-            "download",
-            "mmyolo",
-            "--config",
-            config_name,
-            "--dest",
-            "mmyolo-weights/",
+            sys.executable, "-m", "mim",
+            "download", "mmyolo",
+            "--config", config_name,
+            "--dest", "mmyolo-weights/",
         ]
     )
 
