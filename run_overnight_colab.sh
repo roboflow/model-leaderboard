@@ -4,7 +4,6 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "yolov10" 
     "yolov11" 
     "yolov12"   
     "yolov9" # ran
@@ -13,6 +12,7 @@ folders=(
     "rtmdet" # ran    
     "deim" # ran
     "yolov8" # ran
+    "yolov10" #ran
 
 )
 
