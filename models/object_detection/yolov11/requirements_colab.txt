@@ -1,7 +1,4 @@
-torch>=2.0.1
-torchvision>=0.15.2
-PyYAML
-tensorboard
+ultralytics>=8.3.0,<=8.3.40
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 tqdm
-pycocotools
+dill
