@@ -1,0 +1,10 @@
+#https://download.pytorch.org/whl/cu118/torch-2.0.0%2Bcu118-cp39-cp39-linux_x86_64.whl 
+torch==2.0.0
+#https://download.openmmlab.com/mmcv/dist/cu124/torch2.0.0/mmcv-2.0.0-cp39-cp39-manylinux1_x86_64.whl #select the version for your cuda version
+numpy==1.23.5
+supervision @ git+https://github.com/roboflow/supervision.git@develop
+openmim==0.3.9
+mmdet==3.3.0
+mmengine==0.10.5
+mmyolo==0.6.0
+openmim

@@ -4,8 +4,6 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "deim"
-    "yolov8" 
     "yolov10" 
     "yolov11" 
     "yolov12"   
@@ -13,7 +11,8 @@ folders=(
     "d-fine"  # ran
     "rt-detr" # ran
     "rtmdet" # ran    
-
+    "deim" # ran
+    "yolov8" # ran
 
 )
 
@@ -40,7 +39,7 @@ for folder in ${folders[@]}; do
         $VENV_PY -m pip install --upgrade pip
 
         # Install dependencies
-        $VENV_PIP install -r requirements.txt
+        $VENV_PIP install -r requirements_colab.txt
 
         # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
