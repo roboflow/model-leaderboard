@@ -12,7 +12,6 @@ from PIL import Image
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
-
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
@@ -22,12 +21,16 @@ from utils import (
     run_shell_command,
     write_result_json,
 )
+
 if not Path("D-FINE").is_dir():
-    run_shell_command(["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE/"])
+    run_shell_command(
+        ["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE/"]
+    )
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE/")))
 
 from src.core import YAMLConfig
+
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
@@ -74,9 +77,6 @@ MODEL_DICT = {
         "model_name": "D-FINE-N",
         "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
-
-
-
 }  # noqa: E501 // docs
 
 
@@ -109,7 +109,10 @@ def run_on_image(model, image_array):
     )
     return detections
 
-def evaluate_single_model(model_id: str, skip_if_result_exists: bool, dataset: Optional[sv.DetectionDataset]):
+
+def evaluate_single_model(
+    model_id: str, skip_if_result_exists: bool, dataset: Optional[sv.DetectionDataset]
+):
     """
     Function to be run in a separate process for each model.
     """
@@ -127,9 +130,7 @@ def evaluate_single_model(model_id: str, skip_if_result_exists: bool, dataset: O
         download_weight(model_values["model_url"], model_values["model_filename"])
 
     # Re-initialize cfg and model for each iteration
-    cfg = YAMLConfig(
-        model_values["model_yaml"], resume=model_values["model_filename"]
-    )
+    cfg = YAMLConfig(model_values["model_yaml"], resume=model_values["model_filename"])
 
     if "HGNetv2" in cfg.yaml_cfg:
         cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
@@ -182,7 +183,7 @@ def evaluate_single_model(model_id: str, skip_if_result_exists: bool, dataset: O
         model_name=model_values["model_name"],
         model_git_url=GIT_REPO_URL,
         paper_url=PAPER_URL,
-        model=model, # Consider if 'model' object needs to be passed, it might be large.
+        model=model,  # Consider if 'model' object needs to be passed, it might be large.
         mAP_result=mAP_result,
         f1_score_result=f1_score_result,
         license_name=LICENSE,
@@ -214,7 +215,9 @@ def run(
         model_ids = list(MODEL_DICT.keys())
 
     for model_id in model_ids:
-        evaluate_single_model(model_id,skip_if_result_exists,dataset)
+        evaluate_single_model(model_id, skip_if_result_exists, dataset)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(

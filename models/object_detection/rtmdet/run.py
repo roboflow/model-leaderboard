@@ -1,4 +1,5 @@
 import argparse
+import multiprocessing
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -8,7 +9,7 @@ import torch
 from mmdet.apis import inference_detector, init_detector
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
-import multiprocessing
+
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
@@ -62,23 +63,31 @@ def run_on_image(model, image) -> sv.Detections:
     detections = sv.Detections.from_mmdetection(result)
     return detections
 
+
 import sys
+
 
 def download_weight(config_name):
     run_shell_command(
         [
-            sys.executable, "-m", "mim",
-            "download", "mmyolo",
-            "--config", config_name,
-            "--dest", "mmyolo-weights/",
+            sys.executable,
+            "-m",
+            "mim",
+            "download",
+            "mmyolo",
+            "--config",
+            config_name,
+            "--dest",
+            "mmyolo-weights/",
         ]
     )
+
 
 def run_single_model(
     model_id: str,
     skip_if_result_exists=False,
     dataset: Optional[sv.DetectionDataset] = None,
-    ) -> None :
+) -> None:
     model_values = MODEL_DICT[model_id]
 
     if skip_if_result_exists and result_json_already_exists(model_id):
@@ -121,6 +130,8 @@ def run_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
+
+
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
@@ -140,7 +151,9 @@ def run(
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
 
-        process = multiprocessing.Process(target=run_single_model, args=(model_id, skip_if_result_exists,dataset))
+        process = multiprocessing.Process(
+            target=run_single_model, args=(model_id, skip_if_result_exists, dataset)
+        )
         process.start()
         process.join()
 
