@@ -23,7 +23,6 @@ from utils import (
 MODEL_DICT = {
     "rtdetr_r18vd": {"name": "RT-DETRv1 r18vd", "hub_id": "rtdetr_r18vd"},
     "rtdetrv2_r18vd": {"name": "RT-DETRv2-S", "hub_id": "rtdetrv2_r18vd"},
-
     "rtdetr_r34vd": {"name": "RT-DETRv1 r34vd", "hub_id": "rtdetr_r34vd"},
     "rtdetr_r50vd": {"name": "RT-DETRv1 r50vd", "hub_id": "rtdetr_r50vd"},
     "rtdetr_r101vd": {"name": "RT-DETRv1 r101vd", "hub_id": "rtdetr_r101vd"},
@@ -48,16 +47,18 @@ TRANSFORMS = T.Compose(
     [T.Resize((RUN_PARAMETERS["imgsz"], RUN_PARAMETERS["imgsz"])), T.ToTensor()]
 )
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 def run_single_model(
     model_id: str,
     skip_if_result_exists=False,
     dataset: Optional[sv.DetectionDataset] = None,
-    ) -> None :
+) -> None:
     model_values = MODEL_DICT[model_id]
 
     if skip_if_result_exists and result_json_already_exists(model_id):
         print(f"Skipping {model_id}. Result already exists!")
-        return 
+        return
     if dataset is None:
         dataset = load_detections_dataset(DATASET_DIR)
 
@@ -107,6 +108,8 @@ def run_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
+
+
 def run(
     model_ids: List[str],
     skip_if_result_exists=False,
@@ -125,7 +128,9 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        process = multiprocessing.Process(target=run_single_model, args=(model_id, skip_if_result_exists,dataset))
+        process = multiprocessing.Process(
+            target=run_single_model, args=(model_id, skip_if_result_exists, dataset)
+        )
         process.start()
         process.join()
 
