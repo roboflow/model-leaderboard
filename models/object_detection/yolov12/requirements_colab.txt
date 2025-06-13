@@ -1,5 +1,6 @@
 ultralytics @ git+https://github.com/sunsmarterjie/yolov12.git@main
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 tqdm
-flash_attn
+flash_attn==2.7.4.post1
+
 timm
