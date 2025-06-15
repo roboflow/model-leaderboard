@@ -151,7 +151,7 @@ def evaluate_single_model(
     cfg.model.load_state_dict(state)
 
     class Model(nn.Module):
-        def __init__(self):
+        def __init__(self, cfg):
             super().__init__()
             self.model = cfg.model.deploy()
             self.postprocessor = cfg.postprocessor.deploy()
@@ -161,7 +161,7 @@ def evaluate_single_model(
             outputs = self.postprocessor(outputs, orig_target_sizes)
             return outputs
 
-    model = Model().to(DEVICE)
+    model = Model(cfg).to(DEVICE)
 
     predictions = []
     targets = []
@@ -183,7 +183,7 @@ def evaluate_single_model(
         model_name=model_values["model_name"],
         model_git_url=GIT_REPO_URL,
         paper_url=PAPER_URL,
-        model=model,  # Consider if 'model' object needs to be passed, it might be large.
+        model=model,  # Consider if 'model' object needs to be passed, it might be large
         mAP_result=mAP_result,
         f1_score_result=f1_score_result,
         license_name=LICENSE,
