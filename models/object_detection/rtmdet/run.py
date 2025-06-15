@@ -64,9 +64,6 @@ def run_on_image(model, image) -> sv.Detections:
     return detections
 
 
-import sys
-
-
 def download_weight(config_name):
     run_shell_command(
         [
