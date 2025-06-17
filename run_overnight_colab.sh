@@ -43,6 +43,7 @@ for folder in ${folders[@]}; do
 
         # Override supervision version
         $VENV_PIP install --force-reinstall --no-deps "git+https://github.com/rafaelpadilla/supervision.git@fix/mAP"
+        $VENV_PIP install --force-reinstall --no-deps  pip install ultralytics==8.3.151
         export MPLBACKEND=Agg
         if [[ $folder == rtmdet* ]]; then
             $VENV_PIP install -U openmim
