@@ -98,6 +98,8 @@ def run(
 
         write_result_json(
             model_id=model_id,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model_name=model_id,
             model=model,
             mAP_result=mAP_result,
