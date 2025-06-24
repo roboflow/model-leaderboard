@@ -53,7 +53,6 @@ def run(
         dataset = load_detections_dataset(DATASET_DIR)
 
     model = get_model(model_id)
-    model = model.optimize_for_inference()
 
     predictions = []
     targets = []
