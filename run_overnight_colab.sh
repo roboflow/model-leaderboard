@@ -4,7 +4,8 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "yolov12"
+    'rf-detr'
+    "yolov12" # ran
     "yolov9" # ran
     "d-fine"  # ran
     "rt-detr" # ran
