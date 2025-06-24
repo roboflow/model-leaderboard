@@ -53,11 +53,7 @@ for folder in ${folders[@]}; do
 
             $VENV_PY -m mim install mmcv==2.0.0
         fi
-        if [[ $folder == rf-detr* ]]; then
-            $VENV_PIP uninstall -y onnxruntime onnxruntime-gpu
-            $VENV_PIP install onnxruntime-gpu
 
-        fi
         # Run script
         $VENV_PY run.py
         # Copy only .json files to Drive
