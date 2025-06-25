@@ -64,7 +64,7 @@ def run(
             detections = run_on_image(model, image)
             predictions.append(detections)
             targets.append(target_detections)
-            
+
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
 
