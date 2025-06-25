@@ -66,6 +66,7 @@ def run(
             predictions.append(detections)
             print('detection',detections)
             targets.append(target_detections)
+            print("Targets:", target_detections)
 
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
