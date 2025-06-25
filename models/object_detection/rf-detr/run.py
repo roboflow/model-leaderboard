@@ -9,6 +9,7 @@ from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from supervision.dataset.formats.coco import (
@@ -72,8 +73,7 @@ def run(
             detections = run_on_image(model, image)
             predictions.append(detections)
             targets.append(target_detections)
-        
-        annotation_file=f"{DATASET_DIR}/labels/annotations/instances_val2017.json",
+        annotation_file=f"data/coco-val-2017/labels/annotations/instances_val2017.json",
         class_mapping = get_coco_class_index_mapping(annotation_file)
         mAP_metric = MeanAveragePrecision(
             class_mapping=class_mapping
