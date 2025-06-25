@@ -21,7 +21,6 @@ MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
     "rfdetr-large": {"parameter_count": 128000000},
 }
-
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
     conf=CONFIDENCE_THRESHOLD,
