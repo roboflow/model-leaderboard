@@ -11,12 +11,15 @@ from tqdm import tqdm
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
+from supervision.dataset.formats.coco import (
+    build_coco_class_index_mapping,
+    coco_categories_to_classes,
+)
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
-from supervision.dataset.formats.coco import coco_categories_to_classes, build_coco_class_index_mapping
 
 MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
@@ -35,12 +38,15 @@ def run_on_image(model, image) -> sv.Detections:
     predictions = model.infer(image, confidence=CONFIDENCE_THRESHOLD)[0]
     detections = sv.Detections.from_inference(predictions)
     return detections
+
+
 def get_coco_class_index_mapping(detections_dataset: sv.DetectionDataset) -> dict:
     classes = coco_categories_to_classes(coco_categories=detections_dataset.classes)
     class_mapping = build_coco_class_index_mapping(
         coco_categories=detections_dataset.classes, target_classes=classes
     )
     return class_mapping
+
 
 def run(
     skip_if_result_exists=False,
@@ -54,9 +60,8 @@ def run(
         skip_if_result_exists: If True, skip the evaluation if the result json already exists.
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
-    
+
     for model_id in MODEL_DICT:
-        
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
 
@@ -73,11 +78,11 @@ def run(
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             # Run model
             detections = run_on_image(model, image)
-            detections.class_id  = [inv_class_mapping[i] for i in detections.class_id]
+            detections.class_id = [inv_class_mapping[i] for i in detections.class_id]
 
             predictions.append(detections)
             targets.append(target_detections)
-            
+
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
 
