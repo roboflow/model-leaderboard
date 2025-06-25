@@ -21,7 +21,7 @@ MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
     "rfdetr-large": {"parameter_count": 128000000},
 }
-CONFIDENCE_THRESHOLD=0.5
+
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
     conf=CONFIDENCE_THRESHOLD,
@@ -31,8 +31,7 @@ PAPER_URL = ""
 
 
 def run_on_image(model, image) -> sv.Detections:
-    predictions = model.infer(image, confidence=CONFIDENCE_THRESHOLD)[0]
-    detections = sv.Detections.from_inference(predictions)
+    detections = model.predict(image, confidence=CONFIDENCE_THRESHOLD)
     return detections
 
 
