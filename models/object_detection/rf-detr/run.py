@@ -36,9 +36,9 @@ def run_on_image(model, image) -> sv.Detections:
     detections = sv.Detections.from_inference(predictions)
     return detections
 def get_coco_class_index_mapping(detections_dataset: sv.DetectionDataset) -> dict:
-    classes = coco_categories_to_classes(coco_categories=detections_dataset["categories"])
+    classes = coco_categories_to_classes(coco_categories=detections_dataset.classes)
     class_mapping = build_coco_class_index_mapping(
-        coco_categories=detections_dataset["categores"], target_classes=classes
+        coco_categories=detections_dataset.classes, target_classes=classes
     )
     return class_mapping
 
