@@ -6,7 +6,7 @@ from typing import Optional
 
 import supervision as sv
 from inference import get_model
-from supervision.metrics import F1Score, MeanAveragePrecision
+from supervision.metrics import MeanAveragePrecision
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -79,9 +79,9 @@ def run(
             targets.append(target_detections)
 
         mAP_metric = MeanAveragePrecision(class_mapping=class_mapping)
-        #f1_score = F1Score(class_mapping=class_mapping)
+        # f1_score = F1Score(class_mapping=class_mapping)
 
-        #f1_score_result = f1_score.update(predictions, targets).compute()
+        # f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
         print(f"mAP result: {mAP_result}, F1 score: {f1_score_result}")
         write_result_json(
