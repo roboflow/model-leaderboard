@@ -21,7 +21,7 @@ MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
     "rfdetr-large": {"parameter_count": 128000000},
 }
-
+CONFIDENCE_THRESHOLD=0.5
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
     conf=CONFIDENCE_THRESHOLD,
@@ -64,10 +64,8 @@ def run(
             # Run model
             detections = run_on_image(model, image)
             predictions.append(detections)
-            print("detection", detections)
             targets.append(target_detections)
-            print("Targets:", target_detections)
-
+            
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
 
