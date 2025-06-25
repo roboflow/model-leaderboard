@@ -76,11 +76,11 @@ def run(
             targets.append(target_detections)
 
         mAP_metric = MeanAveragePrecision(class_mapping=class_mapping)
-        f1_score = F1Score(class_mapping=class_mapping)
+        #f1_score = F1Score(class_mapping=class_mapping)
 
-        f1_score_result = f1_score.update(predictions, targets).compute()
+        #f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
-
+        print(f"mAP result: {mAP_result}, F1 score: {f1_score_result}")
         write_result_json(
             model_id=model_id,
             model_name=model_id,
