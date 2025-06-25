@@ -13,15 +13,13 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from supervision.dataset.formats.coco import (
-    build_coco_class_index_mapping,
-    coco_categories_to_classes,
+    get_coco_class_index_mapping,
 )
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
-from supervision.dataset.formats.coco import get_coco_class_index_mapping
 
 MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
@@ -40,7 +38,6 @@ def run_on_image(model, image) -> sv.Detections:
     predictions = model.infer(image, confidence=CONFIDENCE_THRESHOLD)[0]
     detections = sv.Detections.from_inference(predictions)
     return detections
-
 
 
 def run(
@@ -75,12 +72,8 @@ def run(
             targets.append(target_detections)
         annotation_file=f"data/coco-val-2017/labels/annotations/instances_val2017.json",
         class_mapping = get_coco_class_index_mapping(annotation_file)
-        mAP_metric = MeanAveragePrecision(
-            class_mapping=class_mapping
-            )
-        f1_score = F1Score(
-            class_mapping=class_mapping
-        )
+        mAP_metric = MeanAveragePrecision(class_mapping=class_mapping)
+        f1_score = F1Score(class_mapping=class_mapping)
 
         f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
