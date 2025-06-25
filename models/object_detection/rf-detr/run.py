@@ -2,6 +2,7 @@ import argparse
 import sys
 from pathlib import Path
 from typing import Optional
+
 import numpy as np
 import supervision as sv
 from inference import get_model
