@@ -1,4 +1,5 @@
 import argparse
+import os
 import sys
 from pathlib import Path
 from typing import Optional
@@ -7,10 +8,10 @@ import supervision as sv
 from inference import get_model
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
-import os
+
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-#sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
-#sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent.parent))
+# sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
+# sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from supervision.dataset.formats.coco import (
@@ -60,7 +61,9 @@ def run(
 
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
-        annotation_file = os.path.join(DATASET_DIR, "labels/annotations/instances_val2017.json")
+        annotation_file = os.path.join(
+            DATASET_DIR, "labels/annotations/instances_val2017.json"
+        )
         print(annotation_file)
         print(os.getcwd())
         class_mapping = get_coco_class_index_mapping(annotation_file)
