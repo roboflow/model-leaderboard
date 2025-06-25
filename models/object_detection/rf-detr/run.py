@@ -20,6 +20,7 @@ from utils import (
     result_json_already_exists,
     write_result_json,
 )
+from supervision.dataset.formats.coco import get_coco_class_index_mapping
 
 MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
@@ -39,13 +40,6 @@ def run_on_image(model, image) -> sv.Detections:
     detections = sv.Detections.from_inference(predictions)
     return detections
 
-
-def get_coco_class_index_mapping(detections_dataset: sv.DetectionDataset) -> dict:
-    classes = coco_categories_to_classes(coco_categories=detections_dataset.classes)
-    class_mapping = build_coco_class_index_mapping(
-        coco_categories=detections_dataset.classes, target_classes=classes
-    )
-    return class_mapping
 
 
 def run(
@@ -67,9 +61,7 @@ def run(
 
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
-        class_mapping = get_coco_class_index_mapping(dataset)
-        print(f"Class mapping for {model_id}: {class_mapping}")
-        inv_class_mapping = {v: k for k, v in class_mapping.items()}
+
         model = get_model(model_id)
 
         predictions = []
@@ -78,13 +70,17 @@ def run(
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             # Run model
             detections = run_on_image(model, image)
-            detections.class_id = [inv_class_mapping[i] for i in detections.class_id]
-
             predictions.append(detections)
             targets.append(target_detections)
-
-        mAP_metric = MeanAveragePrecision()
-        f1_score = F1Score()
+        
+        annotation_file=f"{DATASET_DIR}/labels/annotations/instances_val2017.json",
+        class_mapping = get_coco_class_index_mapping(annotation_file)
+        mAP_metric = MeanAveragePrecision(
+            class_mapping=class_mapping
+            )
+        f1_score = F1Score(
+            class_mapping=class_mapping
+        )
 
         f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
