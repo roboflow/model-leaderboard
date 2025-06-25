@@ -60,7 +60,9 @@ def run(
 
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
-        annotation_file=f"data/coco-val-2017/labels/annotations/instances_val2017.json",
+        annotation_file = (
+            "data/coco-val-2017/labels/annotations/instances_val2017.json",
+        )
         class_mapping = get_coco_class_index_mapping(annotation_file)
         model = get_model(model_id)
 
