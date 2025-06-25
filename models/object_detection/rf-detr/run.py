@@ -70,7 +70,9 @@ def run(
             detections = run_on_image(model, image)
             predictions.append(detections)
             targets.append(target_detections)
-        annotation_file=f"data/coco-val-2017/labels/annotations/instances_val2017.json",
+        annotation_file = (
+            "data/coco-val-2017/labels/annotations/instances_val2017.json",
+        )
         class_mapping = get_coco_class_index_mapping(annotation_file)
         mAP_metric = MeanAveragePrecision(class_mapping=class_mapping)
         f1_score = F1Score(class_mapping=class_mapping)
