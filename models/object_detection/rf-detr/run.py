@@ -61,8 +61,7 @@ def run(
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
         annotation_file = os.path.join(DATASET_DIR, "labels/annotations/instances_val2017.json")
-        print(annotation_file)
-        print(os.getcwd())
+
         class_mapping = get_coco_class_index_mapping(annotation_file)
         model = get_model(model_id)
 
