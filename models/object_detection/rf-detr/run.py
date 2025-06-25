@@ -10,6 +10,7 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from supervision.dataset.formats.coco import (
@@ -59,7 +60,8 @@ def run(
 
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
-
+        annotation_file=f"data/coco-val-2017/labels/annotations/instances_val2017.json",
+        class_mapping = get_coco_class_index_mapping(annotation_file)
         model = get_model(model_id)
 
         predictions = []
@@ -70,8 +72,7 @@ def run(
             detections = run_on_image(model, image)
             predictions.append(detections)
             targets.append(target_detections)
-        annotation_file=f"data/coco-val-2017/labels/annotations/instances_val2017.json",
-        class_mapping = get_coco_class_index_mapping(annotation_file)
+
         mAP_metric = MeanAveragePrecision(class_mapping=class_mapping)
         f1_score = F1Score(class_mapping=class_mapping)
 
