@@ -2,7 +2,7 @@ import argparse
 import sys
 from pathlib import Path
 from typing import Optional
-import numpy as np
+
 import supervision as sv
 from inference import get_model
 from supervision.metrics import F1Score, MeanAveragePrecision
@@ -16,11 +16,13 @@ from utils import (
     result_json_already_exists,
     write_result_json,
 )
+from supervision.dataset.formats.coco import coco_categories_to_classes, build_coco_class_index_mapping
 
 MODEL_DICT = {
     "rfdetr-base": {"parameter_count": 29000000},
     "rfdetr-large": {"parameter_count": 128000000},
 }
+
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
     conf=CONFIDENCE_THRESHOLD,
@@ -30,9 +32,15 @@ PAPER_URL = ""
 
 
 def run_on_image(model, image) -> sv.Detections:
-    detections = model.predict(image, confidence=CONFIDENCE_THRESHOLD)
+    predictions = model.infer(image, confidence=CONFIDENCE_THRESHOLD)[0]
+    detections = sv.Detections.from_inference(predictions)
     return detections
-
+def get_coco_class_index_mapping(detections_dataset: sv.DetectionDataset) -> dict:
+    classes = coco_categories_to_classes(coco_categories=detections_dataset["categories"])
+    class_mapping = build_coco_class_index_mapping(
+        coco_categories=detections_dataset["categores"], target_classes=classes
+    )
+    return class_mapping
 
 def run(
     skip_if_result_exists=False,
@@ -46,13 +54,17 @@ def run(
         skip_if_result_exists: If True, skip the evaluation if the result json already exists.
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
+    
     for model_id in MODEL_DICT:
+        
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
 
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
-
+        class_mapping = get_coco_class_index_mapping(dataset)
+        print(f"Class mapping for {model_id}: {class_mapping}")
+        inv_class_mapping = {v: k for k, v in class_mapping.items()}
         model = get_model(model_id)
 
         predictions = []
@@ -60,11 +72,12 @@ def run(
         print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             # Run model
-            image = np.array(image).astype(np.uint8)
             detections = run_on_image(model, image)
+            detections.class_id  = [inv_class_mapping[i] for i in detections.class_id]
+
             predictions.append(detections)
             targets.append(target_detections)
-
+            
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
 
