@@ -1,0 +1,4 @@
+rfdetr
+supervision @ git+https://github.com/roboflow/supervision.git@develop
+inference
+onnxruntime-gpu

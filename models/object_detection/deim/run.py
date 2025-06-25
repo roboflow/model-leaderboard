@@ -12,15 +12,10 @@ from PIL import Image
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
-)
-
-from engine.core import YAMLConfig
-
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
+from engine.core import YAMLConfig
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -36,6 +31,13 @@ RUN_PARAMETERS = dict(
 )
 GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 PAPER_URL = "https://arxiv.org/abs/2412.04234"
+if not Path("./DEIM-repo/").is_dir():
+    run_shell_command(["git", "clone", REPO_URL, "./DEIM-repo/"])
+
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
+)
+
 
 TRANSFORMS = T.Compose(
     [T.Resize((RUN_PARAMETERS["imgsz"], RUN_PARAMETERS["imgsz"])), T.ToTensor()]
@@ -44,6 +46,18 @@ TRANSFORMS = T.Compose(
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 MODEL_DICT = {
+    "DEIM-D-FINE-X": {
+        "model_url": "https://drive.google.com/file/d/1dPtbgtGgq1Oa7k_LgH1GXPelg1IVeu0j/view?usp=drive_link",
+        "model_filename": "dfine_x_coco.pth",
+        "model_name": "DEIM-D-FINE-X",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_x_coco.yml",
+    },
+    "DEIM-D-FINE-L": {
+        "model_url": "https://drive.google.com/file/d/1PIRf02XkrA2xAD3wEiKE2FaamZgSGTAr/view?usp=drive_link",
+        "model_filename": "dfine_l_coco.pth",
+        "model_name": "DEIM-D-FINE-L",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_l_coco.yml",
+    },
     "DEIM-D-FINE-N": {
         "model_url": "https://drive.google.com/file/d/1tB8gVJNrfb6dhFvoHJECKOF5VpkthhfC/view?usp=drive_link",
         "model_filename": "dfine_n_coco.pth",
@@ -62,17 +76,17 @@ MODEL_DICT = {
         "model_name": "DEIM-D-FINE-M",
         "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_m_coco.yml",
     },
-    "DEIM-D-FINE-L": {
-        "model_url": "https://drive.google.com/file/d/1PIRf02XkrA2xAD3wEiKE2FaamZgSGTAr/view?usp=drive_link",
-        "model_filename": "dfine_l_coco.pth",
-        "model_name": "DEIM-D-FINE-L",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_l_coco.yml",
+    "DEIM-RT-DETRv2-X": {
+        "model_url": "https://drive.google.com/file/d/1BIevZijOcBO17llTyDX32F_pYppBfnzu/view?usp=drive_link",
+        "model_filename": "deim_r101vd_60e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-X",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r101vd_60e_coco.yml",
     },
-    "DEIM-D-FINE-X": {
-        "model_url": "https://drive.google.com/file/d/1dPtbgtGgq1Oa7k_LgH1GXPelg1IVeu0j/view?usp=drive_link",
-        "model_filename": "dfine_x_coco.pth",
-        "model_name": "DEIM-D-FINE-X",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_x_coco.yml",
+    "DEIM-RT-DETRv2-L": {
+        "model_url": "https://drive.google.com/file/d/1mWknAXD5JYknUQ94WCEvPfXz13jcNOTI/view?usp=drive_link",
+        "model_filename": "deim_r50vd_60e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-L",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_60e_coco.yml",
     },
     "DEIM-RT-DETRv2-S": {
         "model_url": "https://drive.google.com/file/d/153_JKff6EpFgiLKaqkJsoDcLal_0ux_F/view?usp=drive_link",
@@ -91,18 +105,6 @@ MODEL_DICT = {
         "model_filename": "deim_r50vd_m_60e_coco.pth",
         "model_name": "DEIM-RT-DETRv2-M*",
         "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_m_60e_coco.yml",
-    },
-    "DEIM-RT-DETRv2-L": {
-        "model_url": "https://drive.google.com/file/d/1mWknAXD5JYknUQ94WCEvPfXz13jcNOTI/view?usp=drive_link",
-        "model_filename": "deim_r50vd_60e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-L",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_60e_coco.yml",
-    },
-    "DEIM-RT-DETRv2-X": {
-        "model_url": "https://drive.google.com/file/d/1BIevZijOcBO17llTyDX32F_pYppBfnzu/view?usp=drive_link",
-        "model_filename": "deim_r101vd_60e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-X",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r101vd_60e_coco.yml",
     },
 }  # noqa: E501 // docs
 

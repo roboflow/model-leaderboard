@@ -1,4 +1,5 @@
 import argparse
+import multiprocessing
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -66,6 +67,8 @@ def run_on_image(model, image) -> sv.Detections:
 def download_weight(config_name):
     run_shell_command(
         [
+            sys.executable,
+            "-m",
             "mim",
             "download",
             "mmyolo",
@@ -74,6 +77,55 @@ def download_weight(config_name):
             "--dest",
             "mmyolo-weights/",
         ]
+    )
+
+
+def run_single_model(
+    model_id: str,
+    skip_if_result_exists=False,
+    dataset: Optional[sv.DetectionDataset] = None,
+) -> None:
+    model_values = MODEL_DICT[model_id]
+
+    if skip_if_result_exists and result_json_already_exists(model_id):
+        print(f"Skipping {model_id}. Result already exists!")
+        return
+
+    if dataset is None:
+        dataset = load_detections_dataset(DATASET_DIR)
+
+    download_weight(model_id)
+
+    model = init_detector(
+        model_values["config"], model_values["checkpoint_file"], DEVICE
+    )
+
+    predictions = []
+    targets = []
+    print("Evaluating...")
+    for _, image, target_detections in tqdm(dataset, total=len(dataset)):
+        # Run model
+        detections = run_on_image(model, image)
+        detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
+        predictions.append(detections)
+        targets.append(target_detections)
+
+    mAP_metric = MeanAveragePrecision()
+    f1_score = F1Score()
+
+    f1_score_result = f1_score.update(predictions, targets).compute()
+    mAP_result = mAP_metric.update(predictions, targets).compute()
+
+    write_result_json(
+        model_id=model_id,
+        model_name=model_values["model_name"],
+        model_git_url=GIT_REPO_URL,
+        paper_url=PAPER_URL,
+        model=model,
+        mAP_result=mAP_result,
+        f1_score_result=f1_score_result,
+        license_name=LICENSE,
+        run_parameters=RUN_PARAMETERS,
     )
 
 
@@ -95,51 +147,17 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        model_values = MODEL_DICT[model_id]
 
-        if skip_if_result_exists and result_json_already_exists(model_id):
-            print(f"Skipping {model_id}. Result already exists!")
-            continue
-
-        if dataset is None:
-            dataset = load_detections_dataset(DATASET_DIR)
-
-        download_weight(model_id)
-
-        model = init_detector(
-            model_values["config"], model_values["checkpoint_file"], DEVICE
+        process = multiprocessing.Process(
+            target=run_single_model, args=(model_id, skip_if_result_exists, dataset)
         )
-
-        predictions = []
-        targets = []
-        print("Evaluating...")
-        for _, image, target_detections in tqdm(dataset, total=len(dataset)):
-            # Run model
-            detections = run_on_image(model, image)
-            detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
-            predictions.append(detections)
-            targets.append(target_detections)
-
-        mAP_metric = MeanAveragePrecision()
-        f1_score = F1Score()
-
-        f1_score_result = f1_score.update(predictions, targets).compute()
-        mAP_result = mAP_metric.update(predictions, targets).compute()
-
-        write_result_json(
-            model_id=model_id,
-            model_name=model_values["model_name"],
-            model_git_url=GIT_REPO_URL,
-            paper_url=PAPER_URL,
-            model=model,
-            mAP_result=mAP_result,
-            f1_score_result=f1_score_result,
-            license_name=LICENSE,
-            run_parameters=RUN_PARAMETERS,
-        )
+        process.start()
+        process.join()
 
 
 if __name__ == "__main__":
+    multiprocessing.set_start_method("spawn", force=True)
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "model_ids",
