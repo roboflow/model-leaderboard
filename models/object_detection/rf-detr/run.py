@@ -17,10 +17,14 @@ from utils import (
     write_result_json,
 )
 
-MODEL_IDS = [""]
+MODEL_DICT = [
+    {
+        "rfdetr-base": {"parameter_count": 29000000},
+        "rfdetr-large": {"parameter_count": 128000000},
+    }
+]
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
-    imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
 )
 GIT_REPO_URL = "https://github.com/roboflow/rf-detr"
@@ -45,41 +49,42 @@ def run(
         skip_if_result_exists: If True, skip the evaluation if the result json already exists.
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
-    model_id = "rfdetr-base"
-    if skip_if_result_exists and result_json_already_exists(model_id):
-        print(f"Skipping {model_id}. Result already exists!")
+    for model_id in MODEL_DICT:
+        if skip_if_result_exists and result_json_already_exists(model_id):
+            print(f"Skipping {model_id}. Result already exists!")
 
-    if dataset is None:
-        dataset = load_detections_dataset(DATASET_DIR)
+        if dataset is None:
+            dataset = load_detections_dataset(DATASET_DIR)
 
-    model = get_model(model_id)
+        model = get_model(model_id)
 
-    predictions = []
-    targets = []
-    print("Evaluating...")
-    for _, image, target_detections in tqdm(dataset, total=len(dataset)):
-        # Run model
-        detections = run_on_image(model, image)
-        predictions.append(detections)
-        targets.append(target_detections)
+        predictions = []
+        targets = []
+        print("Evaluating...")
+        for _, image, target_detections in tqdm(dataset, total=len(dataset)):
+            # Run model
+            detections = run_on_image(model, image)
+            predictions.append(detections)
+            targets.append(target_detections)
 
-    mAP_metric = MeanAveragePrecision()
-    f1_score = F1Score()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
 
-    f1_score_result = f1_score.update(predictions, targets).compute()
-    mAP_result = mAP_metric.update(predictions, targets).compute()
+        f1_score_result = f1_score.update(predictions, targets).compute()
+        mAP_result = mAP_metric.update(predictions, targets).compute()
 
-    write_result_json(
-        model_id=model_id,
-        model_name=model_id,
-        model_git_url=GIT_REPO_URL,
-        paper_url=PAPER_URL,
-        model=model,
-        mAP_result=mAP_result,
-        f1_score_result=f1_score_result,
-        license_name=LICENSE,
-        run_parameters=RUN_PARAMETERS,
-    )
+        write_result_json(
+            model_id=model_id,
+            model_name=model_id,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
+            model=model,
+            mAP_result=mAP_result,
+            f1_score_result=f1_score_result,
+            license_name=LICENSE,
+            run_parameters=RUN_PARAMETERS,
+            parameter_count=MODEL_DICT[model_id]["parameter_count"],
+        )
 
 
 if __name__ == "__main__":

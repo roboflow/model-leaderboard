@@ -26,10 +26,14 @@ def download_file(url: str, output_filename: str) -> None:
         command, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
 
-
     def run_shell_command(command: List[str], working_directory=None) -> None:
         subprocess.run(
-            command, check=True, text=True, stdout=None, stderr=None, cwd=working_directory
+            command,
+            check=True,
+            text=True,
+            stdout=None,
+            stderr=None,
+            cwd=working_directory,
         )
 
 
@@ -57,6 +61,7 @@ def write_result_json(
     f1_score_result: F1ScoreResult,
     license_name: str,
     run_parameters: dict[str, Any] = {},
+    parameter_count: Optional[int] = None,
 ) -> None:
     result: dict[str, Any] = {}
 
@@ -66,7 +71,9 @@ def write_result_json(
         "github_url": model_git_url,
         "paper_url": paper_url,
         "run_parameters": run_parameters,
-        "param_count": count_model_params(model),
+        "param_count": count_model_params(model)
+        if parameter_count is None
+        else parameter_count,
         "run_date": datetime.now(timezone.utc).isoformat(),
     }
 
