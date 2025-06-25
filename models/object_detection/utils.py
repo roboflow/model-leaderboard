@@ -26,15 +26,15 @@ def download_file(url: str, output_filename: str) -> None:
         command, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
 
-    def run_shell_command(command: List[str], working_directory=None) -> None:
-        subprocess.run(
-            command,
-            check=True,
-            text=True,
-            stdout=None,
-            stderr=None,
-            cwd=working_directory,
-        )
+def run_shell_command(command: List[str], working_directory=None) -> None:
+    subprocess.run(
+        command,
+        check=True,
+        text=True,
+        stdout=None,
+        stderr=None,
+        cwd=working_directory,
+    )
 
 
 def count_model_params(model: nn.Module) -> int:
