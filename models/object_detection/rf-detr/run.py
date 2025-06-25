@@ -60,6 +60,7 @@ def run(
         print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             # Run model
+            print(image)
             detections = run_on_image(model, image)
             predictions.append(detections)
             targets.append(target_detections)
