@@ -9,8 +9,6 @@ from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 import os
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-#sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
-#sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from supervision.dataset.formats.coco import (
