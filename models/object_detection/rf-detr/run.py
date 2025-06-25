@@ -64,7 +64,7 @@ def run(
             # Run model
             detections = run_on_image(model, image)
             predictions.append(detections)
-            print('detection',detections)
+            print("detection", detections)
             targets.append(target_detections)
 
         mAP_metric = MeanAveragePrecision()
@@ -85,7 +85,9 @@ def run(
             run_parameters=RUN_PARAMETERS,
             parameter_count=MODEL_DICT[model_id]["parameter_count"],
         )
-        print(f"Finished evaluating {model_id}. Results saved. Map result: {mAP_result}, F1 score: {f1_score_result}")
+        print(
+            f"Finished evaluating {model_id}. Results saved. Map result: {mAP_result}, F1 score: {f1_score_result}"
+        )
 
 
 if __name__ == "__main__":
