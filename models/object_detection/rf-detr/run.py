@@ -2,7 +2,7 @@ import argparse
 import sys
 from pathlib import Path
 from typing import Optional
-
+import numpy as np
 import supervision as sv
 from inference import get_model
 from supervision.metrics import F1Score, MeanAveragePrecision
@@ -60,7 +60,7 @@ def run(
         print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             # Run model
-            print(image)
+            image = np.array(image).astype(np.uint8)
             detections = run_on_image(model, image)
             predictions.append(detections)
             targets.append(target_detections)
