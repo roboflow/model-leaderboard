@@ -68,8 +68,8 @@ def run_single_model(
     predictions = []
     targets = []
     print("Evaluating...")
-    for _, image, target_detections in tqdm(dataset, total=len(dataset)):
-        img = Image.fromarray(image)
+    for img_path, image, target_detections in tqdm(dataset, total=len(dataset)):
+        img = Image.open(img_path).convert("RGB")
         width, height = img.size
         orig_size = torch.tensor([width, height])[None].to(DEVICE)
         im_data = TRANSFORMS(img)[None].to(DEVICE)
