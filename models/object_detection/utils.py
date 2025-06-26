@@ -21,7 +21,7 @@ def load_detections_dataset(dataset_dir: str) -> sv.DetectionDataset:
     print("Loading detections dataset...")
     return sv.DetectionDataset.from_coco(
         images_directory_path=get_images_directory_path(dataset_dir=dataset_dir),
-        annotations_path=get_annotations_path(dataset_dir=dataset_dir)
+        annotations_path=get_annotations_path(dataset_dir=dataset_dir),
     )
 
 
