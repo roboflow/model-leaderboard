@@ -9,15 +9,20 @@ from supervision.metrics import F1ScoreResult, MeanAveragePrecisionResult
 from torch import nn
 
 
+def get_images_directory_path(dataset_dir: str) -> str:
+    return f"{dataset_dir}/images/val2017"
+
+
+def get_annotations_path(dataset_dir: str) -> str:
+    return f"{dataset_dir}/labels/annotations/instances_val2017.json"
+
+
 def load_detections_dataset(dataset_dir: str) -> sv.DetectionDataset:
     print("Loading detections dataset...")
-    dataset = sv.DetectionDataset.from_coco(
-        images_directory_path=f"{dataset_dir}/images/val2017",
-        annotations_path=f"{dataset_dir}/labels/annotations/instances_val2017.json",
-        # force_masks = True
+    return sv.DetectionDataset.from_coco(
+        images_directory_path=get_images_directory_path(dataset_dir=dataset_dir),
+        annotations_path=get_annotations_path(dataset_dir=dataset_dir)
     )
-
-    return dataset
 
 
 def download_file(url: str, output_filename: str) -> None:
