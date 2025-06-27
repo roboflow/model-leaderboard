@@ -9,6 +9,7 @@ import torch
 from mmdet.apis import inference_detector, init_detector
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
+from mmengine import Config  # Add this import
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -53,6 +54,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
+    max_det=100,
 )
 GIT_REPO_URL = "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet"
 PAPER_URL = "https://arxiv.org/abs/2212.07784"
@@ -61,6 +63,7 @@ PAPER_URL = "https://arxiv.org/abs/2212.07784"
 def run_on_image(model, image) -> sv.Detections:
     result = inference_detector(model, image)
     detections = sv.Detections.from_mmdetection(result)
+
     return detections
 
 
@@ -95,9 +98,12 @@ def run_single_model(
         dataset = load_detections_dataset(DATASET_DIR)
 
     download_weight(model_id)
+    cfg = Config.fromfile(model_values['config'])
+
+    cfg.model.test_cfg.max_per_img = RUN_PARAMETERS["max_det"]
 
     model = init_detector(
-        model_values["config"], model_values["checkpoint_file"], DEVICE
+        cfg, model_values["checkpoint_file"], DEVICE
     )
 
     predictions = []
