@@ -4,16 +4,16 @@ set -e
 current_path=$(pwd)
 
 folders=(
-    "yolov12" 
+    "yolov12"
     'rf-detr'
-    "yolov9" 
-    "d-fine"  
-    "rt-detr" 
-    "rtmdet" 
-    "deim" 
-    "yolov8" 
-    "yolov10" 
-    "yolov11" 
+    "yolov9"
+    "d-fine"
+    "rt-detr"
+    "rtmdet"
+    "deim"
+    "yolov8"
+    "yolov10"
+    "yolov11"
 
 )
 
@@ -34,7 +34,7 @@ for folder in ${folders[@]}; do
 
         VENV_PY="$venv_dir/bin/python"
         VENV_PIP="$venv_dir/bin/pip"
-        VENV_MIM="$venv_dir/bin/mim" 
+        VENV_MIM="$venv_dir/bin/mim"
 
         # Upgrade pip
         $VENV_PY -m pip install --upgrade pip
