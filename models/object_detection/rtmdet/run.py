@@ -7,9 +7,9 @@ from typing import List, Optional
 import supervision as sv
 import torch
 from mmdet.apis import inference_detector, init_detector
+from mmengine import Config  # Add this import
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
-from mmengine import Config  # Add this import
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -98,13 +98,11 @@ def run_single_model(
         dataset = load_detections_dataset(DATASET_DIR)
 
     download_weight(model_id)
-    cfg = Config.fromfile(model_values['config'])
+    cfg = Config.fromfile(model_values["config"])
 
     cfg.model.test_cfg.max_per_img = RUN_PARAMETERS["max_det"]
 
-    model = init_detector(
-        cfg, model_values["checkpoint_file"], DEVICE
-    )
+    model = init_detector(cfg, model_values["checkpoint_file"], DEVICE)
 
     predictions = []
     targets = []
