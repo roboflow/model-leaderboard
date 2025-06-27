@@ -7,4 +7,3 @@ openmim==0.3.9
 mmdet==3.3.0
 mmengine==0.10.5
 mmyolo==0.6.0
-openmim
