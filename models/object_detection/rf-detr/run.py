@@ -1,20 +1,20 @@
 import argparse
-import os
 import sys
+import torch
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 
+import numpy as np
 import supervision as sv
-from inference import get_model
+from PIL import Image
+from rfdetr import RFDETRBase, RFDETRLarge
+from rfdetr.util.coco_classes import COCO_CLASSES
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
-from supervision.dataset.formats.coco import (
-    get_coco_class_index_mapping,
-)
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -22,82 +22,97 @@ from utils import (
 )
 
 MODEL_DICT = {
-    "rfdetr-base": {"parameter_count": 29000000},
-    "rfdetr-large": {"parameter_count": 128000000},
+    "RF-DETR-B": RFDETRBase,
+    "RF-DETR-L": RFDETRLarge
 }
-
-LICENSE = "APGL-3.0"
-RUN_PARAMETERS = dict(
-    conf=CONFIDENCE_THRESHOLD,
-)
+LICENSE = "Apache-2.0"
+RUN_PARAMETERS = {
+    "resolution": 560,
+    "num_queries": 300,
+    "num_select": 300,
+    "threshold": 0,
+}
 GIT_REPO_URL = "https://github.com/roboflow/rf-detr"
 PAPER_URL = ""
 
 
-def run_on_image(model, image) -> sv.Detections:
-    predictions = model.infer(image, confidence=CONFIDENCE_THRESHOLD)[0]
-    detections = sv.Detections.from_inference(predictions)
-    return detections
+def get_best_device():
+    if torch.cuda.is_available():
+        return "cuda"
+    elif getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
+        return "mps"
+    else:
+        return "cpu"
+
+
+def create_coco_id_mapping(coco_id_to_name, coco_classes_list):
+    name_to_index = {name: idx for idx, name in enumerate(coco_classes_list)}
+    coco_id_mapping = {}
+    for coco_id, class_name in coco_id_to_name.items():
+        if class_name in name_to_index:
+            coco_id_mapping[coco_id] = name_to_index[class_name]
+        else:
+            continue
+    return coco_id_mapping
 
 
 def run(
+    model_ids: List[str],
     skip_if_result_exists=False,
     dataset: Optional[sv.DetectionDataset] = None,
 ) -> None:
-    """
-    Run the evaluation for the given models and dataset.
+    if not model_ids:
+        model_ids = list(MODEL_DICT.keys())
 
-    Arguments:
-        model_ids: List of model ids to evaluate. Evaluate all models if None.
-        skip_if_result_exists: If True, skip the evaluation if the result json already exists.
-        dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
-    """  # noqa: E501 // docs
+    for model_id in model_ids:
+        print(f"\nEvaluating model: {model_id}")
 
-    for model_id in MODEL_DICT:
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
+            continue
 
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
-        annotation_file = os.path.join(
-            DATASET_DIR, "labels/annotations/instances_val2017.json"
-        )
 
-        class_mapping = get_coco_class_index_mapping(annotation_file)
-        model = get_model(model_id)
+        model = MODEL_DICT[model_id](resolution=RUN_PARAMETERS["resolution"], num_queries=RUN_PARAMETERS["num_queries"], num_select=RUN_PARAMETERS["num_select"], device="cpu")
+        coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
+        coco_id_vectorized_map = np.vectorize(coco_id_mapping.__getitem__)
 
         predictions = []
         targets = []
         print("Evaluating...")
-        for _, image, target_detections in tqdm(dataset, total=len(dataset)):
-            # Run model
-            detections = run_on_image(model, image)
+        for image_path, image, target_detections in tqdm(dataset, total=len(dataset)):
+            image = Image.open(image_path).convert("RGB")
+            detections = model.predict(image, threshold=RUN_PARAMETERS["threshold"])
+            detections.class_id = coco_id_vectorized_map(detections.class_id)
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = MeanAveragePrecision(class_mapping=class_mapping)
-        f1_score = F1Score(class_mapping=class_mapping)
-
-        f1_score_result = f1_score.update(predictions, targets).compute()
+        mAP_metric = MeanAveragePrecision()
+        f1_metric = F1Score()
+        f1_result = f1_metric.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
-        print(f"mAP result: {mAP_result}, F1 score: {f1_score_result}")
+
         write_result_json(
             model_id=model_id,
             model_name=model_id,
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
-            model=model,
+            model=model.model.model,
             mAP_result=mAP_result,
-            f1_score_result=f1_score_result,
+            f1_score_result=f1_result,
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
-            parameter_count=MODEL_DICT[model_id]["parameter_count"],
         )
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-
+    parser.add_argument(
+        "model_ids",
+        nargs="*",
+        help="Model ids to evaluate. If not provided, evaluate all models.",
+    )
     parser.add_argument(
         "--skip_if_result_exists",
         action="store_true",
@@ -105,4 +120,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    run(args.skip_if_result_exists)
+    run(args.model_ids, args.skip_if_result_exists)
