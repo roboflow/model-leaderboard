@@ -1,11 +1,11 @@
 import argparse
 import sys
-import torch
 from pathlib import Path
 from typing import List, Optional
 
 import numpy as np
 import supervision as sv
+import torch
 from PIL import Image
 from rfdetr import RFDETRBase, RFDETRLarge
 from rfdetr.util.coco_classes import COCO_CLASSES
@@ -14,17 +14,14 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
+from configs import DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
 
-MODEL_DICT = {
-    "RF-DETR-B": RFDETRBase,
-    "RF-DETR-L": RFDETRLarge
-}
+MODEL_DICT = {"RF-DETR-B": RFDETRBase, "RF-DETR-L": RFDETRLarge}
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
     "resolution": 560,
@@ -74,7 +71,12 @@ def run(
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        model = MODEL_DICT[model_id](resolution=RUN_PARAMETERS["resolution"], num_queries=RUN_PARAMETERS["num_queries"], num_select=RUN_PARAMETERS["num_select"], device="cpu")
+        model = MODEL_DICT[model_id](
+            resolution=RUN_PARAMETERS["resolution"],
+            num_queries=RUN_PARAMETERS["num_queries"],
+            num_select=RUN_PARAMETERS["num_select"],
+            device="cpu",
+        )
         coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
         coco_id_vectorized_map = np.vectorize(coco_id_mapping.__getitem__)
 
