@@ -8,7 +8,7 @@ data/*
 # yolov9 repo
 **/yolov9-repo
 # D-FINE repo
-#**/D-FINE
+**/D-FINE
 # mmyolo-weights
 **/mmyolo-weights
 ## deim repo
