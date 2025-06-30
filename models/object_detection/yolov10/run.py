@@ -22,7 +22,13 @@ LICENSE = "APGL-3.0"
 GIT_REPO_URL = "https://github.com/THU-MIG/yolov10"
 PAPER_URL = "https://arxiv.org/abs/2405.14458"
 
-RUN_PARAMETERS = dict(imgsz=640, iou=0.6, max_det=300, conf=0.001, verbose=False)
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    iou=0.7,
+    max_det=100,
+    conf=0.001,
+    verbose=False,
+)
 
 
 def run_on_image(model, image) -> sv.Detections:
