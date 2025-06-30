@@ -15,15 +15,21 @@ from tqdm import tqdm
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
-from engine.core import YAMLConfig
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     run_shell_command,
     write_result_json,
 )
-
 REPO_URL = "https://github.com/ShihuaHuang95/DEIM.git"
+if not Path("./DEIM-repo/").is_dir():
+    run_shell_command(["git", "clone", REPO_URL, "./DEIM-repo/"])
+
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
+)
+from engine.core import YAMLConfig
+
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
@@ -32,12 +38,6 @@ RUN_PARAMETERS = dict(
 )
 GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 PAPER_URL = "https://arxiv.org/abs/2412.04234"
-if not Path("./DEIM-repo/").is_dir():
-    run_shell_command(["git", "clone", REPO_URL, "./DEIM-repo/"])
-
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
-)
 
 
 TRANSFORMS = T.Compose(
@@ -142,6 +142,7 @@ def run_on_image(model, image_array):
         # Keep top 100 by confidence
         idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
         detections = detections[idxs]
+    print("number of detections after filtering:", len(detections))
     return detections
 
 
