@@ -21,8 +21,8 @@ MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
 LICENSE = "APGL-3.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
-    iou=0.6,
-    max_det=300,
+    iou=0.7,
+    max_det=100,
     conf=0.001,
     verbose=False,
 )
