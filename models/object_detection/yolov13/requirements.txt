@@ -1,0 +1,4 @@
+ultralytics @ git+https://github.com/iMoonLab/yolov13.git
+supervision @ git+https://github.com/roboflow/supervision.git@develop
+huggingface_hub
+tqdm

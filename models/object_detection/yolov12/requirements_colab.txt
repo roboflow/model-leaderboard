@@ -1,4 +1,0 @@
-ultralytics @ git+https://github.com/sunsmarterjie/yolov12.git@main
-supervision @ git+https://github.com/roboflow/supervision.git@develop
-tqdm
-timm
