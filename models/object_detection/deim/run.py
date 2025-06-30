@@ -28,6 +28,7 @@ LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
+    max_det=100,
 )
 GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 PAPER_URL = "https://arxiv.org/abs/2412.04234"
@@ -137,9 +138,9 @@ def run_on_image(model, image_array):
         class_id=class_id[0],
     )
     print("number of detections:", len(detections))
-    if len(detections) > 100:
+    if len(detections) >  RUN_PARAMETERS.get("max_det"):
         # Keep top 100 by confidence
-        idxs = detections.confidence.argsort()[::-1][:100]
+        idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
         detections = detections[idxs]
     return detections
 
