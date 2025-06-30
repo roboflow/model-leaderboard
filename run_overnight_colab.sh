@@ -4,10 +4,10 @@ set -e
 current_path=$(pwd)
 
 folders=(
+    "d-fine"
     "yolov12"
     'rf-detr'
     "yolov9"
-    "d-fine"
     "rt-detr"
     "rtmdet"
     "deim"
