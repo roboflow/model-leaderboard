@@ -136,6 +136,11 @@ def run_on_image(model, image_array):
         confidence=confidence[0],
         class_id=class_id[0],
     )
+    print("number of detections:", len(detections))
+    if len(detections) > 100:
+        # Keep top 100 by confidence
+        idxs = detections.confidence.argsort()[::-1][:100]
+        detections = detections[idxs]
     return detections
 
 
