@@ -93,7 +93,7 @@ def download_weight(url, model_filename):
 
 
 def run_on_image(model, image_array):
-    im_pil = Image.fromarray(image_array)[..., ::-1].convert("RGB")  # BGR to RGB
+    im_pil = Image.fromarray(image_array[..., ::-1]) 
     w, h = im_pil.size
     orig_size = torch.tensor([[w, h]]).to(DEVICE)
     im_data = TRANSFORMS(im_pil).unsqueeze(0).to(DEVICE)
