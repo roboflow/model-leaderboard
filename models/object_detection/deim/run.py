@@ -122,7 +122,7 @@ def download_weight(url, model_filename):
 
 
 def run_on_image(model, image_array):
-    im_pil = Image.fromarray(image_array)
+    im_pil = Image.fromarray(image_array[..., ::-1])
     w, h = im_pil.size
     orig_size = torch.tensor([[w, h]]).to(DEVICE)
     im_data = TRANSFORMS(im_pil).unsqueeze(0).to(DEVICE)
@@ -137,6 +137,8 @@ def run_on_image(model, image_array):
         confidence=confidence[0],
         class_id=class_id[0],
     )
+    detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
+
     if len(detections) >  RUN_PARAMETERS.get("max_det"):
         # Keep top 100 by confidence
         idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
@@ -213,7 +215,6 @@ def run(
         print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             detections = run_on_image(model, image)
-            detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
             predictions.append(detections)
             targets.append(target_detections)
 
