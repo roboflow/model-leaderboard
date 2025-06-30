@@ -108,6 +108,8 @@ def run_on_image(model, image_array):
         confidence=confidence[0],
         class_id=class_id[0],
     )
+    detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
+
     if len(detections) > RUN_PARAMETERS.get("max_det"):
         idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
         detections = detections[idxs]
@@ -173,7 +175,6 @@ def evaluate_single_model(
     print(f"Evaluating {model_id}...")
     for _, image, target_detections in tqdm(dataset, total=len(dataset)):
         detections = run_on_image(model, image)
-        detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
         predictions.append(detections)
         targets.append(target_detections)
 
