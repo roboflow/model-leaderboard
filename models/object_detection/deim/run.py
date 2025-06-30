@@ -15,7 +15,6 @@ from tqdm import tqdm
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
-from engine.core import YAMLConfig
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -37,6 +36,7 @@ if not Path("./DEIM-repo/").is_dir():
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
 )
+from engine.core import YAMLConfig
 
 
 TRANSFORMS = T.Compose(

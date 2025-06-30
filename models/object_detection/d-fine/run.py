@@ -35,6 +35,7 @@ LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
+    max_det=100,
 )
 GIT_REPO_URL = "https://github.com/Peterande/D-FINE"
 PAPER_URL = "https://arxiv.org/abs/2410.13842"
@@ -107,6 +108,12 @@ def run_on_image(model, image_array):
         confidence=confidence[0],
         class_id=class_id[0],
     )
+    print(f"Number of detections: {len(detections)}")
+    if len(detections) > RUN_PARAMETERS.get["max_det"]:
+        idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get["max_det"]]
+        detections = detections[idxs]
+    print(f"Number of detection after filter: {len(detections)}")
+
     return detections
 
 
