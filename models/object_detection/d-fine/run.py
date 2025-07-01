@@ -110,9 +110,9 @@ def run_on_image(model, image_array):
     )
     detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
 
-    if len(detections) > RUN_PARAMETERS.get("max_det"):
-        idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
-        detections = detections[idxs]
+    # if len(detections) > RUN_PARAMETERS.get("max_det"):
+    #     idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
+    #     detections = detections[idxs]
 
     return detections
 
