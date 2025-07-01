@@ -110,9 +110,9 @@ def run_on_image(model, image_array):
     )
     detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
 
-    # if len(detections) > RUN_PARAMETERS.get("max_det"):
-    #     idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
-    #     detections = detections[idxs]
+    if len(detections) > RUN_PARAMETERS.get("max_det"):
+        idxs = detections.confidence.argsort(kind='mergesort')[::-1][:RUN_PARAMETERS.get("max_det")]
+        detections = detections[idxs]
 
     return detections
 
@@ -195,7 +195,7 @@ def evaluate_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
-
+    print(f"mAP: {mAP_result['map']:.4f}, F1 Score: {f1_score_result['f1_score']:.4f}")
     del model
     del cfg
     if torch.cuda.is_available():
