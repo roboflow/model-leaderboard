@@ -195,7 +195,7 @@ def evaluate_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
-    print(f"mAP: {mAP_result['map']:.4f}, F1 Score: {f1_score_result['f1_score']:.4f}")
+    print(f"mAP: {mAP_result:.4f}, F1 Score: {f1_score_result:.4f}")
     del model
     del cfg
     if torch.cuda.is_available():
