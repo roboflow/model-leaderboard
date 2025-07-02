@@ -229,6 +229,9 @@ def run(
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
+        print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
+
+        print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")
 
 
 if __name__ == "__main__":
