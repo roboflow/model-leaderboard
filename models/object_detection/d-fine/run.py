@@ -35,7 +35,7 @@ LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
-    max_det=100,
+    max_det=100, #supervision uses internally, it is here just for logging
 )
 GIT_REPO_URL = "https://github.com/Peterande/D-FINE"
 PAPER_URL = "https://arxiv.org/abs/2410.13842"
@@ -109,11 +109,6 @@ def run_on_image(model, image_array):
         class_id=class_id[0],
     )
     detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
-
-    if len(detections) > RUN_PARAMETERS.get("max_det"):
-        idxs = detections.confidence.argsort(kind='mergesort')[::-1][:RUN_PARAMETERS.get("max_det")]
-        detections = detections[idxs]
-
     return detections
 
 
@@ -195,7 +190,9 @@ def evaluate_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
-    print(f"mAP: {mAP_result}, F1 Score: {f1_score_result}")
+    print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
+
+    print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")
     del model
     del cfg
     if torch.cuda.is_available():
