@@ -22,22 +22,24 @@ from utils import (
     write_result_json,
 )
 
-REPO_URL = "https://github.com/ShihuaHuang95/DEIM.git"
-LICENSE = "Apache-2.0"
-RUN_PARAMETERS = dict(
-    imgsz=640,
-    conf=CONFIDENCE_THRESHOLD,
-)
-GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
-PAPER_URL = "https://arxiv.org/abs/2412.04234"
 if not Path("./DEIM-repo/").is_dir():
-    run_shell_command(["git", "clone", REPO_URL, "./DEIM-repo/"])
+    run_shell_command(
+        ["git", "clone", "https://github.com/ShihuaHuang95/DEIM.git", "./DEIM-repo/"]
+    )
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
 )
 from engine.core import YAMLConfig
 
+LICENSE = "Apache-2.0"
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    conf=CONFIDENCE_THRESHOLD,
+)
+
+GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
+PAPER_URL = "https://arxiv.org/abs/2412.04234"
 
 TRANSFORMS = T.Compose(
     [T.Resize((RUN_PARAMETERS["imgsz"], RUN_PARAMETERS["imgsz"])), T.ToTensor()]
@@ -160,7 +162,7 @@ def run(
         model_values = MODEL_DICT[model_id]
 
         if not Path("DEIM-repo").is_dir():
-            run_shell_command(["git", "clone", REPO_URL, "DEIM-repo"])
+            run_shell_command(["git", "clone", GIT_REPO_URL, "DEIM-repo"])
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
