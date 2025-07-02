@@ -21,22 +21,24 @@ from utils import (
     run_shell_command,
     write_result_json,
 )
-REPO_URL = "https://github.com/ShihuaHuang95/DEIM.git"
+
 if not Path("./DEIM-repo/").is_dir():
-    run_shell_command(["git", "clone", REPO_URL, "./DEIM-repo/"])
+    run_shell_command(
+        ["git", "clone", "https://github.com/ShihuaHuang95/DEIM", "./DEIM-repo/"]
+    )
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "./DEIM-repo/"))
 )
 from engine.core import YAMLConfig
 
+GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
     max_det=100,
 )
-GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 PAPER_URL = "https://arxiv.org/abs/2412.04234"
 
 
@@ -138,11 +140,6 @@ def run_on_image(model, image_array):
         class_id=class_id[0],
     )
     detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
-
-    if len(detections) >  RUN_PARAMETERS.get("max_det"):
-        # Keep top 100 by confidence
-        idxs = detections.confidence.argsort()[::-1][:RUN_PARAMETERS.get("max_det")]
-        detections = detections[idxs]
     return detections
 
 
@@ -165,9 +162,6 @@ def run(
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
         model_values = MODEL_DICT[model_id]
-
-        if not Path("DEIM-repo").is_dir():
-            run_shell_command(["git", "clone", REPO_URL, "DEIM-repo"])
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
