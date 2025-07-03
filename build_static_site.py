@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 # Temporarily disabled from appearing on the board, e.g. if there's still some issues
-BLACKLIST = ["d-fine", "deim", "rtmdet", "yolov9"]
+BLACKLIST = ["deim", "rtmdet", "yolov9"]
 
 results_list = []
 for model_dir in Path("models/object_detection").iterdir():
