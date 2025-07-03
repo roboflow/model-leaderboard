@@ -22,12 +22,12 @@ from utils import (
     write_result_json,
 )
 
-if not Path("D-FINE").is_dir():
+if not Path("D-FINE-repo").is_dir():
     run_shell_command(
-        ["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE/"]
+        ["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE-repo/"]
     )
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE/")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE-repo/")))
 
 from src.core import YAMLConfig
 
