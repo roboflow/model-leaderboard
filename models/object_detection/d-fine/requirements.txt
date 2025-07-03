@@ -7,4 +7,5 @@ tensorboard
 scipy
 calflops
 transformers
+loguru
 tqdm
