@@ -36,6 +36,7 @@ LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
+    max_det=100,
 )
 
 GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
@@ -123,7 +124,7 @@ def download_weight(url, model_filename):
 
 
 def run_on_image(model, image_array):
-    im_pil = Image.fromarray(image_array)
+    im_pil = Image.fromarray(image_array[..., ::-1])
     w, h = im_pil.size
     orig_size = torch.tensor([[w, h]]).to(DEVICE)
     im_data = TRANSFORMS(im_pil).unsqueeze(0).to(DEVICE)
@@ -138,6 +139,7 @@ def run_on_image(model, image_array):
         confidence=confidence[0],
         class_id=class_id[0],
     )
+    detections = detections[detections.confidence > RUN_PARAMETERS.get("conf")]
     return detections
 
 
@@ -210,7 +212,6 @@ def run(
         print("Evaluating...")
         for _, image, target_detections in tqdm(dataset, total=len(dataset)):
             detections = run_on_image(model, image)
-            detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
             predictions.append(detections)
             targets.append(target_detections)
 
@@ -231,6 +232,9 @@ def run(
             license_name=LICENSE,
             run_parameters=RUN_PARAMETERS,
         )
+        print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
+
+        print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")
 
 
 if __name__ == "__main__":
