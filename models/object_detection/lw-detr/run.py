@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
 
 @torch.no_grad()
-def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, args = None):
+def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, args=None):
     model.eval()
     if args.fp16_eval:
         model.half()
@@ -134,4 +134,4 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, arg
 
     outputs = model(samples)
 
-    results = postprocessors['bbox'](outputs, orig_target_sizes)
+    results = postprocessors["bbox"](outputs, orig_target_sizes)
