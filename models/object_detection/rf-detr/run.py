@@ -86,6 +86,11 @@ def run(
         for image_path, image, target_detections in tqdm(dataset, total=len(dataset)):
             image = Image.open(image_path).convert("RGB")
             detections = model.predict(image, threshold=RUN_PARAMETERS["threshold"])
+
+            # workaround preventing disallowed class_ids
+            allowed_class_id = list(coco_id_mapping.keys())
+            detections = detections[np.isin(detections.class_id, allowed_class_id)]
+
             detections.class_id = coco_id_vectorized_map(detections.class_id)
             predictions.append(detections)
             targets.append(target_detections)
