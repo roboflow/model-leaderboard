@@ -27,7 +27,9 @@ if not Path("D-FINE-repo").is_dir():
         ["git", "clone", "https://github.com/Peterande/D-FINE.git", "./D-FINE-repo/"]
     )
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE-repo/")))
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "./D-FINE-repo/"))
+)
 
 from src.core import YAMLConfig
 
