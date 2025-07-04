@@ -1,3 +1,0 @@
-rfdetr @ git+https://github.com/roboflow/rf-detr.git@develop
-supervision @ git+https://github.com/roboflow/supervision.git@develop
-tqdm
