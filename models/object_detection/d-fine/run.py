@@ -49,9 +49,8 @@ TRANSFORMS = T.Compose(
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-
 MODEL_DICT = {
-        "D-FINE-X-Objects365+COCO": {
+    "D-FINE-X-Objects365+COCO": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_obj2coco.pth",
         "model_filename": "dfine_x_obj2coco.pth",
         "model_name": "D-FINE-X-Objects365+COCO",
@@ -106,6 +105,7 @@ MODEL_DICT = {
         "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
 }  # noqa: E501 // docs
+
 
 def download_weight(url, model_filename):
     run_shell_command(
