@@ -158,7 +158,7 @@ def evaluate_single_model(
         download_weight(model_values["model_url"], model_values["model_filename"])
 
     # Re-initialize cfg and model for each iteration
-    cfg = YAMLConfig(model_values["model_yaml"], resume=model_values["model_filename"])
+    cfg = YAMLConfig( os.path.abspath(model_values["model_yaml"]), resume=model_values["model_filename"])
 
     if "HGNetv2" in cfg.yaml_cfg:
         cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
