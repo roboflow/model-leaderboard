@@ -8,10 +8,7 @@ data/*
 # yolov9 repo
 **/yolov9-repo
 # D-FINE repo
-**/D-FINE
-#include D-FINE folder
-!models/object_detection/d-fine/
-!models/object_detection/d-fine/**
+**/D-FINE-repo
 # mmyolo-weights
 **/mmyolo-weights
 ## deim repo
