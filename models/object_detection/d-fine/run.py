@@ -50,6 +50,30 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 MODEL_DICT = {
+        "D-FINE-X-Objects365+COCO": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_obj2coco.pth",
+        "model_filename": "dfine_x_obj2coco.pth",
+        "model_name": "D-FINE-X-Objects365+COCO",
+        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_x_obj2coco.yml",
+    },
+    "D-FINE-L-Objects365+COCO": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_obj2coco_e25.pth",
+        "model_filename": "dfine_l_obj2coco_e25.pth",
+        "model_name": "D-FINE-L-Objects365+COCO",
+        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_l_obj2coco.yml",
+    },
+    "D-FINE-M-Objects365+COCO": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_obj2coco.pth",
+        "model_filename": "dfine_m_obj2coco.pth",
+        "model_name": "D-FINE-M-Objects365+COCO",
+        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_m_obj2coco.yml",
+    },
+    "D-FINE-S-Objects365+COCO": {
+        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_s_obj2coco.pth",
+        "model_filename": "dfine_s_obj2coco.pth",
+        "model_name": "D-FINE-S-Objects365+COCO",
+        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_s_obj2coco.yml",
+    },
     "D-FINE-X": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
         "model_filename": "dfine_x_coco.pth",
@@ -81,7 +105,6 @@ MODEL_DICT = {
         "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
 }  # noqa: E501 // docs
-
 
 def download_weight(url, model_filename):
     run_shell_command(
