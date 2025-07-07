@@ -147,7 +147,10 @@ def evaluate_single_model(
     """
     print(f"\nEvaluating model: {model_id}")
     model_values = MODEL_DICT[model_id]
-
+    print(f"[DEBUG] Current working directory: {os.getcwd()}")
+    print(f"[DEBUG] DATASET_DIR (raw): {DATASET_DIR}")
+    print(f"[DEBUG] Annotations path: {(Path(DATASET_DIR) / 'labels/annotations/instances_val2017.json').resolve()}")
+    print(f"[DEBUG] Exists? {(Path(DATASET_DIR) / 'labels/annotations/instances_val2017.json').resolve().exists()}")
     if skip_if_result_exists and result_json_already_exists(model_id):
         print(f"Skipping {model_id}. Result already exists!")
         return
