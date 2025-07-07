@@ -258,7 +258,7 @@ def run(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    multiprocessing.set_start_method("fork", force=True)
+    multiprocessing.set_start_method("spawn", force=True)
 
     parser.add_argument(
         "model_ids",
