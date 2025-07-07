@@ -14,6 +14,8 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
+import multiprocessing
+
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
     load_detections_dataset,
@@ -21,7 +23,6 @@ from utils import (
     run_shell_command,
     write_result_json,
 )
-import multiprocessing
 
 if not Path("D-FINE-repo").is_dir():
     run_shell_command(
@@ -33,7 +34,7 @@ sys.path.append(
 )
 
 from src.core import YAMLConfig
-DATASET_DIR = Path(DATASET_DIR)
+
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
@@ -147,10 +148,6 @@ def evaluate_single_model(
     """
     print(f"\nEvaluating model: {model_id}")
     model_values = MODEL_DICT[model_id]
-    print(f"[DEBUG] Current working directory: {os.getcwd()}")
-    print(f"[DEBUG] DATASET_DIR (raw): {DATASET_DIR}")
-    print(f"[DEBUG] Annotations path: {(Path(DATASET_DIR) / 'labels/annotations/instances_val2017.json').resolve()}")
-    print(f"[DEBUG] Exists? {(Path(DATASET_DIR) / 'labels/annotations/instances_val2017.json').resolve().exists()}")
     if skip_if_result_exists and result_json_already_exists(model_id):
         print(f"Skipping {model_id}. Result already exists!")
         return
@@ -162,7 +159,10 @@ def evaluate_single_model(
         download_weight(model_values["model_url"], model_values["model_filename"])
 
     # Re-initialize cfg and model for each iteration
-    cfg = YAMLConfig( os.path.abspath(model_values["model_yaml"]), resume=model_values["model_filename"])
+    cfg = YAMLConfig(
+        os.path.abspath(model_values["model_yaml"]),
+        resume=model_values["model_filename"],
+    )
 
     if "HGNetv2" in cfg.yaml_cfg:
         cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
@@ -248,12 +248,13 @@ def run(
         model_ids = list(MODEL_DICT.keys())
 
     for model_id in model_ids:
-
         process = multiprocessing.Process(
-            target=evaluate_single_model, args=(model_id, skip_if_result_exists, dataset)
+            target=evaluate_single_model,
+            args=(model_id, skip_if_result_exists, dataset),
         )
         process.start()
         process.join()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
