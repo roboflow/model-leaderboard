@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from configs import CONFIDENCE_THRESHOLD#, DATASET_DIR
+from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
@@ -33,7 +33,7 @@ sys.path.append(
 )
 
 from src.core import YAMLConfig
-DATASET_DIR = Path(__file__).resolve().parent.parent / "data" / "coco-val-2017"
+#DATASET_DIR = Path(__file__).resolve().parent.parent / "data" / "coco-val-2017"
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
@@ -254,7 +254,7 @@ def run(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    multiprocessing.set_start_method("spawn", force=True)
+    multiprocessing.set_start_method("fork", force=True)
 
     parser.add_argument(
         "model_ids",
