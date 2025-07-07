@@ -47,7 +47,7 @@ TRANSFORMS = T.Compose(
     [T.Resize((RUN_PARAMETERS["imgsz"], RUN_PARAMETERS["imgsz"])), T.ToTensor()]
 )
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+DATASET_DIR = Path(DATASET_DIR)
 
 def run_single_model(
     model_id: str,
