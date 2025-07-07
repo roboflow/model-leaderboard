@@ -33,7 +33,7 @@ sys.path.append(
 )
 
 from src.core import YAMLConfig
-#DATASET_DIR = Path(__file__).resolve().parent.parent / "data" / "coco-val-2017"
+DATASET_DIR = Path(DATASET_DIR)
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
