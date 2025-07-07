@@ -21,6 +21,7 @@ from utils import (
     run_shell_command,
     write_result_json,
 )
+import multiprocessing
 
 if not Path("D-FINE-repo").is_dir():
     run_shell_command(
@@ -244,11 +245,17 @@ def run(
         model_ids = list(MODEL_DICT.keys())
 
     for model_id in model_ids:
-        evaluate_single_model(model_id, skip_if_result_exists, dataset)
 
+        process = multiprocessing.Process(
+            target=evaluate_single_model, args=(model_id, skip_if_result_exists, dataset)
+        )
+        process.start()
+        process.join()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    multiprocessing.set_start_method("spawn", force=True)
+
     parser.add_argument(
         "model_ids",
         nargs="*",
