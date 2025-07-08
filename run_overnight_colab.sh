@@ -59,6 +59,19 @@ for folder in ${folders[@]}; do
             $VENV_PIP install onnxruntime-gpu
 
         fi
+        if [[ $folder == lw-detr* ]]; then
+            if [ ! -d "LW-DETR" ] ; then
+                git clone https://github.com/Atten4Vis/LW-DETR.git
+            fi
+            cd LW-DETR/models/ops
+
+            $VENV_PIP install torch==2.5.0+cu124 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+            $VENV_PIP install -U git+https://github.com/qubvel/transformers@fix-custom-kernels
+
+            $VENV_PY setup.py build install
+            cd ../../..
+        fi
+
         # Run script
         $VENV_PY run.py
         # Copy only .json files to Drive
