@@ -246,7 +246,9 @@ def run(
     """  # noqa: E501 // docs
     if not model_ids:
         model_ids = list(MODEL_DICT.keys())
-
+    # Each model loading dirties the context, so if we try loading D-FINE S and afterwards D-FINE L it will throw an error.  # noqa: E501
+    # In order to run each model in a clean environment we opted to run a new process for each different model version,   # noqa: E501
+    # running one at a time to not share GPU.
     for model_id in model_ids:
         process = multiprocessing.Process(
             target=evaluate_single_model,
