@@ -48,6 +48,7 @@ TRANSFORMS = T.Compose(
 )
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 def run_single_model(
     model_id: str,
     skip_if_result_exists=False,
