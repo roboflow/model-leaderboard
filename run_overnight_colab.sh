@@ -5,13 +5,13 @@ current_path=$(pwd)
 
 folders=(
     'lw-detr'
+    "rtmdet"
+    "deim"
     "d-fine"
     "yolov12"
     'rf-detr'
     "yolov9"
     "rt-detr"
-    "rtmdet"
-    "deim"
     "yolov8"
     "yolov10"
     "yolov11"

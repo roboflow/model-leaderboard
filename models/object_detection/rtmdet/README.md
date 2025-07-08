@@ -14,7 +14,9 @@ source .venv/bin/activate
 
 ## Step 2: Install requirements
 
+We will install the required libraries from requirements.txt, which includes openmim, that gives you the mim command.
+Beware that this might be a problematic install, so be sure that the installed torch and openmim versions match your hardware.
 ```sh
-pip install openmim
-mim install -r requirements.txt
+pip install -r requirements.txt
+mim install mmcv==2.0.0
 ```

@@ -100,8 +100,6 @@ def run_single_model(
     download_weight(model_id)
     cfg = Config.fromfile(model_values["config"])
 
-    cfg.model.test_cfg.max_per_img = RUN_PARAMETERS["max_det"]
-
     model = init_detector(cfg, model_values["checkpoint_file"], DEVICE)
 
     predictions = []
@@ -131,6 +129,8 @@ def run_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
+    print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
+    print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")
 
 
 def run(
