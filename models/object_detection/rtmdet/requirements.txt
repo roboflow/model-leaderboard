@@ -1,4 +1,4 @@
-torch==2.0.0
+torch==2.7.1
 numpy==1.23.5
 supervision @ git+https://github.com/roboflow/supervision.git@develop
 openmim==0.3.9
