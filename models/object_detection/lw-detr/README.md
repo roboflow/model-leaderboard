@@ -24,6 +24,9 @@ git clone https://github.com/Atten4Vis/LW-DETR.git
 LW-DETR provides some installs that should be adapted to your hardware. You will need to specify the CUDA version of the torch install and find a version compatible with LW-DETR.
 In Google Colab to the date 8 of July of 2025 the installs are:
 ```sh
+
+pip install -r requirements.txt
+
 cd LW-DETR/models/ops
 
 pip install torch==2.5.0+cu124 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
