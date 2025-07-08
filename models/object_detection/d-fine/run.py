@@ -14,6 +14,8 @@ from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
+import multiprocessing
+
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
     load_detections_dataset,
@@ -50,61 +52,62 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 MODEL_DICT = {
-        "D-FINE-X-Objects365+COCO": {
+    "D-FINE-X-Objects365+COCO": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_obj2coco.pth",
         "model_filename": "dfine_x_obj2coco.pth",
         "model_name": "D-FINE-X-Objects365+COCO",
-        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_x_obj2coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_x_obj2coco.yml",  # noqa: E501 // docs
     },
     "D-FINE-L-Objects365+COCO": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_obj2coco_e25.pth",
         "model_filename": "dfine_l_obj2coco_e25.pth",
         "model_name": "D-FINE-L-Objects365+COCO",
-        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_l_obj2coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_l_obj2coco.yml",  # noqa: E501 // docs
     },
     "D-FINE-M-Objects365+COCO": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_obj2coco.pth",
         "model_filename": "dfine_m_obj2coco.pth",
         "model_name": "D-FINE-M-Objects365+COCO",
-        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_m_obj2coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_m_obj2coco.yml",  # noqa: E501 // docs
     },
     "D-FINE-S-Objects365+COCO": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_s_obj2coco.pth",
         "model_filename": "dfine_s_obj2coco.pth",
         "model_name": "D-FINE-S-Objects365+COCO",
-        "model_yaml": "./configs/dfine/objects365/dfine_hgnetv2_s_obj2coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_s_obj2coco.yml",  # noqa: E501 // docs
     },
     "D-FINE-X": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
         "model_filename": "dfine_x_coco.pth",
         "model_name": "D-FINE-X",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_x_coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/dfine_hgnetv2_x_coco.yml",
     },
     "D-FINE-L": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_coco.pth",
         "model_filename": "dfine_l_coco.pth",
         "model_name": "D-FINE-L",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_l_coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/dfine_hgnetv2_l_coco.yml",
     },
     "D-FINE-M": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_coco.pth",
         "model_filename": "dfine_m_coco.pth",
         "model_name": "D-FINE-M",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_m_coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/dfine_hgnetv2_m_coco.yml",
     },
     "D-FINE-S": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_s_coco.pth",
         "model_filename": "dfine_s_coco.pth",
         "model_name": "D-FINE-S",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_s_coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/dfine_hgnetv2_s_coco.yml",
     },
     "D-FINE-N": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_n_coco.pth",
         "model_filename": "dfine_n_coco.pth",
         "model_name": "D-FINE-N",
-        "model_yaml": "./D-FINE/configs/dfine/dfine_hgnetv2_n_coco.yml",
+        "model_yaml": "./D-FINE-repo/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
 }  # noqa: E501 // docs
+
 
 def download_weight(url, model_filename):
     run_shell_command(
@@ -145,7 +148,6 @@ def evaluate_single_model(
     """
     print(f"\nEvaluating model: {model_id}")
     model_values = MODEL_DICT[model_id]
-
     if skip_if_result_exists and result_json_already_exists(model_id):
         print(f"Skipping {model_id}. Result already exists!")
         return
@@ -157,7 +159,10 @@ def evaluate_single_model(
         download_weight(model_values["model_url"], model_values["model_filename"])
 
     # Re-initialize cfg and model for each iteration
-    cfg = YAMLConfig(model_values["model_yaml"], resume=model_values["model_filename"])
+    cfg = YAMLConfig(
+        os.path.abspath(model_values["model_yaml"]),
+        resume=model_values["model_filename"],
+    )
 
     if "HGNetv2" in cfg.yaml_cfg:
         cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
@@ -241,13 +246,22 @@ def run(
     """  # noqa: E501 // docs
     if not model_ids:
         model_ids = list(MODEL_DICT.keys())
-
+    # Each model loading dirties the context, so if we try loading D-FINE S and afterwards D-FINE L it will throw an error.  # noqa: E501
+    # In order to run each model in a clean environment we opted to run a new process for each different model version,   # noqa: E501
+    # running one at a time to not share GPU.
     for model_id in model_ids:
-        evaluate_single_model(model_id, skip_if_result_exists, dataset)
+        process = multiprocessing.Process(
+            target=evaluate_single_model,
+            args=(model_id, skip_if_result_exists, dataset),
+        )
+        process.start()
+        process.join()
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    multiprocessing.set_start_method("spawn", force=True)
+
     parser.add_argument(
         "model_ids",
         nargs="*",
