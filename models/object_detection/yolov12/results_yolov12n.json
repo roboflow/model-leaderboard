@@ -1,6 +1,7 @@
 {
     "metadata": {
-        "model": "yolov12n.pt",
+        "architecture": "YOLOv12",
+        "model": "YOLOv12n",
         "license": "AGPL-3.0",
         "github_url": "https://github.com/sunsmarterjie/yolov12",
         "paper_url": "https://arxiv.org/abs/2502.12524",
@@ -8,11 +9,21 @@
             "imgsz": 640,
             "iou": 0.7,
             "max_det": 100,
-            "conf": 0.001,
+            "conf": 0,
             "verbose": false
         },
         "param_count": 2590824,
-        "run_date": "2025-06-27T14:18:29.958059+00:00"
+        "run_date": "2025-06-27T14:18:29.958059+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv12n",
+            "YOLOv12s",
+            "YOLOv12m",
+            "YOLOv12l",
+            "YOLOv12x"
+        ]
     },
     "map50_95": 0.39718142822880104,
     "map50": 0.5502291671378012,

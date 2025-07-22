@@ -1,6 +1,7 @@
 {
     "metadata": {
-        "model": "yolov13n.pt",
+        "architecture": "YOLOv13",
+        "model": "YOLOv13n",
         "license": "AGPL-3.0",
         "github_url": "https://github.com/iMoonLab/yolov13",
         "paper_url": "https://arxiv.org/abs/2506.17733",
@@ -12,20 +13,29 @@
             "verbose": false
         },
         "param_count": 2481991,
-        "run_date": "2025-06-30T09:13:22.990988+00:00"
+        "run_date": "2025-07-21T13:50:14.508701+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv13n",
+            "YOLOv13s",
+            "YOLOv13l",
+            "YOLOv13x"
+        ]
     },
-    "map50_95": 0.40360209705138705,
-    "map50": 0.5619243368456918,
-    "map75": 0.4386276867920969,
+    "map50_95": 0.4036060266966439,
+    "map50": 0.5619303155756621,
+    "map75": 0.43863432084655457,
     "small_objects": {
         "map50_95": 0.1940290692985786,
         "map50": 0.33100453112419065,
         "map75": 0.20005002749764403
     },
     "medium_objects": {
-        "map50_95": 0.4463913456752338,
-        "map50": 0.6327495655586434,
-        "map75": 0.4975866850852058
+        "map50_95": 0.44640390859228185,
+        "map50": 0.6327721359284909,
+        "map75": 0.497601155355841
     },
     "large_objects": {
         "map50_95": 0.5855930688596167,

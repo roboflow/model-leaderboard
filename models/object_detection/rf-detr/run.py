@@ -21,6 +21,8 @@ from utils import (
     write_result_json,
 )
 
+ARCHITECTURE = "RF-DETR"
+ARCHITECTURE_CHECKPOINTS = ["RF-DETR-B", "RF-DETR-L"]
 MODEL_DICT = {"RF-DETR-B": RFDETRBase, "RF-DETR-L": RFDETRLarge}
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
@@ -29,6 +31,7 @@ RUN_PARAMETERS = {
     "num_select": 300,
     "threshold": 0,
 }
+PRETRAIN_DATASETS = ["COCO", "Object365"]
 GIT_REPO_URL = "https://github.com/roboflow/rf-detr"
 PAPER_URL = ""
 
@@ -101,6 +104,7 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
+            architecture=ARCHITECTURE,
             model_id=model_id,
             model_name=model_id,
             model_git_url=GIT_REPO_URL,
@@ -108,8 +112,10 @@ def run(
             model=model.model.model,
             mAP_result=mAP_result,
             f1_score_result=f1_result,
-            license_name=LICENSE,
+            license=LICENSE,
             run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
         )
 
 

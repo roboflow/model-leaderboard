@@ -21,9 +21,11 @@ from utils import (
     write_result_json,
 )
 
+ARCHITECTURE = "RTMDet"
+ARCHITECTURE_CHECKPOINTS = ["RTMDet-t", "RTMDet-s", "RTMDet-m", "RTMDet-l", "RTMDet-x"]
 MODEL_DICT: dict = {
     "rtmdet_tiny_syncbn_fast_8xb32-300e_coco": {
-        "model_name": "RTMDet-tiny",
+        "model_name": "RTMDet-t",
         "config": "./mmyolo-weights/rtmdet_tiny_syncbn_fast_8xb32-300e_coco.py",
         "checkpoint_file": "./mmyolo-weights/rtmdet_tiny_syncbn_fast_8xb32-300e_coco_20230102_140117-dbb1dc83.pth",  # noqa: E501 // docs
     },
@@ -48,7 +50,7 @@ MODEL_DICT: dict = {
         "checkpoint_file": "./mmyolo-weights/rtmdet_x_syncbn_fast_8xb32-300e_coco_20221231_100345-b85cd476.pth",  # noqa: E501 // docs
     },
 }
-
+PRETRAIN_DATASETS = ["COCO"]
 LICENSE = "GPL-3.0"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 RUN_PARAMETERS = dict(
@@ -88,7 +90,9 @@ def run_single_model(
     skip_if_result_exists=False,
     dataset: Optional[sv.DetectionDataset] = None,
 ) -> None:
-    model_values = MODEL_DICT[model_id]
+    model_name = MODEL_DICT[model_id]["model_name"]
+    config = MODEL_DICT[model_id]["config"]
+    checkpoint_file = MODEL_DICT[model_id]["checkpoint_file"]
 
     if skip_if_result_exists and result_json_already_exists(model_id):
         print(f"Skipping {model_id}. Result already exists!")
@@ -98,9 +102,9 @@ def run_single_model(
         dataset = load_detections_dataset(DATASET_DIR)
 
     download_weight(model_id)
-    cfg = Config.fromfile(model_values["config"])
+    cfg = Config.fromfile(config)
 
-    model = init_detector(cfg, model_values["checkpoint_file"], DEVICE)
+    model = init_detector(cfg, checkpoint_file, DEVICE)
 
     predictions = []
     targets = []
@@ -119,8 +123,9 @@ def run_single_model(
     mAP_result = mAP_metric.update(predictions, targets).compute()
 
     write_result_json(
+        architecture=ARCHITECTURE,
         model_id=model_id,
-        model_name=model_values["model_name"],
+        model_name=model_name,
         model_git_url=GIT_REPO_URL,
         paper_url=PAPER_URL,
         model=model,
@@ -128,6 +133,8 @@ def run_single_model(
         f1_score_result=f1_score_result,
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
+        pretrain_datasets=PRETRAIN_DATASETS,
+        extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
     )
     print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
     print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")

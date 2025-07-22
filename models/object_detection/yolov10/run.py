@@ -9,14 +9,25 @@ from tqdm import tqdm
 from ultralytics import YOLOv10
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from configs import DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
 
-MODEL_IDS = ["yolov10n", "yolov10s", "yolov10m", "yolov10b", "yolov10l", "yolov10x"]
-DATASET_DIR = "../../../data/coco-val-2017"
+ARCHITECTURE = "YOLOv10"
+ARCHITECTURE_CHECKPOINTS = ["YOLOv10n", "YOLOv10s", "YOLOv10m", "YOLOv10b", "YOLOv10l", "YOLOv10x"]
+MODEL_DICT = {
+    "yolov10n": {"model_name": "YOLOv10n"},
+    "yolov10s": {"model_name": "YOLOv10s"},
+    "yolov10m": {"model_name": "YOLOv10m"},
+    "yolov10b": {"model_name": "YOLOv10b"},
+    "yolov10l": {"model_name": "YOLOv10l"},
+    "yolov10x": {"model_name": "YOLOv10x"},
+}
+PRETRAIN_DATASETS = ["COCO"]
 LICENSE = "AGPL-3.0"
 
 GIT_REPO_URL = "https://github.com/THU-MIG/yolov10"
@@ -26,7 +37,7 @@ RUN_PARAMETERS = dict(
     imgsz=640,
     iou=0.7,
     max_det=100,
-    conf=0.001,
+    conf=0,
     verbose=False,
 )
 
@@ -51,10 +62,11 @@ def run(
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
     if not model_ids:
-        model_ids = MODEL_IDS
+        model_ids = MODEL_DICT.keys()
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        model_name = MODEL_DICT[model_id]["model_name"]
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
@@ -76,19 +88,23 @@ def run(
 
         mAP_metric = MeanAveragePrecision()
         f1_score = F1Score()
+
         f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
+            architecture=ARCHITECTURE,
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_name,
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,
-            license_name=LICENSE,
+            license=LICENSE,
             run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
         )
 
 

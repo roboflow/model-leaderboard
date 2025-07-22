@@ -1,15 +1,26 @@
 {
     "metadata": {
-        "model": "yolov9e",
+        "architecture": "YOLOv9",
+        "model": "YOLOv12e",
         "license": "GPL-3.0",
         "github_url": "https://github.com/WongKinYiu/yolov9",
         "paper_url": "https://arxiv.org/abs/2402.13616",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001
+            "conf": 0
         },
         "param_count": 58206592,
-        "run_date": "2025-06-11T01:32:18.743346+00:00"
+        "run_date": "2025-06-11T01:32:18.743346+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv9t",
+            "YOLOv9s",
+            "YOLOv9m",
+            "YOLOv9c",
+            "YOLOv9e"
+        ]
     },
     "map50_95": 0.48600508253309077,
     "map50": 0.6259423248464341,

@@ -2,7 +2,7 @@ import json
 import os
 import subprocess
 from datetime import datetime, timezone
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Dict
 
 import supervision as sv
 from supervision.metrics import F1ScoreResult, MeanAveragePrecisionResult
@@ -58,6 +58,7 @@ def result_json_already_exists(model_id: str) -> bool:
 
 
 def write_result_json(
+    architecture: str,
     model_id: str,
     model_name: str,
     model_git_url: str,
@@ -65,23 +66,34 @@ def write_result_json(
     model: "nn.Module",
     mAP_result: Optional["MeanAveragePrecisionResult"] = None,
     f1_score_result: Optional["F1ScoreResult"] = None,
-    license_name: str = "",
-    run_parameters: dict[str, Any] = {},
+    license: str = "",
+    run_parameters: Optional[Dict[str, Any]] = None,
     parameter_count: Optional[int] = None,
+    pretrain_datasets: Optional[list[str]] = None,
+    extra_metadata: Optional[Dict[str, Any]] = None,
 ) -> None:
-    result: dict[str, Any] = {}
+    if run_parameters is None:
+        run_parameters = {}
+    if pretrain_datasets is None:
+        pretrain_datasets = []
+    if extra_metadata is None:
+        extra_metadata = {}
 
-    result["metadata"] = {
+    metadata = {
+        "architecture": architecture,
         "model": model_name,
-        "license": license_name,
+        "license": license,
         "github_url": model_git_url,
         "paper_url": paper_url,
         "run_parameters": run_parameters,
-        "param_count": count_model_params(model)
-        if parameter_count is None
-        else parameter_count,
+        "param_count": count_model_params(
+            model) if parameter_count is None else parameter_count,
         "run_date": datetime.now(timezone.utc).isoformat(),
+        "pretrain_datasets": pretrain_datasets,
+        **extra_metadata,
     }
+
+    result: Dict[str, Any] = {"metadata": metadata}
 
     # mAP metrics
     if mAP_result is not None:

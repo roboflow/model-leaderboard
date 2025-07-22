@@ -1,5 +1,6 @@
 {
     "metadata": {
+        "architecture": "RF-DETR",
         "model": "RF-DETR-L",
         "license": "Apache-2.0",
         "github_url": "https://github.com/roboflow/rf-detr",
@@ -11,7 +12,15 @@
             "threshold": 0
         },
         "param_count": 135637474,
-        "run_date": "2025-07-01T16:50:00.350932+00:00"
+        "run_date": "2025-07-21T16:57:39.033920+00:00",
+        "pretrain_datasets": [
+            "COCO",
+            "Object365"
+        ],
+        "architecture_checkpoints": [
+            "RF-DETR-B",
+            "RF-DETR-L"
+        ]
     },
     "map50_95": 0.5901508363779141,
     "map50": 0.7730380262584882,
