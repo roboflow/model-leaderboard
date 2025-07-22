@@ -1,16 +1,27 @@
 {
     "metadata": {
+        "architecture": "DEIM-D-FINE",
         "model": "DEIM-D-FINE-X",
         "license": "Apache-2.0",
         "github_url": "https://github.com/ShihuaHuang95/DEIM",
         "paper_url": "https://arxiv.org/abs/2412.04234",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001,
+            "conf": 0,
             "max_det": 100
         },
         "param_count": 61695555,
-        "run_date": "2025-07-02T18:07:09.482220+00:00"
+        "run_date": "2025-07-02T18:07:09.482220+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "DEIM-D-FINE-N",
+            "DEIM-D-FINE-S",
+            "DEIM-D-FINE-M",
+            "DEIM-D-FINE-L",
+            "DEIM-D-FINE-X"
+        ]
     },
     "map50_95": 0.5647308564861847,
     "map50": 0.7399505104473861,

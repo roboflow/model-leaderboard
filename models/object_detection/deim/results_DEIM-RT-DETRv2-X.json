@@ -1,16 +1,27 @@
 {
     "metadata": {
+        "architecture": "DEIM-RT-DETRv2",
         "model": "DEIM-RT-DETRv2-X",
         "license": "Apache-2.0",
         "github_url": "https://github.com/ShihuaHuang95/DEIM",
         "paper_url": "https://arxiv.org/abs/2412.04234",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001,
+            "conf": 0,
             "max_det": 100
         },
         "param_count": 74872812,
-        "run_date": "2025-07-02T18:49:45.580785+00:00"
+        "run_date": "2025-07-02T18:49:45.580785+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "DEIM-RT-DETRv2-S",
+            "DEIM-RT-DETRv2-M",
+            "DEIM-RT-DETRv2-M*",
+            "DEIM-RT-DETRv2-L",
+            "DEIM-RT-DETRv2-X"
+        ]
     },
     "map50_95": 0.5548484270906899,
     "map50": 0.734955852326379,
