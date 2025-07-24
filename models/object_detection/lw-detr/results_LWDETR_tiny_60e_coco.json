@@ -1,15 +1,27 @@
 {
     "metadata": {
-        "model": "LW-DETR-tiny",
+        "architecture": "LW-DETR",
+        "model": "LW-DETR-T",
         "license": "Apache-2.0",
         "github_url": "https://github.com/lyuwenyu/RT-DETR",
         "paper_url": "https://arxiv.org/abs/2304.08069",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001
+            "conf": 0
         },
         "param_count": 12052002,
-        "run_date": "2025-07-08T14:57:05.432923+00:00"
+        "run_date": "2025-07-08T14:57:05.432923+00:00",
+        "pretrain_datasets": [
+            "COCO",
+            "Object365"
+        ],
+        "architecture_checkpoints": [
+            "LW-DETR-T",
+            "LW-DETR-S",
+            "LW-DETR-M",
+            "LW-DETR-L",
+            "LW-DETR-X"
+        ]
     },
     "map50_95": 0.4292864128477277,
     "map50": 0.6076198478098024,

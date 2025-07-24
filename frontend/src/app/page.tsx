@@ -273,7 +273,7 @@ export default function Home() {
             <div className="space-y-2">
               <Badge variant="primary">
                 <Link href="https://github.com/roboflow/supervision" target="_blank" className="flex items-center gap-1">
-                  Powered by SuperVision <ArrowSquareOutIcon size={14} weight="thin" />
+                  Powered by supervision <ArrowSquareOutIcon size={14} weight="thin" />
                 </Link>
               </Badge>
               <h1 className="text-3xl sm:text-4xl"><span className="text-primary-foreground">Computer Vision</span><br />Model Leaderboard</h1>
