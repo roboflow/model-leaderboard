@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "build:docs": "next build && rm -rf ../docs/* && cp -r out/* ../docs/ && touch ../docs/.nojekyll",
+        "build:docs": "next build && find ../docs -mindepth 1 -not -name 'CNAME' -delete && cp -r out/* ../docs/ && touch ../docs/.nojekyll",
         "start": "next start",
         "lint": "next lint"
     },
