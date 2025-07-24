@@ -5,6 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
+  basePath: '/model-leaderboard',
+  assetPrefix: '/model-leaderboard',
 }
 
 module.exports = nextConfig
