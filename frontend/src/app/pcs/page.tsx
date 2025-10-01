@@ -26,6 +26,9 @@ import { MobileControls } from "@/components/MobileControls"
 import { SortableTableHeader } from "@/components/SortableTableHeader"
 import { ModelTableRow } from "@/components/ModelTableRow"
 import { SkeletonTable } from "@/components/SkeletonTable"
+import { TaskCard } from "@/components/TaskCard"
+import { TaskToggle } from "@/components/TaskToggle"
+import { HeroSection } from "@/components/HeroSection"
 
 // Data & Utils
 import aggregateResults from "@/data/aggregate_results.json"
@@ -33,10 +36,8 @@ import { formatters } from "@/lib/formatters"
 import { CircuitryIcon, FileTextIcon, DatabaseIcon, CpuIcon, GaugeIcon, ArrowSquareOutIcon, HeartIcon } from "@phosphor-icons/react"
 
 import { useState, useMemo, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { usePathname } from "next/navigation"
-import { HeroSection } from "@/components/HeroSection"
-import { TaskToggle } from "@/components/TaskToggle"
-import { TaskCard } from "@/components/TaskCard"
 
 type SortDirection = "asc" | "desc" | null
 
@@ -154,6 +155,7 @@ export default function Home() {
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc")
   const [isLoading, setIsLoading] = useState(true)
   const [selectedDataset, setSelectedDataset] = useState("COCO 2017")
+  const router = useRouter()
   const pathname = usePathname()
 
   // ============================================================================
@@ -271,25 +273,6 @@ export default function Home() {
   // ============================================================================
   return (
     <>
-      {/* Hero Section */}
-      {/* <section className="pt-6 sm:pt-12">
-        <div className="container-base mx-auto">
-          <div className="flex justify-between">
-            <div className="space-y-2">
-              <Badge variant="primary">
-                <Link href="https://github.com/roboflow/supervision" target="_blank" className="flex items-center gap-1">
-                  Powered by supervision <ArrowSquareOutIcon size={14} weight="thin" />
-                </Link>
-              </Badge>
-              <h1 className="text-3xl sm:text-4xl"><span className="text-primary-foreground">Computer Vision</span><br />Model Leaderboard</h1>
-              <p className="prose prose-sm max-w-lg">
-                Compare computer vision models benchmarked on the COCO 2017 dataset using standardized mAP and F1 metrics. Filter by architecture, size, or license to find the best model for your use case.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       <HeroSection 
         title="Computer Vision"
         subtitle="Model Leaderboard"
@@ -304,8 +287,8 @@ export default function Home() {
       />
 
       <TaskCard 
-        title="Object Detection"
-        description="Identify and localize objects in an image by predicting bounding boxes and class labels. Models are evaluated on the COCO 2017 dataset, measuring how accurately they detect and classify objects in diverse scenes."
+        title="Promptable Concept Segmentation"
+        description="Segment objects with pixel-level precision using prompts such as text, points, or images. Models are evaluated on their ability to follow prompts and handle compositional queries for open-world understanding."
         videoUrl="/video-leaderboard-pcs.mp4"
         videoPosterUrl="/video-leaderboard-pcs.avif"
       />
