@@ -37,7 +37,7 @@ export function Header() {
                 { href: "/faq/", label: "FAQ" },
               ].map(({ href, label }) => (
                 <NavigationMenuItem key={href}>
-                  <NavigationMenuLink 
+                  <NavigationMenuLink
                   data-active={pathname === href}
                   className="bg-transparent focus-visible:bg-transparent hover:bg-transparent hover:text-primary-foreground data-[active=true]:bg-transparent data-[active=true]:focus:bg-transparent data-[active=true]:hover:bg-transparent data-[active=true]:text-primary-foreground focus:bg-transparent" asChild>
                     <Link href={href}>{label}</Link>

@@ -127,7 +127,7 @@ export function ColumnToggle({
           </MobileCheckboxItem>
           ))}
           </div>
-      </div>  
+      </div>
     </>
   )
 }

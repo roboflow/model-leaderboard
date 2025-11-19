@@ -134,7 +134,7 @@ def run_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
         pretrain_datasets=PRETRAIN_DATASETS,
-        extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
+        extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
     )
     print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
     print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")

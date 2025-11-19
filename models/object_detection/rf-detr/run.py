@@ -115,7 +115,7 @@ def run(
             license=LICENSE,
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
-            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

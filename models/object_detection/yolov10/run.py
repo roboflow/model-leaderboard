@@ -18,7 +18,14 @@ from utils import (
 )
 
 ARCHITECTURE = "YOLOv10"
-ARCHITECTURE_CHECKPOINTS = ["YOLOv10n", "YOLOv10s", "YOLOv10m", "YOLOv10b", "YOLOv10l", "YOLOv10x"]
+ARCHITECTURE_CHECKPOINTS = [
+    "YOLOv10n",
+    "YOLOv10s",
+    "YOLOv10m",
+    "YOLOv10b",
+    "YOLOv10l",
+    "YOLOv10x",
+]
 MODEL_DICT = {
     "yolov10n": {"model_name": "YOLOv10n"},
     "yolov10s": {"model_name": "YOLOv10s"},
@@ -104,7 +111,7 @@ def run(
             license=LICENSE,
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
-            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

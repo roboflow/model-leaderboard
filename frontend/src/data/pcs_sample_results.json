@@ -1,1757 +1,1802 @@
 {
-  "instance_segmentation": {
-    "lvis": {
-      "metadata": {
-        "task": "Instance Segmentation",
-        "benchmark": "LVIS",
-        "description": "Large Vocabulary Instance Segmentation",
-        "columns": ["model", "cgf", "ap"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 20.1,
-            "cgf_asterisk": true,
-            "ap": null,
-            "ap_asterisk": true
-          }
+    "instance_segmentation": {
+        "lvis": {
+            "metadata": {
+                "task": "Instance Segmentation",
+                "benchmark": "LVIS",
+                "description": "Large Vocabulary Instance Segmentation",
+                "columns": [
+                    "model",
+                    "cgf",
+                    "ap"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 20.1,
+                        "cgf_asterisk": true,
+                        "ap": null,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 29.3,
+                        "cgf_asterisk": true,
+                        "ap": 43.4,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 14.7,
+                        "cgf_asterisk": true,
+                        "ap": null,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "https://github.com/iSEE-Laboratory/LLMDet",
+                        "github_url": "https://github.com/iSEE-Laboratory/LLMDet",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 35.1,
+                        "cgf_asterisk": true,
+                        "ap": 36.3,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": null,
+                        "cgf_asterisk": true,
+                        "ap": 38.5,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 13.4,
+                        "cgf_asterisk": true,
+                        "ap": null,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 37.2,
+                        "cgf_asterisk": true,
+                        "ap": 48.5,
+                        "ap_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 29.3,
-            "cgf_asterisk": true,
-            "ap": 43.4,
-            "ap_asterisk": true
-          }
+        "sa_co_gold": {
+            "metadata": {
+                "task": "Instance Segmentation",
+                "benchmark": "SA-Co/Gold",
+                "description": "Segment Anything Compositional - Gold Tier",
+                "columns": [
+                    "model",
+                    "cgf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 17.3,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 24.6,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 3.3,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 6.5,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 21.3,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 13.0,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 54.1,
+                        "cgf_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 14.7,
-            "cgf_asterisk": true,
-            "ap": null,
-            "ap_asterisk": true
-          }
+        "sa_co_silver": {
+            "metadata": {
+                "task": "Instance Segmentation",
+                "benchmark": "SA-Co/Silver",
+                "description": "Segment Anything Compositional - Silver Tier",
+                "columns": [
+                    "model",
+                    "cgf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 7.6,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 11.5,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 2.7,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 7.1,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": null,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 8.3,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 49.6,
+                        "cgf_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "https://github.com/iSEE-Laboratory/LLMDet",
-            "github_url": "https://github.com/iSEE-Laboratory/LLMDet",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 35.1,
-            "cgf_asterisk": true,
-            "ap": 36.3,
-            "ap_asterisk": true
-          }
+        "sa_co_bronze": {
+            "metadata": {
+                "task": "Instance Segmentation",
+                "benchmark": "SA-Co/Bronze",
+                "description": "Segment Anything Compositional - Bronze Tier",
+                "columns": [
+                    "model",
+                    "cgf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 3.9,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 11.7,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 7.0,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 12.5,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": null,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 7.3,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 42.6,
+                        "cgf_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": null,
-            "cgf_asterisk": true,
-            "ap": 38.5,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 13.4,
-            "cgf_asterisk": true,
-            "ap": null,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 37.2,
-            "cgf_asterisk": true,
-            "ap": 48.5,
-            "ap_asterisk": true
-          }
+        "sa_co_bio": {
+            "metadata": {
+                "task": "Instance Segmentation",
+                "benchmark": "SA-Co/Bio",
+                "description": "Segment Anything Compositional - Bio Tier",
+                "columns": [
+                    "model",
+                    "pmf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.64,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.04,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.34,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.15,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": null,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 10.7,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 55.4,
+                        "pmf_asterisk": true
+                    }
+                }
+            ]
         }
-      ]
     },
-    "sa_co_gold": {
-      "metadata": {
-        "task": "Instance Segmentation",
-        "benchmark": "SA-Co/Gold",
-        "description": "Segment Anything Compositional - Gold Tier",
-        "columns": ["model", "cgf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 17.3,
-            "cgf_asterisk": true
-          }
+    "box_detection": {
+        "lvis": {
+            "metadata": {
+                "task": "Box Detection",
+                "benchmark": "LVIS",
+                "description": "Large Vocabulary Instance Segmentation - Box Detection",
+                "columns": [
+                    "model",
+                    "cgf",
+                    "ap"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 19.9,
+                        "cgf_asterisk": true,
+                        "ap": 35.2,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 30.2,
+                        "cgf_asterisk": true,
+                        "ap": 45.5,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 15.1,
+                        "cgf_asterisk": true,
+                        "ap": 20.5,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 39.3,
+                        "cgf_asterisk": true,
+                        "ap": 42.0,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": null,
+                        "cgf_asterisk": true,
+                        "ap": 52.4,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 16.1,
+                        "cgf_asterisk": true,
+                        "ap": null,
+                        "ap_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 40.6,
+                        "cgf_asterisk": true,
+                        "ap": 53.6,
+                        "ap_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 24.6,
-            "cgf_asterisk": true
-          }
+        "coco": {
+            "metadata": {
+                "task": "Box Detection",
+                "benchmark": "COCO",
+                "description": "Common Objects in Context - Box Detection",
+                "columns": [
+                    "model",
+                    "ap",
+                    "ap_coco_o"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": 38.2,
+                        "ap_asterisk": true,
+                        "ap_coco_o": 42.4,
+                        "ap_coco_o_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": 46.1,
+                        "ap_asterisk": true,
+                        "ap_coco_o": 23.9,
+                        "ap_coco_o_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": 45.7,
+                        "ap_asterisk": true,
+                        "ap_coco_o": 35.3,
+                        "ap_coco_o_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": 55.6,
+                        "ap_asterisk": true,
+                        "ap_coco_o": 49.8,
+                        "ap_coco_o_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": 56.0,
+                        "ap_asterisk": true,
+                        "ap_coco_o": null,
+                        "ap_coco_o_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": null,
+                        "ap_coco_o": null,
+                        "ap_coco_o_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "ap": 56.4,
+                        "ap_asterisk": true,
+                        "ap_coco_o": 55.7,
+                        "ap_coco_o_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 3.3,
-            "cgf_asterisk": true
-          }
+        "sa_co_gold": {
+            "metadata": {
+                "task": "Box Detection",
+                "benchmark": "SA-Co/Gold",
+                "description": "Segment Anything Compositional - Box Detection - Gold Tier",
+                "columns": [
+                    "model",
+                    "cgf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 16.9,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 24.5,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 3.4,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 6.8,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 22.5,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 14.4,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 55.7,
+                        "cgf_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 6.5,
-            "cgf_asterisk": true
-          }
+        "sa_co_silver": {
+            "metadata": {
+                "task": "Box Detection",
+                "benchmark": "SA-Co/Silver",
+                "description": "Segment Anything Compositional - Box Detection - Silver Tier",
+                "columns": [
+                    "model",
+                    "cgf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 7.1,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 11.0,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 2.5,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 6.7,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": null,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 9.4,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 50.0,
+                        "cgf_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 21.3,
-            "cgf_asterisk": true
-          }
+        "sa_co_bronze": {
+            "metadata": {
+                "task": "Box Detection",
+                "benchmark": "SA-Co/Bronze",
+                "description": "Segment Anything Compositional - Box Detection - Bronze Tier",
+                "columns": [
+                    "model",
+                    "cgf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 4.1,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 12.0,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 7.6,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 14.0,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": null,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 8.2,
+                        "cgf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "cgf": 47.1,
+                        "cgf_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 13.0,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 54.1,
-            "cgf_asterisk": true
-          }
+        "sa_co_bio": {
+            "metadata": {
+                "task": "Box Detection",
+                "benchmark": "SA-Co/Bio",
+                "description": "Segment Anything Compositional - Box Detection - Bio Tier",
+                "columns": [
+                    "model",
+                    "pmf"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.95,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.08,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.35,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 0.17,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": null,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 12.4,
+                        "pmf_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "pmf": 56.3,
+                        "pmf_asterisk": true
+                    }
+                }
+            ]
         }
-      ]
     },
-    "sa_co_silver": {
-      "metadata": {
-        "task": "Instance Segmentation",
-        "benchmark": "SA-Co/Silver",
-        "description": "Segment Anything Compositional - Silver Tier",
-        "columns": ["model", "cgf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 7.6,
-            "cgf_asterisk": true
-          }
+    "semantic_segmentation": {
+        "ade_847": {
+            "metadata": {
+                "task": "Semantic Segmentation",
+                "benchmark": "ADE-847",
+                "description": "ADE20K dataset with 847 classes",
+                "columns": [
+                    "model",
+                    "miou"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": 13.8,
+                        "miou_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 11.5,
-            "cgf_asterisk": true
-          }
+        "pc_59": {
+            "metadata": {
+                "task": "Semantic Segmentation",
+                "benchmark": "PC-59",
+                "description": "Pascal Context with 59 classes",
+                "columns": [
+                    "model",
+                    "miou"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": 60.8,
+                        "miou_asterisk": true
+                    }
+                }
+            ]
         },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 2.7,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 7.1,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": null,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 8.3,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 49.6,
-            "cgf_asterisk": true
-          }
+        "cityscapes": {
+            "metadata": {
+                "task": "Semantic Segmentation",
+                "benchmark": "Cityscapes",
+                "description": "Urban scene understanding dataset",
+                "columns": [
+                    "model",
+                    "miou"
+                ]
+            },
+            "models": [
+                {
+                    "metadata": {
+                        "model": "OWLv2",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "OWLv2\u2020",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/google-research/scenic",
+                        "paper_url": "https://arxiv.org/abs/2306.09683",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "gDino-T",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/GroundingDINO",
+                        "paper_url": "https://arxiv.org/abs/2303.05499",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "LLMDet-L",
+                        "license": "Apache 2.0",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "https://arxiv.org/abs/2501.18954",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "DINO-X",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "https://github.com/IDEA-Research/DINO-X-API",
+                        "paper_url": "https://arxiv.org/abs/2411.14347",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "Gemini 2.5",
+                        "license": "Proprietary",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": null,
+                        "miou_asterisk": true
+                    }
+                },
+                {
+                    "metadata": {
+                        "model": "SAM 3",
+                        "license": "N/A",
+                        "architecture": "",
+                        "github_url": "",
+                        "paper_url": "",
+                        "param_count": null,
+                        "pretrain_datasets": [],
+                        "run_parameters": {}
+                    },
+                    "results": {
+                        "miou": 65.2,
+                        "miou_asterisk": true
+                    }
+                }
+            ]
         }
-      ]
-    },
-    "sa_co_bronze": {
-      "metadata": {
-        "task": "Instance Segmentation",
-        "benchmark": "SA-Co/Bronze",
-        "description": "Segment Anything Compositional - Bronze Tier",
-        "columns": ["model", "cgf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 3.9,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 11.7,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 7.0,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 12.5,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": null,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 7.3,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 42.6,
-            "cgf_asterisk": true
-          }
-        }
-      ]
-    },
-    "sa_co_bio": {
-      "metadata": {
-        "task": "Instance Segmentation",
-        "benchmark": "SA-Co/Bio",
-        "description": "Segment Anything Compositional - Bio Tier",
-        "columns": ["model", "pmf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.64,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.04,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.34,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.15,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": null,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 10.7,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 55.4,
-            "pmf_asterisk": true
-          }
-        }
-      ]
     }
-  },
-  "box_detection": {
-    "lvis": {
-      "metadata": {
-        "task": "Box Detection",
-        "benchmark": "LVIS",
-        "description": "Large Vocabulary Instance Segmentation - Box Detection",
-        "columns": ["model", "cgf", "ap"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 19.9,
-            "cgf_asterisk": true,
-            "ap": 35.2,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 30.2,
-            "cgf_asterisk": true,
-            "ap": 45.5,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 15.1,
-            "cgf_asterisk": true,
-            "ap": 20.5,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 39.3,
-            "cgf_asterisk": true,
-            "ap": 42.0,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": null,
-            "cgf_asterisk": true,
-            "ap": 52.4,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 16.1,
-            "cgf_asterisk": true,
-            "ap": null,
-            "ap_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 40.6,
-            "cgf_asterisk": true,
-            "ap": 53.6,
-            "ap_asterisk": true
-          }
-        }
-      ]
-    },
-    "coco": {
-      "metadata": {
-        "task": "Box Detection",
-        "benchmark": "COCO",
-        "description": "Common Objects in Context - Box Detection",
-        "columns": ["model", "ap", "ap_coco_o"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": 38.2,
-            "ap_asterisk": true,
-            "ap_coco_o": 42.4,
-            "ap_coco_o_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": 46.1,
-            "ap_asterisk": true,
-            "ap_coco_o": 23.9,
-            "ap_coco_o_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": 45.7,
-            "ap_asterisk": true,
-            "ap_coco_o": 35.3,
-            "ap_coco_o_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": 55.6,
-            "ap_asterisk": true,
-            "ap_coco_o": 49.8,
-            "ap_coco_o_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": 56.0,
-            "ap_asterisk": true,
-            "ap_coco_o": null,
-            "ap_coco_o_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": null,
-            "ap_coco_o": null,
-            "ap_coco_o_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "ap": 56.4,
-            "ap_asterisk": true,
-            "ap_coco_o": 55.7,
-            "ap_coco_o_asterisk": true
-          }
-        }
-      ]
-    },
-    "sa_co_gold": {
-      "metadata": {
-        "task": "Box Detection",
-        "benchmark": "SA-Co/Gold",
-        "description": "Segment Anything Compositional - Box Detection - Gold Tier",
-        "columns": ["model", "cgf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 16.9,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 24.5,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 3.4,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 6.8,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 22.5,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 14.4,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 55.7,
-            "cgf_asterisk": true
-          }
-        }
-      ]
-    },
-    "sa_co_silver": {
-      "metadata": {
-        "task": "Box Detection",
-        "benchmark": "SA-Co/Silver",
-        "description": "Segment Anything Compositional - Box Detection - Silver Tier",
-        "columns": ["model", "cgf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 7.1,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 11.0,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 2.5,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 6.7,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": null,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 9.4,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 50.0,
-            "cgf_asterisk": true
-          }
-        }
-      ]
-    },
-    "sa_co_bronze": {
-      "metadata": {
-        "task": "Box Detection",
-        "benchmark": "SA-Co/Bronze",
-        "description": "Segment Anything Compositional - Box Detection - Bronze Tier",
-        "columns": ["model", "cgf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 4.1,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 12.0,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 7.6,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 14.0,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": null,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 8.2,
-            "cgf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "cgf": 47.1,
-            "cgf_asterisk": true
-          }
-        }
-      ]
-    },
-    "sa_co_bio": {
-      "metadata": {
-        "task": "Box Detection",
-        "benchmark": "SA-Co/Bio",
-        "description": "Segment Anything Compositional - Box Detection - Bio Tier",
-        "columns": ["model", "pmf"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.95,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.08,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.35,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 0.17,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": null,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 12.4,
-            "pmf_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "pmf": 56.3,
-            "pmf_asterisk": true
-          }
-        }
-      ]
-    }
-  },
-  "semantic_segmentation": {
-    "ade_847": {
-      "metadata": {
-        "task": "Semantic Segmentation",
-        "benchmark": "ADE-847",
-        "description": "ADE20K dataset with 847 classes",
-        "columns": ["model", "miou"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": 13.8,
-            "miou_asterisk": true
-          }
-        }
-      ]
-    },
-    "pc_59": {
-      "metadata": {
-        "task": "Semantic Segmentation",
-        "benchmark": "PC-59",
-        "description": "Pascal Context with 59 classes",
-        "columns": ["model", "miou"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": 60.8,
-            "miou_asterisk": true
-          }
-        }
-      ]
-    },
-    "cityscapes": {
-      "metadata": {
-        "task": "Semantic Segmentation",
-        "benchmark": "Cityscapes",
-        "description": "Urban scene understanding dataset",
-        "columns": ["model", "miou"]
-      },
-      "models": [
-        {
-          "metadata": {
-            "model": "OWLv2",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "OWLv2†",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/google-research/scenic",
-            "paper_url": "https://arxiv.org/abs/2306.09683",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "gDino-T",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/GroundingDINO",
-            "paper_url": "https://arxiv.org/abs/2303.05499",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "LLMDet-L",
-            "license": "Apache 2.0",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "https://arxiv.org/abs/2501.18954",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "DINO-X",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "https://github.com/IDEA-Research/DINO-X-API",
-            "paper_url": "https://arxiv.org/abs/2411.14347",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "Gemini 2.5",
-            "license": "Proprietary",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": null,
-            "miou_asterisk": true
-          }
-        },
-        {
-          "metadata": {
-            "model": "SAM 3",
-            "license": "N/A",
-            "architecture": "",
-            "github_url": "",
-            "paper_url": "",
-            "param_count": null,
-            "pretrain_datasets": [],
-            "run_parameters": {}
-          },
-          "results": {
-            "miou": 65.2,
-            "miou_asterisk": true
-          }
-        }
-      ]
-    }
-  }
 }
