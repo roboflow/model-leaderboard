@@ -12,10 +12,10 @@ interface HeroSectionProps {
   videoPosterUrl?: string
 }
 
-export function HeroSection({ 
-  title, 
-  subtitle, 
-  description, 
+export function HeroSection({
+  title,
+  subtitle,
+  description,
   badgeText = "Powered by supervision",
   badgeHref = "https://github.com/roboflow/supervision",
   videoUrl,

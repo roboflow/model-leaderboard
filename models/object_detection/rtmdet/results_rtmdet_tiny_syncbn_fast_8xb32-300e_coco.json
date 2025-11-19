@@ -1,16 +1,27 @@
 {
     "metadata": {
-        "model": "RTMDet-tiny",
+        "architecture": "RTMDet",
+        "model": "RTMDet-t",
         "license": "GPL-3.0",
         "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
         "paper_url": "https://arxiv.org/abs/2212.07784",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001,
+            "conf": 0,
             "max_det": 100
         },
         "param_count": 4896168,
-        "run_date": "2025-07-03T13:25:18.426727+00:00"
+        "run_date": "2025-07-03T13:25:18.426727+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "RTMDet-t",
+            "RTMDet-s",
+            "RTMDet-m",
+            "RTMDet-l",
+            "RTMDet-x"
+        ]
     },
     "map50_95": 0.40962018950371093,
     "map50": 0.5744842899406496,

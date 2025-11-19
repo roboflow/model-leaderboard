@@ -168,4 +168,4 @@ export const getDefaultVisibleColumns = (): Set<string> => {
  */
 export const getAllColumnKeys = (): string[] => {
   return allColumns.map(col => col.key)
-} 
+}

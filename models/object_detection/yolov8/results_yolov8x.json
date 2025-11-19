@@ -1,6 +1,7 @@
 {
     "metadata": {
-        "model": "yolov8x",
+        "architecture": "YOLOv8",
+        "model": "YOLOv8x",
         "license": "AGPL-3.0",
         "github_url": "https://github.com/ultralytics/ultralytics",
         "paper_url": "",
@@ -8,11 +9,21 @@
             "imgsz": 640,
             "iou": 0.7,
             "max_det": 100,
-            "conf": 0.001,
+            "conf": 0,
             "verbose": false
         },
         "param_count": 68200608,
-        "run_date": "2025-06-26T14:10:18.216646+00:00"
+        "run_date": "2025-07-21T10:01:59.180008+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv8n",
+            "YOLOv8s",
+            "YOLOv8m",
+            "YOLOv8l",
+            "YOLOv8x"
+        ]
     },
     "map50_95": 0.5288963012516453,
     "map50": 0.6941268297897091,

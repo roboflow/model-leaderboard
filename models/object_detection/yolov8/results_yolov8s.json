@@ -1,6 +1,7 @@
 {
     "metadata": {
-        "model": "yolov8s",
+        "architecture": "YOLOv8",
+        "model": "YOLOv8s",
         "license": "AGPL-3.0",
         "github_url": "https://github.com/ultralytics/ultralytics",
         "paper_url": "",
@@ -8,24 +9,34 @@
             "imgsz": 640,
             "iou": 0.7,
             "max_det": 100,
-            "conf": 0.001,
+            "conf": 0,
             "verbose": false
         },
         "param_count": 11156544,
-        "run_date": "2025-06-26T13:38:12.060181+00:00"
+        "run_date": "2025-07-21T09:28:36.572098+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv8n",
+            "YOLOv8s",
+            "YOLOv8m",
+            "YOLOv8l",
+            "YOLOv8x"
+        ]
     },
-    "map50_95": 0.4405337570185191,
-    "map50": 0.6022936607429953,
-    "map75": 0.4769135472657197,
+    "map50_95": 0.44053798841213565,
+    "map50": 0.6022967943234921,
+    "map75": 0.4769170848214219,
     "small_objects": {
         "map50_95": 0.2520105543003198,
         "map50": 0.3971366674198001,
         "map75": 0.2672376224674503
     },
     "medium_objects": {
-        "map50_95": 0.4887303325910917,
-        "map50": 0.6651072537525959,
-        "map75": 0.5382592349143178
+        "map50_95": 0.488745495176141,
+        "map50": 0.6651156324569626,
+        "map75": 0.5382763603048456
     },
     "large_objects": {
         "map50_95": 0.6018623252881625,

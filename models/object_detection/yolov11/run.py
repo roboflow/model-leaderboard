@@ -17,13 +17,22 @@ from utils import (
     write_result_json,
 )
 
-MODEL_IDS = ["yolo11n", "yolo11s", "yolo11m", "yolo11l", "yolo11x"]
+ARCHITECTURE = "YOLO11"
+ARCHITECTURE_CHECKPOINTS = ["YOLO11n", "YOLO11s", "YOLO11m", "YOLO11l", "YOLO11x"]
+MODEL_DICT = {
+    "yolo11n": {"model_name": "YOLO11n"},
+    "yolo11s": {"model_name": "YOLO11s"},
+    "yolo11m": {"model_name": "YOLO11m"},
+    "yolo11l": {"model_name": "YOLO11l"},
+    "yolo11x": {"model_name": "YOLO11x"},
+}
+PRETRAIN_DATASETS = ["COCO"]
 LICENSE = "AGPL-3.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     iou=0.7,
     max_det=100,
-    conf=0.001,
+    conf=0,
     verbose=False,
 )
 GIT_REPO_URL = "https://github.com/ultralytics/ultralytics"
@@ -50,10 +59,11 @@ def run(
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
     if not model_ids:
-        model_ids = MODEL_IDS
+        model_ids = MODEL_DICT.keys()
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        model_name = MODEL_DICT[model_id]["model_name"]
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
@@ -80,15 +90,18 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
+            architecture=ARCHITECTURE,
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_name,
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,
-            license_name=LICENSE,
+            license=LICENSE,
             run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

@@ -1,6 +1,7 @@
 {
     "metadata": {
-        "model": "yolov10s",
+        "architecture": "YOLOv10",
+        "model": "YOLOv10s",
         "license": "AGPL-3.0",
         "github_url": "https://github.com/THU-MIG/yolov10",
         "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -12,7 +13,18 @@
             "verbose": false
         },
         "param_count": 8096880,
-        "run_date": "2025-06-27T09:05:29.897333+00:00"
+        "run_date": "2025-07-21T11:59:45.261488+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv10n",
+            "YOLOv10s",
+            "YOLOv10m",
+            "YOLOv10b",
+            "YOLOv10l",
+            "YOLOv10x"
+        ]
     },
     "map50_95": 0.4569689708463384,
     "map50": 0.6231193465949499,

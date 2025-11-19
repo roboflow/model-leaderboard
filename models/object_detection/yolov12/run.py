@@ -18,24 +18,39 @@ from utils import (
     write_result_json,
 )
 
-MODEL_URLS: dict[str, str] = {
-    "yolov12n.pt": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12n.pt",
-    "yolov12s.pt": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12s.pt",
-    "yolov12m.pt": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12m.pt",
-    "yolov12l.pt": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12l.pt",
-    "yolov12x.pt": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12x.pt",
-}
-
-
+ARCHITECTURE = "YOLOv12"
+ARCHITECTURE_CHECKPOINTS = ["YOLOv12n", "YOLOv12s", "YOLOv12m", "YOLOv12l", "YOLOv12x"]
+MODEL_DICT = {
+    "yolov12n.pt": {
+        "model_name": "YOLOv12n",
+        "model_url": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12n.pt",
+    },
+    "yolov12s.pt": {
+        "model_name": "YOLOv12s",
+        "model_url": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12s.pt",
+    },
+    "yolov12m.pt": {
+        "model_name": "YOLOv12m",
+        "model_url": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12m.pt",
+    },
+    "yolov12l.pt": {
+        "model_name": "YOLOv12l",
+        "model_url": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12l.pt",
+    },
+    "yolov12x.pt": {
+        "model_name": "YOLOv12x",
+        "model_url": "https://github.com/sunsmarterjie/yolov12/releases/download/v1.0/yolov12x.pt",
+    },
+}  # noqa: E501 // docs
+PRETRAIN_DATASETS = ["COCO"]
 LICENSE = "AGPL-3.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     iou=0.7,
     max_det=100,
-    conf=0.001,
+    conf=0,
     verbose=False,
 )
-
 GIT_REPO_URL = "https://github.com/sunsmarterjie/yolov12"
 PAPER_URL = "https://arxiv.org/abs/2502.12524"
 
@@ -60,14 +75,16 @@ def run(
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
     if not model_ids:
-        model_ids = MODEL_URLS.keys()
+        model_ids = MODEL_DICT.keys()
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        model_name = MODEL_DICT[model_id]["model_name"]
+        model_url = MODEL_DICT[model_id]["model_url"]
 
         print("Downloading model...")
         if not Path(model_id).exists():
-            download_file(MODEL_URLS[model_id], model_id)
+            download_file(model_url, model_id)
             print(f"Model {model_id} downloaded!")
         else:
             print(f"Model {model_id} already exists!")
@@ -97,15 +114,18 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
+            architecture=ARCHITECTURE,
             model_id=model_id,
+            model_name=model_name,
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
-            model_name=model_id,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,
-            license_name=LICENSE,
+            license=LICENSE,
             run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

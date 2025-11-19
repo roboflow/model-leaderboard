@@ -1,15 +1,26 @@
 {
     "metadata": {
+        "architecture": "RT-DETRv2",
         "model": "RT-DETRv2-L",
         "license": "Apache-2.0",
         "github_url": "https://github.com/lyuwenyu/RT-DETR",
         "paper_url": "https://arxiv.org/abs/2304.08069",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001
+            "conf": 0
         },
         "param_count": 49972332,
-        "run_date": "2025-06-26T18:07:10.339876+00:00"
+        "run_date": "2025-06-26T18:07:10.339876+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "RT-DETRv2-S",
+            "RT-DETRv2-M",
+            "RT-DETRv2-M*",
+            "RT-DETRv2-L",
+            "RT-DETRv2-X"
+        ]
     },
     "map50_95": 0.5340727876746786,
     "map50": 0.7156843166013617,

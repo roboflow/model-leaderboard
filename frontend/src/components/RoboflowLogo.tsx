@@ -8,18 +8,18 @@ interface RoboflowLogoProps {
   [key: string]: any // for other props
 }
 
-export function RoboflowLogo({ 
-  width = 120, 
-  height = 32, 
+export function RoboflowLogo({
+  width = 120,
+  height = 32,
   className = "",
-  ...props 
+  ...props
 }: RoboflowLogoProps) {
   return (
-    <svg 
-      width={width} 
-      height={height} 
-      viewBox="0 0 563 103" 
-      fill="none" 
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 563 103"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       {...props}

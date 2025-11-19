@@ -14,10 +14,10 @@ export function useUniqueValues<T, R extends string>(
 ): R[] {
   return useMemo(() => {
     const uniqueValues = new Set<R>()
-    
+
     data.forEach(item => {
       const extracted = extractor(item)
-      
+
       if (extracted) {
         if (Array.isArray(extracted)) {
           // Handle array values (like pretrain_datasets)
@@ -30,7 +30,7 @@ export function useUniqueValues<T, R extends string>(
         }
       }
     })
-    
+
     return Array.from(uniqueValues).sort()
   }, [data, extractor])
-} 
+}

@@ -32,13 +32,111 @@ sys.path.append(
 )
 from engine.core import YAMLConfig
 
+DEIM_D_FINE_ARCHITECTURE_NAME = "DEIM-D-FINE"
+DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS = [
+    "DEIM-D-FINE-N",
+    "DEIM-D-FINE-S",
+    "DEIM-D-FINE-M",
+    "DEIM-D-FINE-L",
+    "DEIM-D-FINE-X",
+]
+DEIM_RT_DETR_ARCHITECTURE_NAME = "DEIM-RT-DETRv2"
+DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS = [
+    "DEIM-RT-DETRv2-S",
+    "DEIM-RT-DETRv2-M",
+    "DEIM-RT-DETRv2-M*",
+    "DEIM-RT-DETRv2-L",
+    "DEIM-RT-DETRv2-X",
+]
+MODEL_DICT = {
+    "DEIM-D-FINE-N": {
+        "architecture": DEIM_D_FINE_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1tB8gVJNrfb6dhFvoHJECKOF5VpkthhfC/view?usp=drive_link",
+        "model_filename": "dfine_n_coco.pth",
+        "model_name": "DEIM-D-FINE-N",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_s_coco.yml",
+    },
+    "DEIM-D-FINE-S": {
+        "architecture": DEIM_D_FINE_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1tB8gVJNrfb6dhFvoHJECKOF5VpkthhfC/view?usp=drive_link",
+        "model_filename": "dfine_s_coco.pth",
+        "model_name": "DEIM-D-FINE-S",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_s_coco.yml",
+    },
+    "DEIM-D-FINE-M": {
+        "architecture": DEIM_D_FINE_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/18Lj2a6UN6k_n_UzqnJyiaiLGpDzQQit8/view?usp=drive_link",
+        "model_filename": "dfine_m_coco.pth",
+        "model_name": "DEIM-D-FINE-M",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_m_coco.yml",
+    },
+    "DEIM-D-FINE-L": {
+        "architecture": DEIM_D_FINE_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1PIRf02XkrA2xAD3wEiKE2FaamZgSGTAr/view?usp=drive_link",
+        "model_filename": "dfine_l_coco.pth",
+        "model_name": "DEIM-D-FINE-L",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_l_coco.yml",
+    },
+    "DEIM-D-FINE-X": {
+        "architecture": DEIM_D_FINE_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1dPtbgtGgq1Oa7k_LgH1GXPelg1IVeu0j/view?usp=drive_link",
+        "model_filename": "dfine_x_coco.pth",
+        "model_name": "DEIM-D-FINE-X",
+        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_x_coco.yml",
+    },
+    "DEIM-RT-DETRv2-S": {
+        "architecture": DEIM_RT_DETR_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/153_JKff6EpFgiLKaqkJsoDcLal_0ux_F/view?usp=drive_link",
+        "model_filename": "deim_r18vd_120e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-S",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r18vd_120e_coco.yml",
+    },
+    "DEIM-RT-DETRv2-M": {
+        "architecture": DEIM_RT_DETR_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1O9RjZF6kdFWGv1Etn1Toml4r-YfdMDMM/view?usp=drive_link",
+        "model_filename": "deim_r34vd_120e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-M",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r34vd_120e_coco.yml",
+    },
+    "DEIM-RT-DETRv2-M*": {
+        "architecture": DEIM_RT_DETR_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/10dLuqdBZ6H5ip9BbBiE6S7ZcmHkRbD0E/view?usp=drive_link",
+        "model_filename": "deim_r50vd_m_60e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-M*",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_m_60e_coco.yml",
+    },
+    "DEIM-RT-DETRv2-L": {
+        "architecture": DEIM_RT_DETR_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1mWknAXD5JYknUQ94WCEvPfXz13jcNOTI/view?usp=drive_link",
+        "model_filename": "deim_r50vd_60e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-L",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_60e_coco.yml",
+    },
+    "DEIM-RT-DETRv2-X": {
+        "architecture": DEIM_RT_DETR_ARCHITECTURE_NAME,
+        "architecture_checkpoints": DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS,
+        "model_url": "https://drive.google.com/file/d/1BIevZijOcBO17llTyDX32F_pYppBfnzu/view?usp=drive_link",
+        "model_filename": "deim_r101vd_60e_coco.pth",
+        "model_name": "DEIM-RT-DETRv2-X",
+        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r101vd_60e_coco.yml",
+    },
+}  # noqa: E501 // docs
+PRETRAIN_DATASETS = ["COCO"]
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = dict(
     imgsz=640,
     conf=CONFIDENCE_THRESHOLD,
     max_det=100,
 )
-
 GIT_REPO_URL = "https://github.com/ShihuaHuang95/DEIM"
 PAPER_URL = "https://arxiv.org/abs/2412.04234"
 
@@ -47,69 +145,6 @@ TRANSFORMS = T.Compose(
 )
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-MODEL_DICT = {
-    "DEIM-D-FINE-X": {
-        "model_url": "https://drive.google.com/file/d/1dPtbgtGgq1Oa7k_LgH1GXPelg1IVeu0j/view?usp=drive_link",
-        "model_filename": "dfine_x_coco.pth",
-        "model_name": "DEIM-D-FINE-X",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_x_coco.yml",
-    },
-    "DEIM-D-FINE-L": {
-        "model_url": "https://drive.google.com/file/d/1PIRf02XkrA2xAD3wEiKE2FaamZgSGTAr/view?usp=drive_link",
-        "model_filename": "dfine_l_coco.pth",
-        "model_name": "DEIM-D-FINE-L",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_l_coco.yml",
-    },
-    "DEIM-D-FINE-N": {
-        "model_url": "https://drive.google.com/file/d/1tB8gVJNrfb6dhFvoHJECKOF5VpkthhfC/view?usp=drive_link",
-        "model_filename": "dfine_n_coco.pth",
-        "model_name": "DEIM-D-FINE-N",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_s_coco.yml",
-    },
-    "DEIM-D-FINE-S": {
-        "model_url": "https://drive.google.com/file/d/1tB8gVJNrfb6dhFvoHJECKOF5VpkthhfC/view?usp=drive_link",
-        "model_filename": "dfine_s_coco.pth",
-        "model_name": "DEIM-D-FINE-S",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_s_coco.yml",
-    },
-    "DEIM-D-FINE-M": {
-        "model_url": "https://drive.google.com/file/d/18Lj2a6UN6k_n_UzqnJyiaiLGpDzQQit8/view?usp=drive_link",
-        "model_filename": "dfine_m_coco.pth",
-        "model_name": "DEIM-D-FINE-M",
-        "model_yaml": "./DEIM-repo/configs/deim_dfine/deim_hgnetv2_m_coco.yml",
-    },
-    "DEIM-RT-DETRv2-X": {
-        "model_url": "https://drive.google.com/file/d/1BIevZijOcBO17llTyDX32F_pYppBfnzu/view?usp=drive_link",
-        "model_filename": "deim_r101vd_60e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-X",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r101vd_60e_coco.yml",
-    },
-    "DEIM-RT-DETRv2-L": {
-        "model_url": "https://drive.google.com/file/d/1mWknAXD5JYknUQ94WCEvPfXz13jcNOTI/view?usp=drive_link",
-        "model_filename": "deim_r50vd_60e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-L",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_60e_coco.yml",
-    },
-    "DEIM-RT-DETRv2-S": {
-        "model_url": "https://drive.google.com/file/d/153_JKff6EpFgiLKaqkJsoDcLal_0ux_F/view?usp=drive_link",
-        "model_filename": "deim_r18vd_120e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-S",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r18vd_120e_coco.yml",
-    },
-    "DEIM-RT-DETRv2-M": {
-        "model_url": "https://drive.google.com/file/d/1O9RjZF6kdFWGv1Etn1Toml4r-YfdMDMM/view?usp=drive_link",
-        "model_filename": "deim_r34vd_120e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-M",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r34vd_120e_coco.yml",
-    },
-    "DEIM-RT-DETRv2-M*": {
-        "model_url": "https://drive.google.com/file/d/10dLuqdBZ6H5ip9BbBiE6S7ZcmHkRbD0E/view?usp=drive_link",
-        "model_filename": "deim_r50vd_m_60e_coco.pth",
-        "model_name": "DEIM-RT-DETRv2-M*",
-        "model_yaml": "./DEIM-repo/configs/deim_rtdetrv2/deim_r50vd_m_60e_coco.yml",
-    },
-}  # noqa: E501 // docs
 
 
 def download_weight(url, model_filename):
@@ -161,7 +196,12 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        model_values = MODEL_DICT[model_id]
+        architecture = MODEL_DICT[model_id]["architecture"]
+        architecture_checkpoints = MODEL_DICT[model_id]["architecture_checkpoints"]
+        model_url = MODEL_DICT[model_id]["model_url"]
+        model_filename = MODEL_DICT[model_id]["model_filename"]
+        model_name = MODEL_DICT[model_id]["model_name"]
+        model_yaml = MODEL_DICT[model_id]["model_yaml"]
 
         if not Path("DEIM-repo").is_dir():
             run_shell_command(["git", "clone", GIT_REPO_URL, "DEIM-repo"])
@@ -173,18 +213,16 @@ def run(
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        if not os.path.exists(model_values["model_filename"]):
-            download_weight(model_values["model_url"], model_values["model_filename"])
+        if not os.path.exists(model_filename):
+            download_weight(model_url, model_filename)
 
-        cfg = YAMLConfig(
-            model_values["model_yaml"], resume=model_values["model_filename"]
-        )
+        cfg = YAMLConfig(model_yaml, resume=model_filename)
 
         if "HGNetv2" in cfg.yaml_cfg:
             cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
 
-        if model_values["model_filename"]:
-            checkpoint = torch.load(model_values["model_filename"], map_location=DEVICE)
+        if model_filename:
+            checkpoint = torch.load(model_filename, map_location=DEVICE)
             if "ema" in checkpoint:
                 state = checkpoint["ema"]["module"]
             else:
@@ -222,18 +260,20 @@ def run(
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
+            architecture=architecture,
             model_id=model_id,
-            model_name=model_values["model_name"],
+            model_name=model_name,
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,
-            license_name=LICENSE,
+            license=LICENSE,
             run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": architecture_checkpoints},
         )
         print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
-
         print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")
 
 

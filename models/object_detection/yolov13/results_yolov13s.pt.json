@@ -1,6 +1,7 @@
 {
     "metadata": {
-        "model": "yolov13s.pt",
+        "architecture": "YOLOv13",
+        "model": "YOLOv13s",
         "license": "AGPL-3.0",
         "github_url": "https://github.com/iMoonLab/yolov13",
         "paper_url": "https://arxiv.org/abs/2506.17733",
@@ -12,7 +13,16 @@
             "verbose": false
         },
         "param_count": 9031879,
-        "run_date": "2025-06-30T09:28:23.024034+00:00"
+        "run_date": "2025-07-21T14:05:28.281722+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "YOLOv13n",
+            "YOLOv13s",
+            "YOLOv13l",
+            "YOLOv13x"
+        ]
     },
     "map50_95": 0.467729645355259,
     "map50": 0.6352356620600625,

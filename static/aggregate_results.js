@@ -1,7 +1,8 @@
 const results = [
   {
     "metadata": {
-      "model": "yolov8l",
+      "architecture": "YOLOv8",
+      "model": "YOLOv8l",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -9,11 +10,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 43668288,
-      "run_date": "2025-06-26T13:56:08.266086+00:00"
+      "run_date": "2025-07-21T09:47:23.567378+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv8n",
+        "YOLOv8s",
+        "YOLOv8m",
+        "YOLOv8l",
+        "YOLOv8x"
+      ]
     },
     "map50_95": 0.5183048345058661,
     "map50": 0.6831661894630989,
@@ -74,7 +85,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8x",
+      "architecture": "YOLOv8",
+      "model": "YOLOv8x",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -82,11 +94,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 68200608,
-      "run_date": "2025-06-26T14:10:18.216646+00:00"
+      "run_date": "2025-07-21T10:01:59.180008+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv8n",
+        "YOLOv8s",
+        "YOLOv8m",
+        "YOLOv8l",
+        "YOLOv8x"
+      ]
     },
     "map50_95": 0.5288963012516453,
     "map50": 0.6941268297897091,
@@ -147,7 +169,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8m",
+      "architecture": "YOLOv8",
+      "model": "YOLOv8m",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -155,11 +178,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 25886080,
-      "run_date": "2025-06-26T13:45:13.524882+00:00"
+      "run_date": "2025-07-21T09:36:02.737307+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv8n",
+        "YOLOv8s",
+        "YOLOv8m",
+        "YOLOv8l",
+        "YOLOv8x"
+      ]
     },
     "map50_95": 0.4923461221332377,
     "map50": 0.6570803840227996,
@@ -220,7 +253,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8s",
+      "architecture": "YOLOv8",
+      "model": "YOLOv8s",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -228,24 +262,34 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 11156544,
-      "run_date": "2025-06-26T13:38:12.060181+00:00"
+      "run_date": "2025-07-21T09:28:36.572098+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv8n",
+        "YOLOv8s",
+        "YOLOv8m",
+        "YOLOv8l",
+        "YOLOv8x"
+      ]
     },
-    "map50_95": 0.4405337570185191,
-    "map50": 0.6022936607429953,
-    "map75": 0.4769135472657197,
+    "map50_95": 0.44053798841213565,
+    "map50": 0.6022967943234921,
+    "map75": 0.4769170848214219,
     "small_objects": {
       "map50_95": 0.2520105543003198,
       "map50": 0.3971366674198001,
       "map75": 0.2672376224674503
     },
     "medium_objects": {
-      "map50_95": 0.4887303325910917,
-      "map50": 0.6651072537525959,
-      "map75": 0.5382592349143178
+      "map50_95": 0.488745495176141,
+      "map50": 0.6651156324569626,
+      "map75": 0.5382763603048456
     },
     "large_objects": {
       "map50_95": 0.6018623252881625,
@@ -293,7 +337,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov8n",
+      "architecture": "YOLOv8",
+      "model": "YOLOv8n",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -301,24 +346,34 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 3151904,
-      "run_date": "2025-06-26T13:34:06.870167+00:00"
+      "run_date": "2025-07-21T09:24:33.232002+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv8n",
+        "YOLOv8s",
+        "YOLOv8m",
+        "YOLOv8l",
+        "YOLOv8x"
+      ]
     },
-    "map50_95": 0.3654428772473871,
-    "map50": 0.5143902625795718,
-    "map75": 0.3974962040287952,
+    "map50_95": 0.36544784484472637,
+    "map50": 0.5143930874160418,
+    "map75": 0.39750064390077994,
     "small_objects": {
       "map50_95": 0.17439419572863527,
       "map50": 0.2945420512153727,
       "map75": 0.17784213087600054
     },
     "medium_objects": {
-      "map50_95": 0.40402244207033683,
-      "map50": 0.5713909051890043,
-      "map75": 0.4475103791315338
+      "map50_95": 0.40403605009176513,
+      "map50": 0.5714151588117699,
+      "map75": 0.44752923011655826
     },
     "large_objects": {
       "map50_95": 0.5193164485143635,
@@ -366,16 +421,27 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv2-M",
+      "architecture": "RT-DETRv2",
+      "model": "RT-DETRv2-M*",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 38364780,
-      "run_date": "2025-06-26T17:47:31.805023+00:00"
+      "run_date": "2025-06-26T17:47:31.805023+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETRv2-S",
+        "RT-DETRv2-M",
+        "RT-DETRv2-M*",
+        "RT-DETRv2-L",
+        "RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5194310068647534,
     "map50": 0.6989711127586877,
@@ -436,16 +502,26 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv1 r50vd",
+      "architecture": "RT-DETR",
+      "model": "RT-DETR-R50",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 49972332,
-      "run_date": "2025-06-26T16:51:02.051986+00:00"
+      "run_date": "2025-06-26T16:51:02.051986+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETR-R18",
+        "RT-DETR-R34",
+        "RT-DETR-R50",
+        "RT-DETR-R101"
+      ]
     },
     "map50_95": 0.5305299051395858,
     "map50": 0.7121694019748082,
@@ -506,16 +582,27 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RT-DETRv2",
       "model": "RT-DETRv2-S",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 21955472,
-      "run_date": "2025-06-26T16:19:47.845868+00:00"
+      "run_date": "2025-06-26T16:19:47.845868+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETRv2-S",
+        "RT-DETRv2-M",
+        "RT-DETRv2-M*",
+        "RT-DETRv2-L",
+        "RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.48098337542060604,
     "map50": 0.6506654863770084,
@@ -576,16 +663,27 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RT-DETRv2",
       "model": "RT-DETRv2-L",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 49972332,
-      "run_date": "2025-06-26T18:07:10.339876+00:00"
+      "run_date": "2025-06-26T18:07:10.339876+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETRv2-S",
+        "RT-DETRv2-M",
+        "RT-DETRv2-M*",
+        "RT-DETRv2-L",
+        "RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5340727876746786,
     "map50": 0.7156843166013617,
@@ -646,16 +744,26 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv1 r34vd",
+      "architecture": "RT-DETR",
+      "model": "RT-DETR-R34",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 33212676,
-      "run_date": "2025-06-26T16:32:42.482274+00:00"
+      "run_date": "2025-06-26T16:32:42.482274+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETR-R18",
+        "RT-DETR-R34",
+        "RT-DETR-R50",
+        "RT-DETR-R101"
+      ]
     },
     "map50_95": 0.4886322395870832,
     "map50": 0.6675571067420132,
@@ -716,16 +824,26 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv1 r101vd",
+      "architecture": "RT-DETR",
+      "model": "RT-DETR-R101",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 92486124,
-      "run_date": "2025-06-26T17:18:27.073509+00:00"
+      "run_date": "2025-06-26T17:18:27.073509+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETR-R18",
+        "RT-DETR-R34",
+        "RT-DETR-R50",
+        "RT-DETR-R101"
+      ]
     },
     "map50_95": 0.5431918185416553,
     "map50": 0.7278505743849182,
@@ -786,16 +904,26 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv1 r18vd",
+      "architecture": "RT-DETR",
+      "model": "RT-DETR-R18",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 21955472,
-      "run_date": "2025-06-26T16:10:03.591288+00:00"
+      "run_date": "2025-06-26T16:10:03.591288+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETR-R18",
+        "RT-DETR-R34",
+        "RT-DETR-R50",
+        "RT-DETR-R101"
+      ]
     },
     "map50_95": 0.46400558301313816,
     "map50": 0.6371951754845798,
@@ -856,16 +984,27 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RT-DETRv2",
       "model": "RT-DETRv2-X",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 92486124,
-      "run_date": "2025-06-26T18:36:01.177140+00:00"
+      "run_date": "2025-06-26T18:36:01.177140+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETRv2-S",
+        "RT-DETRv2-M",
+        "RT-DETRv2-M*",
+        "RT-DETRv2-L",
+        "RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5431941393314637,
     "map50": 0.7278505635542873,
@@ -926,16 +1065,27 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RT-DETRv2-M*",
+      "architecture": "RT-DETRv2",
+      "model": "RT-DETRv2-M",
       "license": "Apache-2.0",
       "github_url": "https://github.com/lyuwenyu/RT-DETR",
       "paper_url": "https://arxiv.org/abs/2304.08069",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001
+        "conf": 0
       },
       "param_count": 33212676,
-      "run_date": "2025-06-26T17:31:04.549305+00:00"
+      "run_date": "2025-06-26T17:31:04.549305+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RT-DETRv2-S",
+        "RT-DETRv2-M",
+        "RT-DETRv2-M*",
+        "RT-DETRv2-L",
+        "RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.4991217058977858,
     "map50": 0.6753118673811104,
@@ -996,6 +1146,7 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RF-DETR",
       "model": "RF-DETR-B",
       "license": "Apache-2.0",
       "github_url": "https://github.com/roboflow/rf-detr",
@@ -1007,7 +1158,15 @@ const results = [
         "threshold": 0
       },
       "param_count": 32174530,
-      "run_date": "2025-07-01T16:04:45.415696+00:00"
+      "run_date": "2025-07-21T16:18:55.184731+00:00",
+      "pretrain_datasets": [
+        "COCO",
+        "Object365"
+      ],
+      "architecture_checkpoints": [
+        "RF-DETR-B",
+        "RF-DETR-L"
+      ]
     },
     "map50_95": 0.5329413028553581,
     "map50": 0.7216803109768478,
@@ -1068,6 +1227,7 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RF-DETR",
       "model": "RF-DETR-L",
       "license": "Apache-2.0",
       "github_url": "https://github.com/roboflow/rf-detr",
@@ -1079,7 +1239,15 @@ const results = [
         "threshold": 0
       },
       "param_count": 135637474,
-      "run_date": "2025-07-01T16:50:00.350932+00:00"
+      "run_date": "2025-07-21T16:57:39.033920+00:00",
+      "pretrain_datasets": [
+        "COCO",
+        "Object365"
+      ],
+      "architecture_checkpoints": [
+        "RF-DETR-B",
+        "RF-DETR-L"
+      ]
     },
     "map50_95": 0.5901508363779141,
     "map50": 0.7730380262584882,
@@ -1140,7 +1308,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10s",
+      "architecture": "YOLOv10",
+      "model": "YOLOv10s",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/THU-MIG/yolov10",
       "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -1152,7 +1321,18 @@ const results = [
         "verbose": false
       },
       "param_count": 8096880,
-      "run_date": "2025-06-27T09:05:29.897333+00:00"
+      "run_date": "2025-07-21T11:59:45.261488+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv10n",
+        "YOLOv10s",
+        "YOLOv10m",
+        "YOLOv10b",
+        "YOLOv10l",
+        "YOLOv10x"
+      ]
     },
     "map50_95": 0.4569689708463384,
     "map50": 0.6231193465949499,
@@ -1213,7 +1393,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10l",
+      "architecture": "YOLOv10",
+      "model": "YOLOv10l",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/THU-MIG/yolov10",
       "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -1225,7 +1406,18 @@ const results = [
         "verbose": false
       },
       "param_count": 25839728,
-      "run_date": "2025-06-27T09:48:38.376845+00:00"
+      "run_date": "2025-07-21T12:41:32.381738+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv10n",
+        "YOLOv10s",
+        "YOLOv10m",
+        "YOLOv10b",
+        "YOLOv10l",
+        "YOLOv10x"
+      ]
     },
     "map50_95": 0.5232293768309283,
     "map50": 0.6909025194748809,
@@ -1286,7 +1478,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10m",
+      "architecture": "YOLOv10",
+      "model": "YOLOv10m",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/THU-MIG/yolov10",
       "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -1298,7 +1491,18 @@ const results = [
         "verbose": false
       },
       "param_count": 16543024,
-      "run_date": "2025-06-27T09:17:34.471480+00:00"
+      "run_date": "2025-07-21T12:11:31.253186+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv10n",
+        "YOLOv10s",
+        "YOLOv10m",
+        "YOLOv10b",
+        "YOLOv10l",
+        "YOLOv10x"
+      ]
     },
     "map50_95": 0.5032836035395408,
     "map50": 0.6718586766125595,
@@ -1359,7 +1563,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10x",
+      "architecture": "YOLOv10",
+      "model": "YOLOv10x",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/THU-MIG/yolov10",
       "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -1371,7 +1576,18 @@ const results = [
         "verbose": false
       },
       "param_count": 31738160,
-      "run_date": "2025-06-27T10:08:31.936834+00:00"
+      "run_date": "2025-07-21T13:25:44.401561+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv10n",
+        "YOLOv10s",
+        "YOLOv10m",
+        "YOLOv10b",
+        "YOLOv10l",
+        "YOLOv10x"
+      ]
     },
     "map50_95": 0.5359826763407687,
     "map50": 0.7034342105719545,
@@ -1432,7 +1648,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10n",
+      "architecture": "YOLOv10",
+      "model": "YOLOv10n",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/THU-MIG/yolov10",
       "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -1444,7 +1661,18 @@ const results = [
         "verbose": false
       },
       "param_count": 2762608,
-      "run_date": "2025-06-27T08:53:59.286630+00:00"
+      "run_date": "2025-07-21T11:48:33.167235+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv10n",
+        "YOLOv10s",
+        "YOLOv10m",
+        "YOLOv10b",
+        "YOLOv10l",
+        "YOLOv10x"
+      ]
     },
     "map50_95": 0.38018630507769957,
     "map50": 0.52927109191938,
@@ -1505,7 +1733,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov10b",
+      "architecture": "YOLOv10",
+      "model": "YOLOv10b",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/THU-MIG/yolov10",
       "paper_url": "https://arxiv.org/abs/2405.14458",
@@ -1517,7 +1746,18 @@ const results = [
         "verbose": false
       },
       "param_count": 20534512,
-      "run_date": "2025-06-27T09:32:13.539717+00:00"
+      "run_date": "2025-07-21T12:25:29.303430+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv10n",
+        "YOLOv10s",
+        "YOLOv10m",
+        "YOLOv10b",
+        "YOLOv10l",
+        "YOLOv10x"
+      ]
     },
     "map50_95": 0.5179592315936353,
     "map50": 0.6856014441845036,
@@ -1578,7 +1818,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo11l",
+      "architecture": "YOLO11",
+      "model": "YOLO11l",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -1586,29 +1827,39 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 25340992,
-      "run_date": "2025-06-26T11:08:08.807775+00:00"
+      "run_date": "2025-07-21T11:18:02.114476+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLO11n",
+        "YOLO11s",
+        "YOLO11m",
+        "YOLO11l",
+        "YOLO11x"
+      ]
     },
-    "map50_95": 0.5211414544374655,
-    "map50": 0.6843645860172586,
-    "map75": 0.568464385708777,
+    "map50_95": 0.5215993989069868,
+    "map50": 0.6849163595894845,
+    "map75": 0.5691584317574591,
     "small_objects": {
-      "map50_95": 0.3420882005108157,
-      "map50": 0.5147242045259618,
-      "map75": 0.3713117193574564
+      "map50_95": 0.3423149415353052,
+      "map50": 0.5151607887477518,
+      "map75": 0.3716479761634147
     },
     "medium_objects": {
-      "map50_95": 0.578581604603121,
-      "map50": 0.7516431117729148,
-      "map75": 0.6409018903820245
+      "map50_95": 0.5790703798525316,
+      "map50": 0.7522504121977625,
+      "map75": 0.6415616589806845
     },
     "large_objects": {
-      "map50_95": 0.6840800502059623,
-      "map50": 0.8067864053095097,
-      "map75": 0.7346517838299126
+      "map50_95": 0.6846709863908836,
+      "map50": 0.8073068309417002,
+      "map75": 0.7355067080745852
     },
     "iou_thresholds": [
       0.5,
@@ -1622,19 +1873,19 @@ const results = [
       0.8999999999999999,
       0.95
     ],
-    "f1_50": 0.23518896778378262,
-    "f1_75": 0.19873874872541492,
+    "f1_50": 0.13705592424640192,
+    "f1_75": 0.11528254339372052,
     "f1_small_objects": {
-      "f1_50": 0.16999213570582633,
-      "f1_75": 0.11126358561642413
+      "f1_50": 0.13895975262756044,
+      "f1_75": 0.09041497443672616
     },
     "f1_medium_objects": {
-      "f1_50": 0.2603233861689689,
-      "f1_75": 0.2286521570629377
+      "f1_50": 0.1881473330457018,
+      "f1_75": 0.1647679928510029
     },
     "f1_large_objects": {
-      "f1_50": 0.43195749991006754,
-      "f1_75": 0.40640636113441936
+      "f1_50": 0.220877503425415,
+      "f1_75": 0.2080977626485398
     },
     "f1_iou_thresholds": [
       0.5,
@@ -1651,7 +1902,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo11m",
+      "architecture": "YOLO11",
+      "model": "YOLO11m",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -1659,29 +1911,39 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 20091712,
-      "run_date": "2025-06-26T10:58:56.228485+00:00"
+      "run_date": "2025-07-21T11:08:48.404190+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLO11n",
+        "YOLO11s",
+        "YOLO11m",
+        "YOLO11l",
+        "YOLO11x"
+      ]
     },
-    "map50_95": 0.504645643166112,
-    "map50": 0.6704067824731866,
-    "map75": 0.5489840783409471,
+    "map50_95": 0.5050992324060836,
+    "map50": 0.6710191296764333,
+    "map75": 0.5495795092502607,
     "small_objects": {
-      "map50_95": 0.3246962828531098,
-      "map50": 0.4998922258693108,
-      "map75": 0.34885913004844454
+      "map50_95": 0.3248705935749641,
+      "map50": 0.5002477355628683,
+      "map75": 0.349088699417264
     },
     "medium_objects": {
-      "map50_95": 0.5590998769310286,
-      "map50": 0.7390688931748021,
-      "map75": 0.6203507667952727
+      "map50_95": 0.5595278697975806,
+      "map50": 0.7396558317873109,
+      "map75": 0.6208983652579189
     },
     "large_objects": {
-      "map50_95": 0.6635540579549101,
-      "map50": 0.7925557861166581,
-      "map75": 0.7091344823300626
+      "map50_95": 0.6645518960728806,
+      "map50": 0.7939428398617209,
+      "map75": 0.7104484134730262
     },
     "iou_thresholds": [
       0.5,
@@ -1695,19 +1957,19 @@ const results = [
       0.8999999999999999,
       0.95
     ],
-    "f1_50": 0.22166438553098028,
-    "f1_75": 0.18582387447534673,
+    "f1_50": 0.13510041854781712,
+    "f1_75": 0.11285387498107115,
     "f1_small_objects": {
-      "f1_50": 0.16330538040815584,
-      "f1_75": 0.10539776357157782
+      "f1_50": 0.13664061084620288,
+      "f1_75": 0.08766671089621692
     },
     "f1_medium_objects": {
-      "f1_50": 0.24453271491741937,
-      "f1_75": 0.21253352946717458
+      "f1_50": 0.18496433008357607,
+      "f1_75": 0.1603925557981886
     },
     "f1_large_objects": {
-      "f1_50": 0.3990438125660682,
-      "f1_75": 0.3742023480287838
+      "f1_50": 0.21366454874315907,
+      "f1_75": 0.20071993185558168
     },
     "f1_iou_thresholds": [
       0.5,
@@ -1724,7 +1986,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo11x",
+      "architecture": "YOLO11",
+      "model": "YOLO11x",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -1732,29 +1995,39 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 56919424,
-      "run_date": "2025-06-26T11:21:57.545151+00:00"
+      "run_date": "2025-07-21T11:32:14.949725+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLO11n",
+        "YOLO11s",
+        "YOLO11m",
+        "YOLO11l",
+        "YOLO11x"
+      ]
     },
-    "map50_95": 0.5352808552721365,
-    "map50": 0.7011734227127602,
-    "map75": 0.5834502361786456,
+    "map50_95": 0.5358869311614216,
+    "map50": 0.7020235934290422,
+    "map75": 0.5841582669007258,
     "small_objects": {
-      "map50_95": 0.36982558462940823,
-      "map50": 0.5452622111668503,
-      "map75": 0.40343342089044465
+      "map50_95": 0.3702458656196838,
+      "map50": 0.5461249104477357,
+      "map75": 0.40376655290475744
     },
     "medium_objects": {
-      "map50_95": 0.5860052854309095,
-      "map50": 0.7573131591206943,
-      "map75": 0.6496682346117766
+      "map50_95": 0.5864703043289367,
+      "map50": 0.7578975301959343,
+      "map75": 0.6502963303923306
     },
     "large_objects": {
-      "map50_95": 0.6916989301309798,
-      "map50": 0.8174484880302489,
-      "map75": 0.7375986223586432
+      "map50_95": 0.6934722894456465,
+      "map50": 0.8196820882319961,
+      "map75": 0.7400194338415418
     },
     "iou_thresholds": [
       0.5,
@@ -1768,19 +2041,19 @@ const results = [
       0.8999999999999999,
       0.95
     ],
-    "f1_50": 0.25439576804560926,
-    "f1_75": 0.21749666283294103,
+    "f1_50": 0.1388244484042393,
+    "f1_75": 0.11819606825524084,
     "f1_small_objects": {
-      "f1_50": 0.17846423633623174,
-      "f1_75": 0.12164469553129516
+      "f1_50": 0.1417833323318619,
+      "f1_75": 0.09581275837545426
     },
     "f1_medium_objects": {
-      "f1_50": 0.2819061584756072,
-      "f1_75": 0.25028555763834176
+      "f1_50": 0.194702176432225,
+      "f1_75": 0.17233476846923043
     },
     "f1_large_objects": {
-      "f1_50": 0.4682224838024579,
-      "f1_75": 0.44165523960705255
+      "f1_50": 0.2088657106751014,
+      "f1_75": 0.19729989927889105
     },
     "f1_iou_thresholds": [
       0.5,
@@ -1797,7 +2070,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo11s",
+      "architecture": "YOLO11",
+      "model": "YOLO11s",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -1805,29 +2079,39 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 9443760,
-      "run_date": "2025-06-26T10:51:35.953842+00:00"
+      "run_date": "2025-07-21T11:01:08.659150+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLO11n",
+        "YOLO11s",
+        "YOLO11m",
+        "YOLO11l",
+        "YOLO11x"
+      ]
     },
-    "map50_95": 0.45508250558072805,
-    "map50": 0.6196942849322138,
-    "map75": 0.49198406413979534,
+    "map50_95": 0.455483981087797,
+    "map50": 0.6201375158375868,
+    "map75": 0.49258451142682225,
     "small_objects": {
-      "map50_95": 0.27600608062103504,
-      "map50": 0.4405333135380038,
-      "map75": 0.2890110406645821
+      "map50_95": 0.2762781191626044,
+      "map50": 0.44103115890463973,
+      "map75": 0.28925313536287367
     },
     "medium_objects": {
-      "map50_95": 0.5008357026737478,
-      "map50": 0.679619550253779,
-      "map75": 0.552905711810917
+      "map50_95": 0.501198086241408,
+      "map50": 0.6800610541317651,
+      "map75": 0.5534134109068604
     },
     "large_objects": {
-      "map50_95": 0.6248037061488245,
-      "map50": 0.7656829462424078,
-      "map75": 0.675804231817233
+      "map50_95": 0.6254284947444992,
+      "map50": 0.7662591052621781,
+      "map75": 0.6767434395025796
     },
     "iou_thresholds": [
       0.5,
@@ -1841,19 +2125,19 @@ const results = [
       0.8999999999999999,
       0.95
     ],
-    "f1_50": 0.19067004221393993,
-    "f1_75": 0.1545847916129632,
+    "f1_50": 0.12833779139922183,
+    "f1_75": 0.10368569756897003,
     "f1_small_objects": {
-      "f1_50": 0.14109770025273274,
-      "f1_75": 0.08283811774329296
+      "f1_50": 0.12415981410226233,
+      "f1_75": 0.07215435924439666
     },
     "f1_medium_objects": {
-      "f1_50": 0.21123205537944736,
-      "f1_75": 0.1750677661919963
+      "f1_50": 0.17222274072873214,
+      "f1_75": 0.14218559741814565
     },
     "f1_large_objects": {
-      "f1_50": 0.35355764932363093,
-      "f1_75": 0.32675473568255614
+      "f1_50": 0.22090369066354174,
+      "f1_75": 0.20479720884625832
     },
     "f1_iou_thresholds": [
       0.5,
@@ -1870,7 +2154,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolo11n",
+      "architecture": "YOLO11",
+      "model": "YOLO11n",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/ultralytics/ultralytics",
       "paper_url": "",
@@ -1878,29 +2163,39 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 2616248,
-      "run_date": "2025-06-26T10:47:42.410545+00:00"
+      "run_date": "2025-07-21T10:56:15.203031+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLO11n",
+        "YOLO11s",
+        "YOLO11m",
+        "YOLO11l",
+        "YOLO11x"
+      ]
     },
-    "map50_95": 0.385289384761898,
-    "map50": 0.5383358415911337,
-    "map75": 0.4192597327152214,
+    "map50_95": 0.38550428439969003,
+    "map50": 0.5386062579336164,
+    "map75": 0.41960223462492074,
     "small_objects": {
-      "map50_95": 0.1889430678980089,
-      "map50": 0.31499031209834083,
-      "map75": 0.19588859526645136
+      "map50_95": 0.1890357419554946,
+      "map50": 0.3151598846338626,
+      "map75": 0.1959551226366228
     },
     "medium_objects": {
-      "map50_95": 0.4225396440102377,
-      "map50": 0.5992538765505268,
-      "map75": 0.4668953094216247
+      "map50_95": 0.42275768131347774,
+      "map50": 0.5994575338342933,
+      "map75": 0.4672458083031294
     },
     "large_objects": {
-      "map50_95": 0.560466482650626,
-      "map50": 0.7006927848290027,
-      "map75": 0.617143906198276
+      "map50_95": 0.5608068213228872,
+      "map50": 0.7011044780651577,
+      "map75": 0.6176371830832632
     },
     "iou_thresholds": [
       0.5,
@@ -1914,19 +2209,19 @@ const results = [
       0.8999999999999999,
       0.95
     ],
-    "f1_50": 0.15804439369003312,
-    "f1_75": 0.12281499982040724,
+    "f1_50": 0.12061449384247735,
+    "f1_75": 0.09329409374330966,
     "f1_small_objects": {
-      "f1_50": 0.12096776399276733,
-      "f1_75": 0.06268818179146368
+      "f1_50": 0.11169766038516635,
+      "f1_75": 0.05741545677738489
     },
     "f1_medium_objects": {
-      "f1_50": 0.17366542788995162,
-      "f1_75": 0.13594096510738513
+      "f1_50": 0.15373380106542334,
+      "f1_75": 0.12007621573420663
     },
     "f1_large_objects": {
-      "f1_50": 0.28393784314753356,
-      "f1_75": 0.25659689176222195
+      "f1_50": 0.20187456145749524,
+      "f1_75": 0.18260238934219916
     },
     "f1_iou_thresholds": [
       0.5,
@@ -1943,17 +2238,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RTMDet",
       "model": "RTMDet-m",
       "license": "GPL-3.0",
       "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
       "paper_url": "https://arxiv.org/abs/2212.07784",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 24709188,
-      "run_date": "2025-07-03T13:44:23.072712+00:00"
+      "run_date": "2025-07-03T13:44:23.072712+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RTMDet-t",
+        "RTMDet-s",
+        "RTMDet-m",
+        "RTMDet-l",
+        "RTMDet-x"
+      ]
     },
     "map50_95": 0.4903443547132559,
     "map50": 0.6665617848475728,
@@ -2014,17 +2320,28 @@ const results = [
   },
   {
     "metadata": {
-      "model": "RTMDet-tiny",
+      "architecture": "RTMDet",
+      "model": "RTMDet-t",
       "license": "GPL-3.0",
       "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
       "paper_url": "https://arxiv.org/abs/2212.07784",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 4896168,
-      "run_date": "2025-07-03T13:25:18.426727+00:00"
+      "run_date": "2025-07-03T13:25:18.426727+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RTMDet-t",
+        "RTMDet-s",
+        "RTMDet-m",
+        "RTMDet-l",
+        "RTMDet-x"
+      ]
     },
     "map50_95": 0.40962018950371093,
     "map50": 0.5744842899406496,
@@ -2085,17 +2402,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RTMDet",
       "model": "RTMDet-l",
       "license": "GPL-3.0",
       "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
       "paper_url": "https://arxiv.org/abs/2212.07784",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 52315804,
-      "run_date": "2025-07-03T13:55:44.466933+00:00"
+      "run_date": "2025-07-03T13:55:44.466933+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RTMDet-t",
+        "RTMDet-s",
+        "RTMDet-m",
+        "RTMDet-l",
+        "RTMDet-x"
+      ]
     },
     "map50_95": 0.5117611299359369,
     "map50": 0.6891936353342211,
@@ -2156,17 +2484,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RTMDet",
       "model": "RTMDet-s",
       "license": "GPL-3.0",
       "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
       "paper_url": "https://arxiv.org/abs/2212.07784",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 8886924,
-      "run_date": "2025-07-03T13:34:36.421279+00:00"
+      "run_date": "2025-07-03T13:34:36.421279+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RTMDet-t",
+        "RTMDet-s",
+        "RTMDet-m",
+        "RTMDet-l",
+        "RTMDet-x"
+      ]
     },
     "map50_95": 0.44358589681565813,
     "map50": 0.6154184913455775,
@@ -2227,17 +2566,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "RTMDet",
       "model": "RTMDet-x",
       "license": "GPL-3.0",
       "github_url": "https://github.com/open-mmlab/mmyolo/tree/main/configs/rtmdet",
       "paper_url": "https://arxiv.org/abs/2212.07784",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 94855572,
-      "run_date": "2025-07-03T14:10:22.629652+00:00"
+      "run_date": "2025-07-03T14:10:22.629652+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "RTMDet-t",
+        "RTMDet-s",
+        "RTMDet-m",
+        "RTMDet-l",
+        "RTMDet-x"
+      ]
     },
     "map50_95": 0.5252729744085567,
     "map50": 0.7007234528936505,
@@ -2298,367 +2648,28 @@ const results = [
   },
   {
     "metadata": {
-      "model": "LW-DETR-tiny",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/lyuwenyu/RT-DETR",
-      "paper_url": "https://arxiv.org/abs/2304.08069",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001
-      },
-      "param_count": 12052002,
-      "run_date": "2025-07-08T14:57:05.432923+00:00"
-    },
-    "map50_95": 0.4292864128477277,
-    "map50": 0.6076198478098024,
-    "map75": 0.4597536394304954,
-    "small_objects": {
-      "map50_95": 0.22734438857785455,
-      "map50": 0.40057713379588317,
-      "map75": 0.22784143450878944
-    },
-    "medium_objects": {
-      "map50_95": 0.4739792603559949,
-      "map50": 0.6757493771021222,
-      "map75": 0.5200357708021879
-    },
-    "large_objects": {
-      "map50_95": 0.600029668495532,
-      "map50": 0.7362800032501985,
-      "map75": 0.6547361096014477
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.135208948808957,
-    "f1_75": 0.10086000595996834,
-    "f1_small_objects": {
-      "f1_50": 0.12188680313647321,
-      "f1_75": 0.05669079884685941
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.18965773131200617,
-      "f1_75": 0.14699166501936634
-    },
-    "f1_large_objects": {
-      "f1_50": 0.18702603095260653,
-      "f1_75": 0.17240529809070898
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "LW-DETR-small",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/lyuwenyu/RT-DETR",
-      "paper_url": "https://arxiv.org/abs/2304.08069",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001
-      },
-      "param_count": 14557378,
-      "run_date": "2025-07-08T14:51:56.328502+00:00"
-    },
-    "map50_95": 0.48064705786573103,
-    "map50": 0.6692671157815807,
-    "map75": 0.5170006333941447,
-    "small_objects": {
-      "map50_95": 0.2677685343759117,
-      "map50": 0.465178545810395,
-      "map75": 0.26847521246014977
-    },
-    "medium_objects": {
-      "map50_95": 0.5252845761877141,
-      "map50": 0.7309701986200278,
-      "map75": 0.5802965098336754
-    },
-    "large_objects": {
-      "map50_95": 0.6558910166683265,
-      "map50": 0.789779521068933,
-      "map75": 0.7149423528584904
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.05452907119877746,
-    "f1_75": 0.04195760307789034,
-    "f1_small_objects": {
-      "f1_50": 0.0516341702941889,
-      "f1_75": 0.025015480237982956
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09051139062513185,
-      "f1_75": 0.07311019892960313
-    },
-    "f1_large_objects": {
-      "f1_50": 0.07868869561948463,
-      "f1_75": 0.07480441502996506
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "LW-DETR-large",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/lyuwenyu/RT-DETR",
-      "paper_url": "https://arxiv.org/abs/2304.08069",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001
-      },
-      "param_count": 46823650,
-      "run_date": "2025-07-08T14:36:48.958909+00:00"
-    },
-    "map50_95": 0.5610327551557444,
-    "map50": 0.7460869226010586,
-    "map75": 0.6093197415264842,
-    "small_objects": {
-      "map50_95": 0.3720613424895867,
-      "map50": 0.5806690569810694,
-      "map75": 0.39533645016190494
-    },
-    "medium_objects": {
-      "map50_95": 0.6044937859369105,
-      "map50": 0.7989530685851585,
-      "map75": 0.672267120510805
-    },
-    "large_objects": {
-      "map50_95": 0.7298589800014572,
-      "map50": 0.8564438247680204,
-      "map75": 0.786180335109584
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.057531692741205155,
-    "f1_75": 0.04752490835687958,
-    "f1_small_objects": {
-      "f1_50": 0.05571559859144433,
-      "f1_75": 0.0340999580093127
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09569680420520461,
-      "f1_75": 0.08393239731420694
-    },
-    "f1_large_objects": {
-      "f1_50": 0.08938789136962551,
-      "f1_75": 0.08602581131503174
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "LW-DETR-medium",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/lyuwenyu/RT-DETR",
-      "paper_url": "https://arxiv.org/abs/2304.08069",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001
-      },
-      "param_count": 28237378,
-      "run_date": "2025-07-08T14:44:59.572484+00:00"
-    },
-    "map50_95": 0.5258699900476116,
-    "map50": 0.71966917943557,
-    "map75": 0.5669661613028489,
-    "small_objects": {
-      "map50_95": 0.3265745517130668,
-      "map50": 0.5497969128782022,
-      "map75": 0.3366812039693149
-    },
-    "medium_objects": {
-      "map50_95": 0.576384475513628,
-      "map50": 0.779697687289297,
-      "map75": 0.6410406630350493
-    },
-    "large_objects": {
-      "map50_95": 0.7058917390886222,
-      "map50": 0.8353399887828663,
-      "map75": 0.7597227045756456
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.05613591135869065,
-    "f1_75": 0.04438398932273356,
-    "f1_small_objects": {
-      "f1_50": 0.05394053389025399,
-      "f1_75": 0.028039576015194086
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09543061569836522,
-      "f1_75": 0.08027097605729612
-    },
-    "f1_large_objects": {
-      "f1_50": 0.07939155780470139,
-      "f1_75": 0.07628994058617594
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "LW-DETR-xlarge",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/lyuwenyu/RT-DETR",
-      "paper_url": "https://arxiv.org/abs/2304.08069",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001
-      },
-      "param_count": 118033378,
-      "run_date": "2025-07-08T15:12:04.849804+00:00"
-    },
-    "map50_95": 0.5834686714519932,
-    "map50": 0.7685717552533836,
-    "map75": 0.633248517670748,
-    "small_objects": {
-      "map50_95": 0.4084441462483568,
-      "map50": 0.6265398546189886,
-      "map75": 0.44067864948778934
-    },
-    "medium_objects": {
-      "map50_95": 0.6324903176258886,
-      "map50": 0.8223997483603802,
-      "map75": 0.7006923225732521
-    },
-    "large_objects": {
-      "map50_95": 0.7483799039339816,
-      "map50": 0.8774894115399953,
-      "map75": 0.8006443513479836
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.057115710649203476,
-    "f1_75": 0.04782065014142348,
-    "f1_small_objects": {
-      "f1_50": 0.056418888281788315,
-      "f1_75": 0.0362105914124734
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09792470853839128,
-      "f1_75": 0.08646578763920003
-    },
-    "f1_large_objects": {
-      "f1_50": 0.08385856843103426,
-      "f1_75": 0.08088878666034015
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
+      "architecture": "DEIM-D-FINE",
       "model": "DEIM-D-FINE-L",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 30769891,
-      "run_date": "2025-07-02T18:16:07.765300+00:00"
+      "run_date": "2025-07-02T18:16:07.765300+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-D-FINE-N",
+        "DEIM-D-FINE-S",
+        "DEIM-D-FINE-M",
+        "DEIM-D-FINE-L",
+        "DEIM-D-FINE-X"
+      ]
     },
     "map50_95": 0.5473875611370131,
     "map50": 0.7236620348808958,
@@ -2719,17 +2730,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-D-FINE",
       "model": "DEIM-D-FINE-X",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 61695555,
-      "run_date": "2025-07-02T18:07:09.482220+00:00"
+      "run_date": "2025-07-02T18:07:09.482220+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-D-FINE-N",
+        "DEIM-D-FINE-S",
+        "DEIM-D-FINE-M",
+        "DEIM-D-FINE-L",
+        "DEIM-D-FINE-X"
+      ]
     },
     "map50_95": 0.5647308564861847,
     "map50": 0.7399505104473861,
@@ -2790,17 +2812,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-D-FINE",
       "model": "DEIM-D-FINE-M",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 19248189,
-      "run_date": "2025-07-02T18:38:51.126279+00:00"
+      "run_date": "2025-07-02T18:38:51.126279+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-D-FINE-N",
+        "DEIM-D-FINE-S",
+        "DEIM-D-FINE-M",
+        "DEIM-D-FINE-L",
+        "DEIM-D-FINE-X"
+      ]
     },
     "map50_95": 0.5268776177057193,
     "map50": 0.6996397675646474,
@@ -2861,17 +2894,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-D-FINE",
       "model": "DEIM-D-FINE-S",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 10237491,
-      "run_date": "2025-07-02T18:30:36.682101+00:00"
+      "run_date": "2025-07-02T18:30:36.682101+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-D-FINE-N",
+        "DEIM-D-FINE-S",
+        "DEIM-D-FINE-M",
+        "DEIM-D-FINE-L",
+        "DEIM-D-FINE-X"
+      ]
     },
     "map50_95": 0.4896110916922639,
     "map50": 0.6587385010524565,
@@ -2932,17 +2976,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-RT-DETRv2",
       "model": "DEIM-RT-DETRv2-M*",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 32994576,
-      "run_date": "2025-07-02T19:20:39.563637+00:00"
+      "run_date": "2025-07-02T19:20:39.563637+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-RT-DETRv2-S",
+        "DEIM-RT-DETRv2-M",
+        "DEIM-RT-DETRv2-M*",
+        "DEIM-RT-DETRv2-L",
+        "DEIM-RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5318988098288526,
     "map50": 0.7117580198020479,
@@ -3003,17 +3058,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-RT-DETRv2",
       "model": "DEIM-RT-DETRv2-X",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 74872812,
-      "run_date": "2025-07-02T18:49:45.580785+00:00"
+      "run_date": "2025-07-02T18:49:45.580785+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-RT-DETRv2-S",
+        "DEIM-RT-DETRv2-M",
+        "DEIM-RT-DETRv2-M*",
+        "DEIM-RT-DETRv2-L",
+        "DEIM-RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5548484270906899,
     "map50": 0.734955852326379,
@@ -3074,17 +3140,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-RT-DETRv2",
       "model": "DEIM-RT-DETRv2-M",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 31236356,
-      "run_date": "2025-07-02T19:12:44.923985+00:00"
+      "run_date": "2025-07-02T19:12:44.923985+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-RT-DETRv2-S",
+        "DEIM-RT-DETRv2-M",
+        "DEIM-RT-DETRv2-M*",
+        "DEIM-RT-DETRv2-L",
+        "DEIM-RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5093723262790102,
     "map50": 0.6857157531177935,
@@ -3145,17 +3222,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-RT-DETRv2",
       "model": "DEIM-RT-DETRv2-L",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 42144876,
-      "run_date": "2025-07-02T18:58:39.123914+00:00"
+      "run_date": "2025-07-02T18:58:39.123914+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-RT-DETRv2-S",
+        "DEIM-RT-DETRv2-M",
+        "DEIM-RT-DETRv2-M*",
+        "DEIM-RT-DETRv2-L",
+        "DEIM-RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.5429229777495015,
     "map50": 0.722368008409455,
@@ -3216,17 +3304,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-D-FINE",
       "model": "DEIM-D-FINE-N",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 10237491,
-      "run_date": "2025-07-02T18:23:21.611447+00:00"
+      "run_date": "2025-07-02T18:23:21.611447+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-D-FINE-N",
+        "DEIM-D-FINE-S",
+        "DEIM-D-FINE-M",
+        "DEIM-D-FINE-L",
+        "DEIM-D-FINE-X"
+      ]
     },
     "map50_95": 0.4896110916922639,
     "map50": 0.6587385010524565,
@@ -3287,17 +3386,28 @@ const results = [
   },
   {
     "metadata": {
+      "architecture": "DEIM-RT-DETRv2",
       "model": "DEIM-RT-DETRv2-S",
       "license": "Apache-2.0",
       "github_url": "https://github.com/ShihuaHuang95/DEIM",
       "paper_url": "https://arxiv.org/abs/2412.04234",
       "run_parameters": {
         "imgsz": 640,
-        "conf": 0.001,
+        "conf": 0,
         "max_det": 100
       },
       "param_count": 19979152,
-      "run_date": "2025-07-02T19:05:21.426740+00:00"
+      "run_date": "2025-07-02T19:05:21.426740+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "DEIM-RT-DETRv2-S",
+        "DEIM-RT-DETRv2-M",
+        "DEIM-RT-DETRv2-M*",
+        "DEIM-RT-DETRv2-L",
+        "DEIM-RT-DETRv2-X"
+      ]
     },
     "map50_95": 0.49052370853503147,
     "map50": 0.6613624408585457,
@@ -3358,7 +3468,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov13x.pt",
+      "architecture": "YOLOv13",
+      "model": "YOLOv13x",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/iMoonLab/yolov13",
       "paper_url": "https://arxiv.org/abs/2506.17733",
@@ -3370,7 +3481,16 @@ const results = [
         "verbose": false
       },
       "param_count": 63977543,
-      "run_date": "2025-06-30T11:06:58.187847+00:00"
+      "run_date": "2025-07-21T15:47:29.580210+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv13n",
+        "YOLOv13s",
+        "YOLOv13l",
+        "YOLOv13x"
+      ]
     },
     "map50_95": 0.5365436755899669,
     "map50": 0.7080026667012619,
@@ -3431,7 +3551,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov13l.pt",
+      "architecture": "YOLOv13",
+      "model": "YOLOv13l",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/iMoonLab/yolov13",
       "paper_url": "https://arxiv.org/abs/2506.17733",
@@ -3443,7 +3564,16 @@ const results = [
         "verbose": false
       },
       "param_count": 27574471,
-      "run_date": "2025-06-30T10:08:34.423637+00:00"
+      "run_date": "2025-07-21T14:46:43.806003+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv13n",
+        "YOLOv13s",
+        "YOLOv13l",
+        "YOLOv13x"
+      ]
     },
     "map50_95": 0.5225120254244422,
     "map50": 0.6965943553105564,
@@ -3504,7 +3634,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov13n.pt",
+      "architecture": "YOLOv13",
+      "model": "YOLOv13n",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/iMoonLab/yolov13",
       "paper_url": "https://arxiv.org/abs/2506.17733",
@@ -3516,20 +3647,29 @@ const results = [
         "verbose": false
       },
       "param_count": 2481991,
-      "run_date": "2025-06-30T09:13:22.990988+00:00"
+      "run_date": "2025-07-21T13:50:14.508701+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv13n",
+        "YOLOv13s",
+        "YOLOv13l",
+        "YOLOv13x"
+      ]
     },
-    "map50_95": 0.40360209705138705,
-    "map50": 0.5619243368456918,
-    "map75": 0.4386276867920969,
+    "map50_95": 0.4036060266966439,
+    "map50": 0.5619303155756621,
+    "map75": 0.43863432084655457,
     "small_objects": {
       "map50_95": 0.1940290692985786,
       "map50": 0.33100453112419065,
       "map75": 0.20005002749764403
     },
     "medium_objects": {
-      "map50_95": 0.4463913456752338,
-      "map50": 0.6327495655586434,
-      "map75": 0.4975866850852058
+      "map50_95": 0.44640390859228185,
+      "map50": 0.6327721359284909,
+      "map75": 0.497601155355841
     },
     "large_objects": {
       "map50_95": 0.5855930688596167,
@@ -3577,7 +3717,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov13s.pt",
+      "architecture": "YOLOv13",
+      "model": "YOLOv13s",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/iMoonLab/yolov13",
       "paper_url": "https://arxiv.org/abs/2506.17733",
@@ -3589,7 +3730,16 @@ const results = [
         "verbose": false
       },
       "param_count": 9031879,
-      "run_date": "2025-06-30T09:28:23.024034+00:00"
+      "run_date": "2025-07-21T14:05:28.281722+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv13n",
+        "YOLOv13s",
+        "YOLOv13l",
+        "YOLOv13x"
+      ]
     },
     "map50_95": 0.467729645355259,
     "map50": 0.6352356620600625,
@@ -3650,646 +3800,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "D-FINE-S-Objects365+COCO",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 10237491,
-      "run_date": "2025-07-07T13:37:12.438113+00:00"
-    },
-    "map50_95": 0.5071537161240218,
-    "map50": 0.6766071133036018,
-    "map75": 0.5510398238755813,
-    "small_objects": {
-      "map50_95": 0.3285601507086766,
-      "map50": 0.5096229259596541,
-      "map75": 0.3583947907917003
-    },
-    "medium_objects": {
-      "map50_95": 0.5460513127873454,
-      "map50": 0.7284089900889458,
-      "map75": 0.6029737817913143
-    },
-    "large_objects": {
-      "map50_95": 0.6652927351414213,
-      "map50": 0.7904881490095533,
-      "map75": 0.714418201821433
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.05486990400176144,
-    "f1_75": 0.045220709139021834,
-    "f1_small_objects": {
-      "f1_50": 0.054891985082287875,
-      "f1_75": 0.03445600453421143
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.08999174388894571,
-      "f1_75": 0.07743750906451168
-    },
-    "f1_large_objects": {
-      "f1_50": 0.08272282391440564,
-      "f1_75": 0.07892232432306992
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-S",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 10237491,
-      "run_date": "2025-07-02T15:53:15.942226+00:00"
-    },
-    "map50_95": 0.48514370824977754,
-    "map50": 0.6544490391845506,
-    "map75": 0.5257594655050993,
-    "small_objects": {
-      "map50_95": 0.293380168147943,
-      "map50": 0.4688811604302761,
-      "map75": 0.31331380846875584
-    },
-    "medium_objects": {
-      "map50_95": 0.5224088033388363,
-      "map50": 0.7046513835879347,
-      "map75": 0.5759323646320982
-    },
-    "large_objects": {
-      "map50_95": 0.6543445040293374,
-      "map50": 0.7867993441019225,
-      "map75": 0.7035494151113411
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.05375761093968187,
-    "f1_75": 0.04351469967713114,
-    "f1_small_objects": {
-      "f1_50": 0.05366261153683901,
-      "f1_75": 0.032435194371379275
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.08613596390702942,
-      "f1_75": 0.07229886986869266
-    },
-    "f1_large_objects": {
-      "f1_50": 0.07833673983030114,
-      "f1_75": 0.07409650435530615
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-M-Objects365+COCO",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 19248189,
-      "run_date": "2025-07-07T13:30:17.866042+00:00"
-    },
-    "map50_95": 0.5509279208740933,
-    "map50": 0.7258868091209364,
-    "map75": 0.5972498279776655,
-    "small_objects": {
-      "map50_95": 0.3789806874818174,
-      "map50": 0.5714295017914541,
-      "map75": 0.412362548225521
-    },
-    "medium_objects": {
-      "map50_95": 0.593848578751873,
-      "map50": 0.7791110202112314,
-      "map75": 0.6534075817939347
-    },
-    "large_objects": {
-      "map50_95": 0.7166187041640961,
-      "map50": 0.8423809630500444,
-      "map75": 0.7649499349710778
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.056996808983503594,
-    "f1_75": 0.04807154639141372,
-    "f1_small_objects": {
-      "f1_50": 0.05671514103721058,
-      "f1_75": 0.03766583914154829
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09387083837843839,
-      "f1_75": 0.08260526268846037
-    },
-    "f1_large_objects": {
-      "f1_50": 0.08320571707058991,
-      "f1_75": 0.07992583374505201
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-X-Objects365+COCO",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 61601635,
-      "run_date": "2025-07-07T13:13:43.208648+00:00"
-    },
-    "map50_95": 0.5930669496810907,
-    "map50": 0.7680956612154655,
-    "map75": 0.6462473885882232,
-    "small_objects": {
-      "map50_95": 0.42240654011944007,
-      "map50": 0.6248104147005218,
-      "map75": 0.46242166590980366
-    },
-    "medium_objects": {
-      "map50_95": 0.6421157269952902,
-      "map50": 0.8201925350765245,
-      "map75": 0.7135686363112634
-    },
-    "large_objects": {
-      "map50_95": 0.76388146658787,
-      "map50": 0.892768181973849,
-      "map75": 0.8130518113093412
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.05602784165402008,
-    "f1_75": 0.048103851754730385,
-    "f1_small_objects": {
-      "f1_50": 0.0569209271411297,
-      "f1_75": 0.038788457664379314
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09864308541575993,
-      "f1_75": 0.08901608655218246
-    },
-    "f1_large_objects": {
-      "f1_50": 0.07571670197016368,
-      "f1_75": 0.07328886806665899
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-X",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 61601635,
-      "run_date": "2025-07-02T15:30:32.177380+00:00"
-    },
-    "map50_95": 0.5576489900847148,
-    "map50": 0.7374825229011585,
-    "map75": 0.6019219594787314,
-    "small_objects": {
-      "map50_95": 0.3725429870855317,
-      "map50": 0.570642261287342,
-      "map75": 0.4020768397551852
-    },
-    "medium_objects": {
-      "map50_95": 0.6048030111494492,
-      "map50": 0.7898486077739065,
-      "map75": 0.6694804780576142
-    },
-    "large_objects": {
-      "map50_95": 0.7345870854018679,
-      "map50": 0.8662609857536316,
-      "map75": 0.7828490156606304
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.05530574323697755,
-    "f1_75": 0.04604575508693281,
-    "f1_small_objects": {
-      "f1_50": 0.05386189269982963,
-      "f1_75": 0.034593785844388665
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09474748439039989,
-      "f1_75": 0.08279460287381087
-    },
-    "f1_large_objects": {
-      "f1_50": 0.08112498988617281,
-      "f1_75": 0.07729222807171604
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-M",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 19248189,
-      "run_date": "2025-07-02T15:46:36.197476+00:00"
-    },
-    "map50_95": 0.5227807733843114,
-    "map50": 0.6985491286864085,
-    "map75": 0.5640744790251377,
-    "small_objects": {
-      "map50_95": 0.3319784668472987,
-      "map50": 0.5146792536238712,
-      "map75": 0.35412915605244927
-    },
-    "medium_objects": {
-      "map50_95": 0.5651425458237431,
-      "map50": 0.7538254576823002,
-      "map75": 0.6207580251431929
-    },
-    "large_objects": {
-      "map50_95": 0.7014185047344618,
-      "map50": 0.8368409674593882,
-      "map75": 0.747322985960343
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.054598487921024945,
-    "f1_75": 0.04502092673497856,
-    "f1_small_objects": {
-      "f1_50": 0.054561981863271616,
-      "f1_75": 0.034542030279845266
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09075821707727898,
-      "f1_75": 0.07807185485247059
-    },
-    "f1_large_objects": {
-      "f1_50": 0.07757943554252847,
-      "f1_75": 0.07388672954625
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-L",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 30724195,
-      "run_date": "2025-07-02T15:39:12.190707+00:00"
-    },
-    "map50_95": 0.539700436782129,
-    "map50": 0.716311441787366,
-    "map75": 0.5836868912748853,
-    "small_objects": {
-      "map50_95": 0.36505811800303534,
-      "map50": 0.5609112986892427,
-      "map75": 0.39693587076949266
-    },
-    "medium_objects": {
-      "map50_95": 0.5800898152376464,
-      "map50": 0.7668293892118095,
-      "map75": 0.6402867549917569
-    },
-    "large_objects": {
-      "map50_95": 0.7187143506394659,
-      "map50": 0.8465930273503025,
-      "map75": 0.7715248986234498
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.055517961107949605,
-    "f1_75": 0.04611562519279117,
-    "f1_small_objects": {
-      "f1_50": 0.05453196691130003,
-      "f1_75": 0.034849780592258496
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09234146542905182,
-      "f1_75": 0.08026027689062067
-    },
-    "f1_large_objects": {
-      "f1_50": 0.08152487237685148,
-      "f1_75": 0.0777027460861082
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-L-Objects365+COCO",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 30724195,
-      "run_date": "2025-07-07T13:22:36.001748+00:00"
-    },
-    "map50_95": 0.5725239645867173,
-    "map50": 0.7486976376924256,
-    "map75": 0.6231506603375568,
-    "small_objects": {
-      "map50_95": 0.40505107269986435,
-      "map50": 0.6065446319283793,
-      "map75": 0.44434863747011344
-    },
-    "medium_objects": {
-      "map50_95": 0.6146716754627002,
-      "map50": 0.7969835297848786,
-      "map75": 0.6810989005113977
-    },
-    "large_objects": {
-      "map50_95": 0.7368508186435809,
-      "map50": 0.8652552055944664,
-      "map75": 0.7882838387420692
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.056387251594089034,
-    "f1_75": 0.04814481136228767,
-    "f1_small_objects": {
-      "f1_50": 0.057278204733468126,
-      "f1_75": 0.03878550847887966
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.09519322533031489,
-      "f1_75": 0.08480488350859926
-    },
-    "f1_large_objects": {
-      "f1_50": 0.07875678699152604,
-      "f1_75": 0.07609134904835042
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "D-FINE-N",
-      "license": "Apache-2.0",
-      "github_url": "https://github.com/Peterande/D-FINE",
-      "paper_url": "https://arxiv.org/abs/2410.13842",
-      "run_parameters": {
-        "imgsz": 640,
-        "conf": 0.001,
-        "max_det": 100
-      },
-      "param_count": 3753799,
-      "run_date": "2025-07-02T15:59:34.017773+00:00"
-    },
-    "map50_95": 0.42799353272644564,
-    "map50": 0.6028049862821285,
-    "map75": 0.45453403500612183,
-    "small_objects": {
-      "map50_95": 0.22882592187191766,
-      "map50": 0.39872109668921424,
-      "map75": 0.2321712889786202
-    },
-    "medium_objects": {
-      "map50_95": 0.4678679848692965,
-      "map50": 0.6663193660236854,
-      "map75": 0.5112616201671618
-    },
-    "large_objects": {
-      "map50_95": 0.6215177337164293,
-      "map50": 0.7676886962989675,
-      "map75": 0.6704790206956477
-    },
-    "iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ],
-    "f1_50": 0.050894558017969535,
-    "f1_75": 0.03794848927763055,
-    "f1_small_objects": {
-      "f1_50": 0.04876976763977727,
-      "f1_75": 0.02167582002889669
-    },
-    "f1_medium_objects": {
-      "f1_50": 0.07841052004960718,
-      "f1_75": 0.06083808965387593
-    },
-    "f1_large_objects": {
-      "f1_50": 0.0727133404168192,
-      "f1_75": 0.0677604257921165
-    },
-    "f1_iou_thresholds": [
-      0.5,
-      0.55,
-      0.6,
-      0.65,
-      0.7,
-      0.75,
-      0.8,
-      0.85,
-      0.8999999999999999,
-      0.95
-    ]
-  },
-  {
-    "metadata": {
-      "model": "yolov12s.pt",
+      "architecture": "YOLOv12",
+      "model": "YOLOv12s",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/sunsmarterjie/yolov12",
       "paper_url": "https://arxiv.org/abs/2502.12524",
@@ -4297,11 +3809,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 9261840,
-      "run_date": "2025-06-27T14:21:27.052739+00:00"
+      "run_date": "2025-06-27T14:21:27.052739+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv12n",
+        "YOLOv12s",
+        "YOLOv12m",
+        "YOLOv12l",
+        "YOLOv12x"
+      ]
     },
     "map50_95": 0.4668903191164845,
     "map50": 0.6308050647924426,
@@ -4362,7 +3884,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov12l.pt",
+      "architecture": "YOLOv12",
+      "model": "YOLOv12l",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/sunsmarterjie/yolov12",
       "paper_url": "https://arxiv.org/abs/2502.12524",
@@ -4370,11 +3893,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 26400752,
-      "run_date": "2025-06-27T14:28:52.137815+00:00"
+      "run_date": "2025-06-27T14:28:52.137815+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv12n",
+        "YOLOv12s",
+        "YOLOv12m",
+        "YOLOv12l",
+        "YOLOv12x"
+      ]
     },
     "map50_95": 0.525554745865507,
     "map50": 0.690597113220024,
@@ -4435,7 +3968,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov12x.pt",
+      "architecture": "YOLOv12",
+      "model": "YOLOv12x",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/sunsmarterjie/yolov12",
       "paper_url": "https://arxiv.org/abs/2502.12524",
@@ -4443,11 +3977,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 59135744,
-      "run_date": "2025-06-27T14:34:57.735819+00:00"
+      "run_date": "2025-06-27T14:34:57.735819+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv12n",
+        "YOLOv12s",
+        "YOLOv12m",
+        "YOLOv12l",
+        "YOLOv12x"
+      ]
     },
     "map50_95": 0.5399705482473173,
     "map50": 0.7031759381463941,
@@ -4508,7 +4052,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov12m.pt",
+      "architecture": "YOLOv12",
+      "model": "YOLOv12m",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/sunsmarterjie/yolov12",
       "paper_url": "https://arxiv.org/abs/2502.12524",
@@ -4516,11 +4061,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 20166592,
-      "run_date": "2025-06-27T14:24:43.105281+00:00"
+      "run_date": "2025-06-27T14:24:43.105281+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv12n",
+        "YOLOv12s",
+        "YOLOv12m",
+        "YOLOv12l",
+        "YOLOv12x"
+      ]
     },
     "map50_95": 0.5136312901034421,
     "map50": 0.679694137070456,
@@ -4581,7 +4136,8 @@ const results = [
   },
   {
     "metadata": {
-      "model": "yolov12n.pt",
+      "architecture": "YOLOv12",
+      "model": "YOLOv12n",
       "license": "AGPL-3.0",
       "github_url": "https://github.com/sunsmarterjie/yolov12",
       "paper_url": "https://arxiv.org/abs/2502.12524",
@@ -4589,11 +4145,21 @@ const results = [
         "imgsz": 640,
         "iou": 0.7,
         "max_det": 100,
-        "conf": 0.001,
+        "conf": 0,
         "verbose": false
       },
       "param_count": 2590824,
-      "run_date": "2025-06-27T14:18:29.958059+00:00"
+      "run_date": "2025-06-27T14:18:29.958059+00:00",
+      "pretrain_datasets": [
+        "COCO"
+      ],
+      "architecture_checkpoints": [
+        "YOLOv12n",
+        "YOLOv12s",
+        "YOLOv12m",
+        "YOLOv12l",
+        "YOLOv12x"
+      ]
     },
     "map50_95": 0.39718142822880104,
     "map50": 0.5502291671378012,
