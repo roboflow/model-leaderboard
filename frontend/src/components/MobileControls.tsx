@@ -32,6 +32,11 @@ import { formatters } from "@/lib/formatters";
 import { useSetFilter } from "@/hooks/useSetFilter";
 import { useColumnManager } from "@/hooks/useColumnManager";
 
+interface GroupedBenchmark {
+  groupName: string
+  items: { key: string; label: string }[]
+}
+
 interface MobileControlsProps {
   // Filter objects
   licenseFilter: ReturnType<typeof useSetFilter>;
@@ -44,10 +49,15 @@ interface MobileControlsProps {
   availableArchitectures: string[];
   availablePretrainDatasets: string[];
 
-  // Dataset selection
-  availableDatasets: string[];
-  selectedDataset: string;
-  onDatasetChange: (dataset: string) => void;
+  // Benchmark selection (supporting both old and new formats)
+  availableDatasets?: string[];
+  selectedDataset?: string;
+  onDatasetChange?: (dataset: string) => void;
+  
+  // New grouped benchmark selection
+  availableBenchmarks?: GroupedBenchmark[];
+  selectedBenchmark?: string;
+  onBenchmarkChange?: (benchmark: string) => void;
 
   // Column management
   columnManager: ReturnType<typeof useColumnManager>;
@@ -64,6 +74,9 @@ export function MobileControls({
   availableDatasets,
   selectedDataset,
   onDatasetChange,
+  availableBenchmarks,
+  selectedBenchmark,
+  onBenchmarkChange,
   columnManager,
 }: MobileControlsProps) {
   const isMobile = useIsMobile();
@@ -98,7 +111,7 @@ export function MobileControls({
                   <FunnelIcon size={16} />
                   <h3 className="font-semibold">Filters</h3>
                 </div>
-                <DropdownFilterCheckbox
+                {/* <DropdownFilterCheckbox
                   icon={CircuitryIcon}
                   title="Architecture"
                   label="Filter by Architecture"
@@ -109,9 +122,9 @@ export function MobileControls({
                   onSelectAll={architectureFilter.selectAll}
                 />
 
-                <Separator />
+                <Separator /> */}
 
-                <DropdownFilterSlider
+                {/* <DropdownFilterSlider
                   icon={CpuIcon}
                   title="Parameters"
                   label="Filter by Parameter Count"
@@ -119,9 +132,9 @@ export function MobileControls({
                   step={0.1}
                   {...parameterFilter}
                 />
-                <Separator />
+                <Separator /> */}
 
-                <DropdownFilterCheckbox
+                {/* <DropdownFilterCheckbox
                   icon={DatabaseIcon}
                   title="Pretrained Datasets"
                   label="Filter by Pretrained Datasets"
@@ -131,7 +144,7 @@ export function MobileControls({
                   onClearAll={pretrainDatasetFilter.clearAll}
                   onSelectAll={pretrainDatasetFilter.selectAll}
                 />
-                <Separator />
+                <Separator /> */}
 
                 <DropdownFilterCheckbox
                   icon={FileTextIcon}
@@ -149,10 +162,23 @@ export function MobileControls({
                 <DropdownFilterRadio
                   icon={GaugeIcon}
                   title="Benchmark"
-                  label="Select Dataset"
-                  availableItems={availableDatasets}
-                  selectedItem={selectedDataset}
-                  onItemChange={onDatasetChange}
+                  label="Select Benchmark"
+                  {...(availableBenchmarks && selectedBenchmark && onBenchmarkChange ? {
+                    groupedItems: availableBenchmarks,
+                    selectedItem: selectedBenchmark,
+                    onItemChange: onBenchmarkChange,
+                    tag: (() => {
+                      const group = availableBenchmarks.find(g => 
+                        g.items.some(item => item.key === selectedBenchmark)
+                      )
+                      const benchmarkLabel = group?.items.find(item => item.key === selectedBenchmark)?.label
+                      return group && benchmarkLabel ? `${group.groupName}: ${benchmarkLabel}` : selectedBenchmark
+                    })()
+                  } : {
+                    availableItems: availableDatasets || [],
+                    selectedItem: selectedDataset || '',
+                    onItemChange: onDatasetChange || (() => {})
+                  })}
                 />
               </div>
 
@@ -166,11 +192,13 @@ export function MobileControls({
                 </div>
 
                 <ColumnToggle
-                  columns={columnManager.allColumns.map((col) => ({
-                    key: col.key,
-                    label: col.label,
-                    group: col.group,
-                  }))}
+                  columns={columnManager.allColumns
+                    .filter(col => col.key !== 'metadata.param_count') // Hide parameter column from toggle
+                    .map((col) => ({
+                      key: col.key,
+                      label: col.label,
+                      group: col.group,
+                    }))}
                   visibleColumns={columnManager.visibleColumns}
                   onToggleColumn={columnManager.toggleColumn}
                   onShowAll={columnManager.showAllColumns}
