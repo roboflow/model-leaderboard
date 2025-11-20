@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Computer Vision Model Leaderboard',
     description: 'Benchmarks showing the performance of popular computer vision models across metrics like mAP and F1 score.',
-    url: 'https://roboflow.github.io/model-leaderboard/',
+    url: 'https://leaderboard.roboflow.com/',
     siteName: 'Computer Vision Model Leaderboard',
     images: [
       {
