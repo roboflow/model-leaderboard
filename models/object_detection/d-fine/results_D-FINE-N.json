@@ -1,16 +1,27 @@
 {
     "metadata": {
+        "architecture": "D-FINE",
         "model": "D-FINE-N",
         "license": "Apache-2.0",
         "github_url": "https://github.com/Peterande/D-FINE",
         "paper_url": "https://arxiv.org/abs/2410.13842",
         "run_parameters": {
             "imgsz": 640,
-            "conf": 0.001,
+            "conf": 0,
             "max_det": 100
         },
         "param_count": 3753799,
-        "run_date": "2025-07-02T15:59:34.017773+00:00"
+        "run_date": "2025-07-02T15:59:34.017773+00:00",
+        "pretrain_datasets": [
+            "COCO"
+        ],
+        "architecture_checkpoints": [
+            "D-FINE-N",
+            "D-FINE-S",
+            "D-FINE-M",
+            "D-FINE-L",
+            "D-FINE-X"
+        ]
     },
     "map50_95": 0.42799353272644564,
     "map50": 0.6028049862821285,

@@ -7,7 +7,7 @@ import numpy as np
 import supervision as sv
 import torch
 from PIL import Image
-from rfdetr import RFDETRBase, RFDETRLarge
+from rfdetr import RFDETRNano, RFDETRSmall, RFDETRMedium, RFDETRBase, RFDETRLarge
 from rfdetr.util.coco_classes import COCO_CLASSES
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
@@ -22,16 +22,41 @@ from utils import (
 )
 
 ARCHITECTURE = "RF-DETR"
-ARCHITECTURE_CHECKPOINTS = ["RF-DETR-B", "RF-DETR-L"]
-MODEL_DICT = {"RF-DETR-B": RFDETRBase, "RF-DETR-L": RFDETRLarge}
+ARCHITECTURE_CHECKPOINTS = ["RF-DETR-N", "RF-DETR-S", "RF-DETR-M", "RF-DETR-B", "RF-DETR-L"]
+MODEL_DICT = {
+    "RF-DETR-N": {
+        "model_name": "RF-DETR-N",
+        "resolution": 384,
+        "model_class": RFDETRNano
+    },
+    "RF-DETR-S": {
+        "model_name": "RF-DETR-S",
+        "resolution": 512,
+        "model_class": RFDETRSmall
+    },
+    "RF-DETR-M": {
+        "model_name": "RF-DETR-M",
+        "resolution": 576,
+        "model_class": RFDETRMedium
+    },
+    "RF-DETR-B": {
+        "model_name": "RF-DETR-B",
+        "resolution": 560,
+        "model_class": RFDETRBase
+    },
+    "RF-DETR-L": {
+        "model_name": "RF-DETR-L",
+        "resolution": 560,
+        "model_class": RFDETRLarge
+    },
+}
+PRETRAIN_DATASETS = ["COCO", "Object365"]
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
-    "resolution": 560,
     "num_queries": 300,
     "num_select": 300,
     "threshold": 0,
 }
-PRETRAIN_DATASETS = ["COCO", "Object365"]
 GIT_REPO_URL = "https://github.com/roboflow/rf-detr"
 PAPER_URL = ""
 
@@ -66,6 +91,9 @@ def run(
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        resolution = MODEL_DICT[model_id]["resolution"]
+        model_class = MODEL_DICT[model_id]["model_class"]
+        model_name = MODEL_DICT[model_id]["model_name"]
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
@@ -74,8 +102,8 @@ def run(
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        model = MODEL_DICT[model_id](
-            resolution=RUN_PARAMETERS["resolution"],
+        model = model_class(
+            resolution=resolution,
             num_queries=RUN_PARAMETERS["num_queries"],
             num_select=RUN_PARAMETERS["num_select"],
             device="cpu",
@@ -106,14 +134,14 @@ def run(
         write_result_json(
             architecture=ARCHITECTURE,
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_name,
             model_git_url=GIT_REPO_URL,
             paper_url=PAPER_URL,
             model=model.model.model,
             mAP_result=mAP_result,
             f1_score_result=f1_result,
             license=LICENSE,
-            run_parameters=RUN_PARAMETERS,
+            run_parameters=dict(RUN_PARAMETERS, resolution=resolution),
             pretrain_datasets=PRETRAIN_DATASETS,
             extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
         )

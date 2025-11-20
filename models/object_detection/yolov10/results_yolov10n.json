@@ -9,7 +9,7 @@
             "imgsz": 640,
             "iou": 0.7,
             "max_det": 100,
-            "conf": 0.001,
+            "conf": 0,
             "verbose": false
         },
         "param_count": 2762608,

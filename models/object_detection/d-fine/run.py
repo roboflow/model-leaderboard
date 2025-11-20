@@ -12,6 +12,8 @@ from PIL import Image
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 
+from models.object_detection.yolov10.run import ARCHITECTURE
+
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 import multiprocessing
@@ -35,47 +37,33 @@ sys.path.append(
 
 from src.core import YAMLConfig
 
-LICENSE = "Apache-2.0"
-RUN_PARAMETERS = dict(
-    imgsz=640,
-    conf=CONFIDENCE_THRESHOLD,
-    max_det=100,  # supervision uses internally, it is here just for logging
-)
-GIT_REPO_URL = "https://github.com/Peterande/D-FINE"
-PAPER_URL = "https://arxiv.org/abs/2410.13842"
-
-TRANSFORMS = T.Compose(
-    [T.Resize((RUN_PARAMETERS["imgsz"], RUN_PARAMETERS["imgsz"])), T.ToTensor()]
-)
-
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
+ARCHITECTURE = "D-FINE"
+ARCHITECTURE_CHECKPOINTS = ["D-FINE-N", "D-FINE-S", "D-FINE-M", "D-FINE-L", "D-FINE-X"]
 MODEL_DICT = {
-    "D-FINE-X-Objects365+COCO": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_obj2coco.pth",
-        "model_filename": "dfine_x_obj2coco.pth",
-        "model_name": "D-FINE-X-Objects365+COCO",
-        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_x_obj2coco.yml",  # noqa: E501 // docs
-    },
-    "D-FINE-L-Objects365+COCO": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_obj2coco_e25.pth",
-        "model_filename": "dfine_l_obj2coco_e25.pth",
-        "model_name": "D-FINE-L-Objects365+COCO",
-        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_l_obj2coco.yml",  # noqa: E501 // docs
-    },
-    "D-FINE-M-Objects365+COCO": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_obj2coco.pth",
-        "model_filename": "dfine_m_obj2coco.pth",
-        "model_name": "D-FINE-M-Objects365+COCO",
-        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_m_obj2coco.yml",  # noqa: E501 // docs
-    },
-    "D-FINE-S-Objects365+COCO": {
-        "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_s_obj2coco.pth",
-        "model_filename": "dfine_s_obj2coco.pth",
-        "model_name": "D-FINE-S-Objects365+COCO",
-        "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_s_obj2coco.yml",  # noqa: E501 // docs
-    },
+    # "D-FINE-X-Objects365+COCO": {
+    #     "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_obj2coco.pth",
+    #     "model_filename": "dfine_x_obj2coco.pth",
+    #     "model_name": "D-FINE-X-Objects365+COCO",
+    #     "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_x_obj2coco.yml",  # noqa: E501 // docs
+    # },
+    # "D-FINE-L-Objects365+COCO": {
+    #     "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_l_obj2coco_e25.pth",
+    #     "model_filename": "dfine_l_obj2coco_e25.pth",
+    #     "model_name": "D-FINE-L-Objects365+COCO",
+    #     "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_l_obj2coco.yml",  # noqa: E501 // docs
+    # },
+    # "D-FINE-M-Objects365+COCO": {
+    #     "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_m_obj2coco.pth",
+    #     "model_filename": "dfine_m_obj2coco.pth",
+    #     "model_name": "D-FINE-M-Objects365+COCO",
+    #     "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_m_obj2coco.yml",  # noqa: E501 // docs
+    # },
+    # "D-FINE-S-Objects365+COCO": {
+    #     "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_s_obj2coco.pth",
+    #     "model_filename": "dfine_s_obj2coco.pth",
+    #     "model_name": "D-FINE-S-Objects365+COCO",
+    #     "model_yaml": "./D-FINE-repo/configs/dfine/objects365/dfine_hgnetv2_s_obj2coco.yml",  # noqa: E501 // docs
+    # },
     "D-FINE-X": {
         "model_url": "https://github.com/Peterande/storage/releases/download/dfinev1.0/dfine_x_coco.pth",
         "model_filename": "dfine_x_coco.pth",
@@ -107,6 +95,21 @@ MODEL_DICT = {
         "model_yaml": "./D-FINE-repo/configs/dfine/dfine_hgnetv2_n_coco.yml",
     },
 }  # noqa: E501 // docs
+PRETRAIN_DATASETS = ["COCO"]
+LICENSE = "Apache-2.0"
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    conf=CONFIDENCE_THRESHOLD,
+    max_det=100,  # supervision uses internally, it is here just for logging
+)
+GIT_REPO_URL = "https://github.com/Peterande/D-FINE"
+PAPER_URL = "https://arxiv.org/abs/2410.13842"
+
+TRANSFORMS = T.Compose(
+    [T.Resize((RUN_PARAMETERS["imgsz"], RUN_PARAMETERS["imgsz"])), T.ToTensor()]
+)
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def download_weight(url, model_filename):
@@ -147,7 +150,11 @@ def evaluate_single_model(
     Function to be run in a separate process for each model.
     """
     print(f"\nEvaluating model: {model_id}")
-    model_values = MODEL_DICT[model_id]
+    model_url = MODEL_DICT[model_id]["model_url"]
+    model_filename = MODEL_DICT[model_id]["model_filename"]
+    model_name = MODEL_DICT[model_id]["model_name"]
+    model_yaml = MODEL_DICT[model_id]["model_yaml"]
+
     if skip_if_result_exists and result_json_already_exists(model_id):
         print(f"Skipping {model_id}. Result already exists!")
         return
@@ -155,20 +162,20 @@ def evaluate_single_model(
     if dataset is None:
         dataset = load_detections_dataset(DATASET_DIR)
 
-    if not os.path.exists(model_values["model_filename"]):
-        download_weight(model_values["model_url"], model_values["model_filename"])
+    if not os.path.exists(model_filename):
+        download_weight(model_url, model_filename)
 
     # Re-initialize cfg and model for each iteration
     cfg = YAMLConfig(
-        os.path.abspath(model_values["model_yaml"]),
-        resume=model_values["model_filename"],
+        os.path.abspath(model_yaml),
+        resume=model_filename,
     )
 
     if "HGNetv2" in cfg.yaml_cfg:
         cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
 
-    if model_values["model_filename"]:
-        checkpoint = torch.load(model_values["model_filename"], map_location=DEVICE)
+    if model_filename:
+        checkpoint = torch.load(model_filename, map_location=DEVICE)
         if "ema" in checkpoint:
             state = checkpoint["ema"]["module"]
         else:
@@ -210,15 +217,18 @@ def evaluate_single_model(
     mAP_result = mAP_metric.update(predictions, targets).compute()
 
     write_result_json(
+        architecture=ARCHITECTURE,
         model_id=model_id,
-        model_name=model_values["model_name"],
+        model_name=model_name,
         model_git_url=GIT_REPO_URL,
         paper_url=PAPER_URL,
         model=model,  # Consider if 'model' object needs to be passed, it might be large
         mAP_result=mAP_result,
         f1_score_result=f1_score_result,
-        license_name=LICENSE,
+        license=LICENSE,
         run_parameters=RUN_PARAMETERS,
+        pretrain_datasets=PRETRAIN_DATASETS,
+        extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
     )
     print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
 
