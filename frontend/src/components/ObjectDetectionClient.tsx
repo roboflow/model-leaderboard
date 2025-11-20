@@ -284,8 +284,8 @@ export default function ObjectDetectionClient() {
         title="Object Detection"
         subtitle="Model Leaderboard"
         description="Object detection models return bounding boxes that correspond to the location of objects in an image. Our leaderboard shows the accuracy of top-performing models on the industry-standard Microsoft COCO object detection benchmark."
-        videoUrl="/model-leaderboard-fork/raccoon-tails-od.mp4"
-        videoPosterUrl="/model-leaderboard-fork/raccoon-tails.avif"
+        videoUrl="/raccoon-tails-od.mp4"
+        videoPosterUrl="/raccoon-tails.avif"
       />
 
       
@@ -293,8 +293,8 @@ export default function ObjectDetectionClient() {
       {/* <TaskCard 
         title="Object Detection"
         description="Object detection models return bounding boxes that correspond to the location of objects in an image. Our leaderboard shows the accuracy of top-performing models on the industry-standard Microsoft COCO object detection benchmark."
-        videoUrl="/model-leaderboard-fork/video-leaderboard-object-detection.mp4"
-        videoPosterUrl="/model-leaderboard-fork/video-leaderboard-pcs.avif"
+        videoUrl="/video-leaderboard-object-detection.mp4"
+        videoPosterUrl="/video-leaderbord-pcs-cover.avif"
       /> */}
 
       {/* Main Leaderboard */}
