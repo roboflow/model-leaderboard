@@ -107,10 +107,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -241,10 +241,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -367,10 +367,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -489,10 +489,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -623,10 +623,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -743,10 +743,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -858,10 +858,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
@@ -973,10 +973,10 @@
         {
           "metadata": {
             "model": "SAM 3",
-            "license": "N/A",
+            "license": "Proprietary",
             "architecture": "",
-            "github_url": "",
-            "paper_url": "",
+            "github_url": "https://github.com/facebookresearch/sam3",
+            "paper_url": "https://arxiv.org/abs/2511.16719",
             "param_count": null,
             "pretrain_datasets": [],
             "run_parameters": {}
