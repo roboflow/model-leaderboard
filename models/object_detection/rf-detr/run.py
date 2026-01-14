@@ -142,7 +142,7 @@ def run(
             model=model.model.model,
             mAP_result=mAP_result,
             f1_score_result=f1_result,
-            license=LICENSE,
+            license=LICENSE if "X" not in model_id else "Commercial",
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
             extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
