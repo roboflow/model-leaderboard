@@ -7,6 +7,12 @@ data/*
 
 # yolov9 repo
 **/yolov9-repo
+# D-FINE repo
+**/D-FINE-repo
+# mmyolo-weights
+**/mmyolo-weights
+## deim repo
+**/DEIM_repo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -24,7 +30,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -171,3 +177,7 @@ cython_debug/
 
 # ruff cache
 .ruff_cache
+
+# exclude torch pt files
+*.pt
+*.pth

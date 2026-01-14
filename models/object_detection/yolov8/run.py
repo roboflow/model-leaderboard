@@ -4,33 +4,44 @@ from pathlib import Path
 from typing import List, Optional
 
 import supervision as sv
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from configs import DATASET_DIR
 from utils import (
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
 )
 
-MODEL_IDS = ["yolov8n", "yolov8s", "yolov8m", "yolov8l", "yolov8x"]
-DATASET_DIR = "../../../data/coco-val-2017"
-CONFIDENCE_THRESHOLD = 0.001
-LICENSE = "APGL-3.0"
+ARCHITECTURE = "YOLOv8"
+ARCHITECTURE_CHECKPOINTS = ["YOLOv8n", "YOLOv8s", "YOLOv8m", "YOLOv8l", "YOLOv8x"]
+MODEL_DICT = {
+    "yolov8n": {"model_name": "YOLOv8n"},
+    "yolov8s": {"model_name": "YOLOv8s"},
+    "yolov8m": {"model_name": "YOLOv8m"},
+    "yolov8l": {"model_name": "YOLOv8l"},
+    "yolov8x": {"model_name": "YOLOv8x"},
+}
+PRETRAIN_DATASETS = ["COCO"]
+LICENSE = "AGPL-3.0"
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    iou=0.7,
+    max_det=100,
+    conf=0,
+    verbose=False,
+)
+GIT_REPO_URL = "https://github.com/ultralytics/ultralytics"
+PAPER_URL = ""
 
 
 def run_on_image(model, image) -> sv.Detections:
-    model_params = dict(
-        imgsz=640,
-        iou=0.6,
-        max_det=300,
-        conf=0.001,
-        verbose=False,
-    )
-    result = model(image, **model_params)[0]
+    result = model(image, **RUN_PARAMETERS)[0]
     detections = sv.Detections.from_ultralytics(result)
-    detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
     return detections
 
 
@@ -48,10 +59,11 @@ def run(
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
     if not model_ids:
-        model_ids = MODEL_IDS
+        model_ids = MODEL_DICT.keys()
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
+        model_name = MODEL_DICT[model_id]["model_name"]
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
@@ -71,15 +83,25 @@ def run(
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
         write_result_json(
+            architecture=ARCHITECTURE,
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_name,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
-            license_name=LICENSE,
+            f1_score_result=f1_score_result,
+            license=LICENSE,
+            run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

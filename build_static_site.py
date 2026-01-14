@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 # Temporarily disabled from appearing on the board, e.g. if there's still some issues
-BLACKLIST = ["yolov9", "yolo-nas"]
+BLACKLIST = ["yolov9", "yolo-nas", "d-fine", "lw-detr"]
 
 results_list = []
 for model_dir in Path("models/object_detection").iterdir():
@@ -29,3 +29,4 @@ with open("static/aggregate_results.js", "w") as f:
     f.write(js_results)
 
 print("Results aggregated and saved to static/aggregate_results.js")
+print("Results aggregated and saved to static/aggregate_results.json")

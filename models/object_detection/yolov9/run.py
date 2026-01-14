@@ -1,4 +1,5 @@
 import argparse
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -8,10 +9,13 @@ import cv2
 import numpy as np
 import supervision as sv
 import torch
+from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from configs import DATASET_DIR
 from utils import (
     download_file,
     load_detections_dataset,
@@ -20,39 +24,50 @@ from utils import (
     write_result_json,
 )
 
+ARCHITECTURE = "YOLOv9"
+ARCHITECTURE_CHECKPOINTS = ["YOLOv9t", "YOLOv9s", "YOLOv9m", "YOLOv9c", "YOLOv9e"]
 MODEL_DICT = {
     "yolov9t": {
+        "model_name": "YOLOv9t",
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-t-converted.pt",
         "model_filename": "yolov9t-converted.pt",
         "model_run_dir": "yolov9t-out",
     },
     "yolov9s": {
+        "model_name": "YOLOv9s",
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-s-converted.pt",
         "model_filename": "yolov9s-converted.pt",
         "model_run_dir": "yolov9s-out",
     },
     "yolov9m": {
+        "model_name": "YOLOv9m",
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-m-converted.pt",
         "model_filename": "yolov9m-converted.pt",
         "model_run_dir": "yolov9m-out",
     },
     "yolov9c": {
+        "model_name": "YOLOv9c",
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-c-converted.pt",
         "model_filename": "yolov9c-converted.pt",
         "model_run_dir": "yolov9c-out",
     },
     "yolov9e": {
+        "model_name": "YOLOv9e",
         "model_url": "https://github.com/WongKinYiu/yolov9/releases/download/v0.1/yolov9-e-converted.pt",
         "model_filename": "yolov9e-converted.pt",
         "model_run_dir": "yolov9e-out",
     },
 }  # noqa: E501 // docs
-
+PRETRAIN_DATASETS = ["COCO"]
 LICENSE = "GPL-3.0"
-DATASET_DIR = "../../../data/coco-val-2017"
-CONFIDENCE_THRESHOLD = 0.001
-REPO_URL = "git@github.com:WongKinYiu/yolov9.git"
+REPO_URL = "https://github.com/WongKinYiu/yolov9.git"
 DEVICE = "0" if torch.cuda.is_available() else "cpu"
+RUN_PARAMETERS = dict(
+    imgsz=640,
+    conf=0,
+)
+GIT_REPO_URL = "https://github.com/WongKinYiu/yolov9"
+PAPER_URL = "https://arxiv.org/abs/2402.13616"
 
 
 def run(
@@ -69,23 +84,38 @@ def run(
         dataset: If provided, use this dataset for evaluation. Otherwise, load the dataset from the default directory.
     """  # noqa: E501 // docs
     if not model_ids:
-        model_ids = list(MODEL_DICT.keys())
+        model_ids = MODEL_DICT.keys()
 
     for model_id in model_ids:
         print(f"\nEvaluating model: {model_id}")
-        model_values = MODEL_DICT[model_id]
+        model_name = MODEL_DICT[model_id]["model_name"]
+        model_url = MODEL_DICT[model_id]["model_url"]
+        model_filename = MODEL_DICT[model_id]["model_filename"]
+        model_run_dir = MODEL_DICT[model_id]["model_run_dir"]
 
         if skip_if_result_exists and result_json_already_exists(model_id):
             print(f"Skipping {model_id}. Result already exists!")
             continue
 
         if not Path("yolov9-repo").is_dir():
-            run_shell_command(["git", "clone", REPO_URL, "yolov9-repo"])
-        download_file(model_values["model_url"], model_values["model_filename"])
+            run_shell_command(
+                [
+                    "git",
+                    "clone",
+                    "https://github.com/AlexBodner/yolov9.git",
+                    "yolov9-repo",
+                ]
+            )
+            sys.path.append(
+                os.path.abspath(
+                    os.path.join(os.path.dirname(__file__), "./yolov9-repo/")
+                )
+            )
+        download_file(model_url, model_filename)
 
         # Make predictions
         shutil.rmtree(
-            f"yolov9-repo/runs/detect/{model_values['model_run_dir']}",
+            f"yolov9-repo/runs/detect/{model_run_dir}",
             ignore_errors=True,
         )
         run_shell_command(
@@ -95,20 +125,20 @@ def run(
                 "--source",
                 "../../../../data/coco-val-2017/images/val2017",
                 "--img",
-                "640",
+                str(RUN_PARAMETERS["imgsz"]),
                 "--device",
                 DEVICE,
                 "--weights",
-                f"../{model_values['model_filename']}",
+                f"../{model_filename}",
                 "--name",
-                model_values["model_run_dir"],
+                model_run_dir,
                 "--save-txt",
                 "--save-conf",
             ],
             working_directory="yolov9-repo",
         )
         predictions_dict = load_predictions_dict(
-            Path(f"yolov9-repo/runs/detect/{model_values['model_run_dir']}")
+            Path(f"yolov9-repo/runs/detect/{model_run_dir}")
         )
 
         if dataset is None:
@@ -119,21 +149,29 @@ def run(
         for image_path, _, target_detections in tqdm(dataset, total=len(dataset)):
             # Load predictions
             detections = predictions_dict[Path(image_path).name]
-            detections = detections[detections.confidence > CONFIDENCE_THRESHOLD]
 
             predictions.append(detections)
             targets.append(target_detections)
 
-        mAP_metric = sv.metrics.MeanAveragePrecision()
+        mAP_metric = MeanAveragePrecision()
+        f1_score = F1Score()
+        f1_score_result = f1_score.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
         model = YOLO(model_id)
 
         write_result_json(
+            architecture=ARCHITECTURE,
             model_id=model_id,
-            model_name=model_id,
+            model_name=model_name,
+            model_git_url=GIT_REPO_URL,
+            paper_url=PAPER_URL,
             model=model,
             mAP_result=mAP_result,
-            license_name=LICENSE,
+            f1_score_result=f1_score_result,
+            license=LICENSE,
+            run_parameters=RUN_PARAMETERS,
+            pretrain_datasets=PRETRAIN_DATASETS,
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

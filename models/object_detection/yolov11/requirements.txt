@@ -1,0 +1,4 @@
+ultralytics
+supervision @ git+https://github.com/roboflow/supervision.git@develop
+tqdm
+dill
