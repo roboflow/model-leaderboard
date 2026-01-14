@@ -1,5 +1,6 @@
 import argparse
 import sys
+from functools import partial
 from pathlib import Path
 from typing import List, Optional
 
@@ -45,8 +46,8 @@ MODEL_DICT = {
     "RF-DETR-S": RFDETRSmall,
     "RF-DETR-M": RFDETRMedium,
     "RF-DETR-L": RFDETRLargeEdge,
-    "RF-DETR-XL": RFDETRXLCloud,
-    "RF-DETR-XXL": RFDETRXXLCloud,
+    "RF-DETR-XL": partial(RFDETRXLCloud, accept_platform_model_license=True),
+    "RF-DETR-XXL": partial(RFDETRXXLCloud, accept_platform_model_license=True),
 }
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
@@ -99,9 +100,9 @@ def run(
             dataset = load_detections_dataset(DATASET_DIR)
 
         model = MODEL_DICT[model_id](
-            resolution=RUN_PARAMETERS["resolution"],
-            num_queries=RUN_PARAMETERS["num_queries"],
-            num_select=RUN_PARAMETERS["num_select"],
+            # resolution=RUN_PARAMETERS["resolution"],
+            # num_queries=RUN_PARAMETERS["num_queries"],
+            # num_select=RUN_PARAMETERS["num_select"],
             device="cpu",
         )
         coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
