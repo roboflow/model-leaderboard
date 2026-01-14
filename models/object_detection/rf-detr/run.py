@@ -125,11 +125,13 @@ def run(
         f1_result = f1_metric.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
-        RUN_PARAMETERS.update({
-            "resolution": model.model_config.resolution,
-            "num_queries": model.model_config.num_queries,
-            "num_select": model.model_config.num_select,
-        })
+        RUN_PARAMETERS.update(
+            {
+                "resolution": model.model_config.resolution,
+                "num_queries": model.model_config.num_queries,
+                "num_select": model.model_config.num_select,
+            }
+        )
 
         write_result_json(
             architecture=ARCHITECTURE,
