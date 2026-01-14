@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect } from 'react'
-import { 
-  pcsColumns, 
-  getColumnsForBenchmark, 
-  getDefaultVisibleColumnsForBenchmark, 
+import {
+  pcsColumns,
+  getColumnsForBenchmark,
+  getDefaultVisibleColumnsForBenchmark,
   getAllColumnKeysForBenchmark,
-  type PCSColumn 
+  type PCSColumn
 } from '@/lib/pcs-columns'
 
 /**
@@ -14,13 +14,13 @@ export function usePCSColumnManager(selectedBenchmark: string) {
   const [visibleColumns, setVisibleColumns] = useState<Set<string>>(new Set())
 
   // Get columns available for current benchmark
-  const availableColumns = useMemo(() => 
+  const availableColumns = useMemo(() =>
     getColumnsForBenchmark(selectedBenchmark),
     [selectedBenchmark]
   )
 
   // Get filtered columns based on visibility and benchmark
-  const filteredColumns = useMemo(() => 
+  const filteredColumns = useMemo(() =>
     availableColumns.filter(col => visibleColumns.has(col.key)),
     [availableColumns, visibleColumns]
   )
@@ -61,7 +61,7 @@ export function usePCSColumnManager(selectedBenchmark: string) {
     visibleColumns,
     allColumns: availableColumns,
     filteredColumns,
-    
+
     // Handlers
     toggleColumn,
     showAllColumns,

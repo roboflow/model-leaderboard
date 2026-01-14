@@ -163,7 +163,7 @@ export default function PCSClient() {
 
   // Cast the imported data to our PCS type
   const pcsData = pcsResults as unknown as PCSData
-  
+
   // Debug logging to help identify issues
   // useEffect(() => {
   //   console.log('PCS Data loaded:', {
@@ -271,7 +271,7 @@ export default function PCSClient() {
     }
     setSortDirection("desc")
   }
-  
+
   const handleSort = (key: string) => {
     if (sortColumn === key) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc")
@@ -327,7 +327,7 @@ export default function PCSClient() {
     // filtered = filtered.filter((result: PCSModelResult) => {
     //   // If param_count is null, include the model (don't filter it out)
     //   if (result.metadata.param_count === null) return true
-    //   
+    //
     //   // If param_count exists, apply the range filter
     //   const paramCountMillion = result.metadata.param_count / 1_000_000
     //   return paramCountMillion >= minParamsMillion && paramCountMillion <= maxParamsMillion
@@ -349,18 +349,18 @@ export default function PCSClient() {
     if (!sortColumn || filteredAndSortedResults.length === 0) return null
     const nonNumericColumns = ['metadata.model', 'metadata.license', 'paper']
     if (nonNumericColumns.includes(sortColumn)) return null
-    
+
     const values = filteredAndSortedResults.map((result: PCSModelResult) => getNestedValue(result, sortColumn))
     // Filter out null, undefined, NaN, and non-numeric values
     const numericValues = values.filter((v: any) => typeof v === 'number' && !isNaN(v) && isFinite(v))
     if (numericValues.length === 0) return null
-    
+
     const min = Math.min(...numericValues)
     const max = Math.max(...numericValues)
-    
+
     // Only return range if we have meaningful data
     if (min === max && numericValues.length === 1) return null
-    
+
     return { min, max, column: sortColumn }
   }, [sortColumn, filteredAndSortedResults])
 
@@ -371,7 +371,7 @@ export default function PCSClient() {
     <>
       {/* Hero Section */}
 
-      <TaskToggle 
+      <TaskToggle
         tasks={[
           { href: "/", label: "Object Detection" },
           { href: "/pcs", label: "Promptable Concept Segmentation" }
@@ -398,7 +398,7 @@ export default function PCSClient() {
         </div>
       </div>
     </section> */}
-      <HeroSection 
+      <HeroSection
         title="Promptable Concept Segmentation"
         subtitle="Model Leaderboard"
         description="Identify the location of all instances of a visual concept in an image with pixel-level precision (or predict nothing if the concept does not exist) using text prompts, specific regions of an image as reference, or both. Model performance is measured by how well the model accurately identifies real-world objects in complex scenes."
@@ -406,9 +406,9 @@ export default function PCSClient() {
         videoPosterUrl="/raccoon-tails.avif"
       />
 
-     
 
-      {/* <TaskCard 
+
+      {/* <TaskCard
         title="Promptable Concept Segmentation"
         description="Identify the location of objects in an image with pixel-level precision using text prompts, point prompts, or specific regions of an image as reference. Model performance is measured by how well the model accurately identifies real-world objects."
         videoUrl="/video-leaderboard-pcs.mp4"
@@ -454,7 +454,7 @@ export default function PCSClient() {
                   }))}
                   selectedItem={selectedBenchmark}
                   tag={(() => {
-                    const group = benchmarkGroups.find(g => 
+                    const group = benchmarkGroups.find(g =>
                       g.benchmarks.some(b => b.key === selectedBenchmark)
                     )
                     const benchmarkLabel = group?.benchmarks.find(b => b.key === selectedBenchmark)?.label
@@ -484,12 +484,12 @@ export default function PCSClient() {
                 architectureFilter={architectureFilter} // Empty filter - disabled
                 pretrainDatasetFilter={pretrainDatasetFilter} // Empty filter - disabled
                 parameterFilter={parameterFilter} // Keep for interface compatibility, but slider is commented out
-                
+
                 // Pass the available data
                 availableLicenses={availableLicenses}
                 availableArchitectures={availableArchitectures} // Empty array - disabled
                 availablePretrainDatasets={availablePretrainDatasets} // Empty array - disabled
-                
+
                 // Benchmark selection (using grouped data)
                 availableBenchmarks={benchmarkGroups.map(group => ({
                   groupName: group.groupName,
@@ -500,7 +500,7 @@ export default function PCSClient() {
                 }))}
                 selectedBenchmark={selectedBenchmark}
                 onBenchmarkChange={handleBenchmarkChange}
-                
+
                 // Column management (already consolidated)
                 columnManager={columnManager}
               />

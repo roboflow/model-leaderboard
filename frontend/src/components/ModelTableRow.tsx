@@ -98,9 +98,9 @@ function getNestedValue(obj: any, path: string) {
 const getFormattedValue = (value: any, column?: Column, shouldShowAsterisk: boolean = false, selectedBenchmark?: string) => {
   if (value === null || value === undefined) return '—'
   if (typeof value !== 'number') return value
-  
+
   let formattedValue: string
-  
+
   // Check if column has a specific formatter
   if (column?.formatter) {
     switch (column.formatter) {
@@ -109,7 +109,7 @@ const getFormattedValue = (value: any, column?: Column, shouldShowAsterisk: bool
         const decimalPlaces = (selectedBenchmark?.includes('sa_co_bio') && column.key === 'results.pmf') ? 2 : 1
         formattedValue = formatters.decimal(value, decimalPlaces)
         break
-      case 'percentage': 
+      case 'percentage':
         formattedValue = formatters.percentage(value)
         break
       case 'parameters':
@@ -122,28 +122,28 @@ const getFormattedValue = (value: any, column?: Column, shouldShowAsterisk: bool
     // Default behavior for existing tables (object detection)
     formattedValue = formatters.percentage(value)
   }
-  
+
   // Add asterisk if explicitly requested
   if (shouldShowAsterisk) {
     formattedValue += '*'
   }
-  
+
   return formattedValue
 }
 
 export function ModelTableRow({ result, columns, sortColumn, columnRange, selectedBenchmark }: ModelTableRowProps) {
   // Check if this is a PCS table by looking for PCS-specific columns
-  const isPCSTable = columns.some(col => 
-    col.key === 'results.cgf' || 
+  const isPCSTable = columns.some(col =>
+    col.key === 'results.cgf' ||
     col.key === 'results.pmf' ||
-    col.key === 'results.miou' || 
-    col.key === 'results.gold' || 
+    col.key === 'results.miou' ||
+    col.key === 'results.gold' ||
     col.key === 'results.ap_coco_o'
   )
 
   const renderCellContent = (columnKey: string) => {
     let baseContent
-    
+
     // Find the column definition to get formatter info
     const column = columns.find(col => col.key === columnKey)
 
@@ -235,19 +235,19 @@ export function ModelTableRow({ result, columns, sortColumn, columnRange, select
 
       default:
         const value = getNestedValue(result, columnKey)
-        
+
         // Check if this specific value should have an asterisk
         let shouldShowAsterisk = false
         if (isPCSTable && column?.key.startsWith('results.')) {
           // Extract the metric name from the column key (e.g., 'results.cgf' -> 'cgf')
           const metricName = column.key.replace('results.', '')
           const asteriskKey = `${metricName}_asterisk`
-          
+
           // Check if asterisk flag exists and is true, otherwise default to true for non-null values
           const asteriskFlag = getNestedValue(result, `results.${asteriskKey}`)
           shouldShowAsterisk = asteriskFlag !== undefined ? asteriskFlag : (value !== null && value !== undefined)
         }
-        
+
         baseContent = getFormattedValue(value, column, shouldShowAsterisk, selectedBenchmark)
     }
 
@@ -257,7 +257,7 @@ export function ModelTableRow({ result, columns, sortColumn, columnRange, select
       if (typeof value === 'number' && !isNaN(value) && isFinite(value)) {
         // Calculate percentage for bar width
         const range = columnRange.max - columnRange.min
-        const percentage = range === 0 
+        const percentage = range === 0
           ? 100 // If all values are the same, show full bar
           : ((value - columnRange.min) / range) * 100
 

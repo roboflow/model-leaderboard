@@ -21,64 +21,75 @@ from utils import (
 )
 
 RT_DETR_ARCHITECTURE_NAME = "RT-DETR"
-RT_DETR_ARCHITECTURE_CHECKPOINTS = ["RT-DETR-R18", "RT-DETR-R34", "RT-DETR-R50", "RT-DETR-R101"]
+RT_DETR_ARCHITECTURE_CHECKPOINTS = [
+    "RT-DETR-R18",
+    "RT-DETR-R34",
+    "RT-DETR-R50",
+    "RT-DETR-R101",
+]
 RT_DETR_V2_ARCHITECTURE_NAME = "RT-DETRv2"
-RT_DETR_V2_ARCHITECTURE_CHECKPOINTS = ["RT-DETRv2-S", "RT-DETRv2-M", "RT-DETRv2-M*", "RT-DETRv2-L", "RT-DETRv2-X"]
+RT_DETR_V2_ARCHITECTURE_CHECKPOINTS = [
+    "RT-DETRv2-S",
+    "RT-DETRv2-M",
+    "RT-DETRv2-M*",
+    "RT-DETRv2-L",
+    "RT-DETRv2-X",
+]
 
 MODEL_DICT = {
     "rtdetr_r18vd": {
         "architecture": RT_DETR_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETR-R18",
-        "hub_id": "rtdetr_r18vd"
+        "hub_id": "rtdetr_r18vd",
     },
     "rtdetr_r34vd": {
         "architecture": RT_DETR_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETR-R34",
-        "hub_id": "rtdetr_r34vd"
+        "hub_id": "rtdetr_r34vd",
     },
     "rtdetr_r50vd": {
         "architecture": RT_DETR_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETR-R50",
-        "hub_id": "rtdetr_r50vd"
+        "hub_id": "rtdetr_r50vd",
     },
     "rtdetr_r101vd": {
         "architecture": RT_DETR_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETR-R101",
-        "hub_id": "rtdetr_r101vd"
+        "hub_id": "rtdetr_r101vd",
     },
     "rtdetrv2_r18vd": {
         "architecture": RT_DETR_V2_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_V2_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETRv2-S",
-        "hub_id": "rtdetrv2_r18vd"
+        "hub_id": "rtdetrv2_r18vd",
     },
     "rtdetrv2_r34vd": {
         "architecture": RT_DETR_V2_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_V2_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETRv2-M",
-        "hub_id": "rtdetrv2_r34vd"
+        "hub_id": "rtdetrv2_r34vd",
     },
     "rtdetrv2_r50vd": {
         "architecture": RT_DETR_V2_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_V2_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETRv2-M*",
-        "hub_id": "rtdetrv2_r50vd_m"
+        "hub_id": "rtdetrv2_r50vd_m",
     },
     "rtdetrv2_r50vd_m": {
         "architecture": RT_DETR_V2_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_V2_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETRv2-L",
-        "hub_id": "rtdetrv2_r50vd"
+        "hub_id": "rtdetrv2_r50vd",
     },
     "rtdetrv2_r101vd": {
         "architecture": RT_DETR_V2_ARCHITECTURE_NAME,
         "architecture_checkpoints": RT_DETR_V2_ARCHITECTURE_CHECKPOINTS,
         "model_name": "RT-DETRv2-X",
-        "hub_id": "rtdetrv2_r101vd"
+        "hub_id": "rtdetrv2_r101vd",
     },
 }
 PRETRAIN_DATASETS = ["COCO"]
@@ -161,7 +172,7 @@ def run_single_model(
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
         pretrain_datasets=PRETRAIN_DATASETS,
-        extra_metadata={"architecture_checkpoints": architecture_checkpoints}
+        extra_metadata={"architecture_checkpoints": architecture_checkpoints},
     )
 
 

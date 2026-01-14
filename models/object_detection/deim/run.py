@@ -33,9 +33,21 @@ sys.path.append(
 from engine.core import YAMLConfig
 
 DEIM_D_FINE_ARCHITECTURE_NAME = "DEIM-D-FINE"
-DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS = ["DEIM-D-FINE-N", "DEIM-D-FINE-S", "DEIM-D-FINE-M", "DEIM-D-FINE-L", "DEIM-D-FINE-X"]
+DEIM_D_FINE_ARCHITECTURE_CHECKPOINTS = [
+    "DEIM-D-FINE-N",
+    "DEIM-D-FINE-S",
+    "DEIM-D-FINE-M",
+    "DEIM-D-FINE-L",
+    "DEIM-D-FINE-X",
+]
 DEIM_RT_DETR_ARCHITECTURE_NAME = "DEIM-RT-DETRv2"
-DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS = ["DEIM-RT-DETRv2-S", "DEIM-RT-DETRv2-M", "DEIM-RT-DETRv2-M*", "DEIM-RT-DETRv2-L", "DEIM-RT-DETRv2-X"]
+DEIM_RT_DETR_ARCHITECTURE_CHECKPOINTS = [
+    "DEIM-RT-DETRv2-S",
+    "DEIM-RT-DETRv2-M",
+    "DEIM-RT-DETRv2-M*",
+    "DEIM-RT-DETRv2-L",
+    "DEIM-RT-DETRv2-X",
+]
 MODEL_DICT = {
     "DEIM-D-FINE-N": {
         "architecture": DEIM_D_FINE_ARCHITECTURE_NAME,
@@ -204,9 +216,7 @@ def run(
         if not os.path.exists(model_filename):
             download_weight(model_url, model_filename)
 
-        cfg = YAMLConfig(
-            model_yaml, resume=model_filename
-        )
+        cfg = YAMLConfig(model_yaml, resume=model_filename)
 
         if "HGNetv2" in cfg.yaml_cfg:
             cfg.yaml_cfg["HGNetv2"]["pretrained"] = False
@@ -261,7 +271,7 @@ def run(
             license=LICENSE,
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
-            extra_metadata={"architecture_checkpoints": architecture_checkpoints}
+            extra_metadata={"architecture_checkpoints": architecture_checkpoints},
         )
         print(f"mAP result 50:95 100 dets: {mAP_result.map50_95}")
         print(f"mAP result 50:95 100 dets rounded: {mAP_result.map50_95:.3f}")

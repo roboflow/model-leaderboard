@@ -1,10 +1,10 @@
 import argparse
+import os
 import shutil
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 
-import os
 import cv2
 import numpy as np
 import supervision as sv
@@ -171,7 +171,7 @@ def run(
             license=LICENSE,
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
-            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS}
+            extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
 
 

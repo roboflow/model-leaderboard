@@ -2,7 +2,7 @@ import json
 import os
 import subprocess
 from datetime import datetime, timezone
-from typing import Any, List, Optional, Dict
+from typing import Any, Dict, List, Optional
 
 import supervision as sv
 from supervision.metrics import F1ScoreResult, MeanAveragePrecisionResult
@@ -66,7 +66,7 @@ def write_result_json(
     model: "nn.Module",
     mAP_result: Optional["MeanAveragePrecisionResult"] = None,
     f1_score_result: Optional["F1ScoreResult"] = None,
-    license: str = "",
+    license: str = "",  # noqa: A002  # fixme
     run_parameters: Optional[Dict[str, Any]] = None,
     parameter_count: Optional[int] = None,
     pretrain_datasets: Optional[list[str]] = None,
@@ -86,8 +86,9 @@ def write_result_json(
         "github_url": model_git_url,
         "paper_url": paper_url,
         "run_parameters": run_parameters,
-        "param_count": count_model_params(
-            model) if parameter_count is None else parameter_count,
+        "param_count": count_model_params(model)
+        if parameter_count is None
+        else parameter_count,
         "run_date": datetime.now(timezone.utc).isoformat(),
         "pretrain_datasets": pretrain_datasets,
         **extra_metadata,

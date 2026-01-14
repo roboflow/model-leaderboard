@@ -184,7 +184,7 @@ export default function ObjectDetectionClient() {
   // HANDLERS
   // ============================================================================
   const handleDatasetChange = (dataset: string) => setSelectedDataset(dataset)
-  
+
   const handleSort = (key: string) => {
     if (sortColumn === key) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc")
@@ -258,11 +258,11 @@ export default function ObjectDetectionClient() {
     if (!sortColumn || filteredAndSortedResults.length === 0) return null
     const nonNumericColumns = ['metadata.model', 'metadata.license', 'paper']
     if (nonNumericColumns.includes(sortColumn)) return null
-    
+
     const values = filteredAndSortedResults.map(result => getNestedValue(result, sortColumn))
     const numericValues = values.filter(v => typeof v === 'number')
     if (numericValues.length === 0) return null
-    
+
     return { min: Math.min(...numericValues), max: Math.max(...numericValues), column: sortColumn }
   }, [sortColumn, filteredAndSortedResults])
 
@@ -272,7 +272,7 @@ export default function ObjectDetectionClient() {
   return (
     <>
 
-      <TaskToggle 
+      <TaskToggle
         tasks={[
           { href: "/", label: "Object Detection" },
           { href: "/pcs", label: "Promptable Concept Segmentation" }
@@ -280,7 +280,7 @@ export default function ObjectDetectionClient() {
       />
 
       {/* Hero Section */}
-      <HeroSection 
+      <HeroSection
         title="Object Detection"
         subtitle="Model Leaderboard"
         description="Object detection models return bounding boxes that correspond to the location of objects in an image. Our leaderboard shows the accuracy of top-performing models on the industry-standard Microsoft COCO object detection benchmark."
@@ -288,9 +288,9 @@ export default function ObjectDetectionClient() {
         videoPosterUrl="/raccoon-tails.avif"
       />
 
-      
 
-      {/* <TaskCard 
+
+      {/* <TaskCard
         title="Object Detection"
         description="Object detection models return bounding boxes that correspond to the location of objects in an image. Our leaderboard shows the accuracy of top-performing models on the industry-standard Microsoft COCO object detection benchmark."
         videoUrl="/video-leaderboard-object-detection.mp4"
@@ -382,17 +382,17 @@ export default function ObjectDetectionClient() {
                 architectureFilter={architectureFilter}
                 pretrainDatasetFilter={pretrainDatasetFilter}
                 parameterFilter={parameterFilter}
-                
+
                 // Pass the available data
                 availableLicenses={availableLicenses}
                 availableArchitectures={availableArchitectures}
                 availablePretrainDatasets={availablePretrainDatasets}
-                
+
                 // Dataset selection (simple)
                 availableDatasets={availableDatasets}
                 selectedDataset={selectedDataset}
                 onDatasetChange={handleDatasetChange}
-                
+
                 // Column management (already consolidated)
                 columnManager={columnManager}
               />

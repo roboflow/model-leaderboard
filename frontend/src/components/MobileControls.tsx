@@ -53,7 +53,7 @@ interface MobileControlsProps {
   availableDatasets?: string[];
   selectedDataset?: string;
   onDatasetChange?: (dataset: string) => void;
-  
+
   // New grouped benchmark selection
   availableBenchmarks?: GroupedBenchmark[];
   selectedBenchmark?: string;
@@ -168,7 +168,7 @@ export function MobileControls({
                     selectedItem: selectedBenchmark,
                     onItemChange: onBenchmarkChange,
                     tag: (() => {
-                      const group = availableBenchmarks.find(g => 
+                      const group = availableBenchmarks.find(g =>
                         g.items.some(item => item.key === selectedBenchmark)
                       )
                       const benchmarkLabel = group?.items.find(item => item.key === selectedBenchmark)?.label

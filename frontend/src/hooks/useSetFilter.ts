@@ -37,4 +37,4 @@ export function useSetFilter(availableItems: string[]) {
     hasSelections,
     isAllSelected
   }
-} 
+}

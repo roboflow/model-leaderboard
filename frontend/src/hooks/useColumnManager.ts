@@ -8,7 +8,7 @@ export function useColumnManager() {
   const [visibleColumns, setVisibleColumns] = useState<Set<string>>(getDefaultVisibleColumns())
 
   // Get filtered columns based on visibility
-  const filteredColumns = useMemo(() => 
+  const filteredColumns = useMemo(() =>
     allColumns.filter(col => visibleColumns.has(col.key)),
     [visibleColumns]
   )
@@ -41,11 +41,11 @@ export function useColumnManager() {
     visibleColumns,
     allColumns,
     filteredColumns,
-    
+
     // Handlers
     toggleColumn,
     showAllColumns,
     hideAllColumns,
     resetToDefaults
   }
-} 
+}
