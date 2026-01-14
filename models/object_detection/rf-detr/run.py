@@ -7,7 +7,15 @@ import numpy as np
 import supervision as sv
 import torch
 from PIL import Image
-from rfdetr import RFDETRBase, RFDETRLarge
+from rfdetr import (
+    RFDETRBase,
+    RFDETRLargeEdge,
+    RFDETRMedium,
+    RFDETRNano,
+    RFDETRSmall,
+    RFDETRXLCloud,
+    RFDETRXXLCloud,
+)
 from rfdetr.util.coco_classes import COCO_CLASSES
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
@@ -22,8 +30,24 @@ from utils import (
 )
 
 ARCHITECTURE = "RF-DETR"
-ARCHITECTURE_CHECKPOINTS = ["RF-DETR-B", "RF-DETR-L"]
-MODEL_DICT = {"RF-DETR-B": RFDETRBase, "RF-DETR-L": RFDETRLarge}
+ARCHITECTURE_CHECKPOINTS = [
+    "RF-DETR-B",
+    "RF-DETR-N",
+    "RF-DETR-S",
+    "RF-DETR-M",
+    "RF-DETR-L",
+    "RF-DETR-XL",
+    "RF-DETR-XXL",
+]
+MODEL_DICT = {
+    "RF-DETR-B": RFDETRBase,
+    "RF-DETR-N": RFDETRNano,
+    "RF-DETR-S": RFDETRSmall,
+    "RF-DETR-M": RFDETRMedium,
+    "RF-DETR-L": RFDETRLargeEdge,
+    "RF-DETR-XL": RFDETRXLCloud,
+    "RF-DETR-XXL": RFDETRXXLCloud,
+}
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
     "resolution": 560,
