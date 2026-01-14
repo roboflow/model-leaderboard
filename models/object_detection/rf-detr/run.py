@@ -9,13 +9,13 @@ import supervision as sv
 import torch
 from PIL import Image
 from rfdetr import (
+    RFDETR2XLarge,
     RFDETRBase,
-    RFDETRLargeEdge,
+    RFDETRLarge,
     RFDETRMedium,
     RFDETRNano,
     RFDETRSmall,
-    RFDETRXLCloud,
-    RFDETRXXLCloud,
+    RFDETRXLarge,
 )
 from rfdetr.util.coco_classes import COCO_CLASSES
 from supervision.metrics import F1Score, MeanAveragePrecision
@@ -45,9 +45,9 @@ MODEL_DICT = {
     "RF-DETR-N": RFDETRNano,
     "RF-DETR-S": RFDETRSmall,
     "RF-DETR-M": RFDETRMedium,
-    "RF-DETR-L": RFDETRLargeEdge,
-    "RF-DETR-XL": partial(RFDETRXLCloud, accept_platform_model_license=True),
-    "RF-DETR-XXL": partial(RFDETRXXLCloud, accept_platform_model_license=True),
+    "RF-DETR-L": RFDETRLarge,
+    "RF-DETR-XL": partial(RFDETRXLarge, accept_platform_model_license=True),
+    "RF-DETR-XXL": partial(RFDETR2XLarge, accept_platform_model_license=True),
 }
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
@@ -64,10 +64,9 @@ PAPER_URL = ""
 def get_best_device():
     if torch.cuda.is_available():
         return "cuda"
-    elif getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
+    if getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
         return "mps"
-    else:
-        return "cpu"
+    return "cpu"
 
 
 def create_coco_id_mapping(coco_id_to_name, coco_classes_list):
@@ -99,9 +98,7 @@ def run(
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        model = MODEL_DICT[model_id](
-            device="cpu",
-        )
+        model = MODEL_DICT[model_id](device=get_best_device())
         coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
         coco_id_vectorized_map = np.vectorize(coco_id_mapping.__getitem__)
 
