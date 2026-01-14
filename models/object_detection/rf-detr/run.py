@@ -26,9 +26,6 @@ ARCHITECTURE_CHECKPOINTS = ["RF-DETR-B", "RF-DETR-L"]
 MODEL_DICT = {"RF-DETR-B": RFDETRBase, "RF-DETR-L": RFDETRLarge}
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
-    "resolution": 560,
-    "num_queries": 300,
-    "num_select": 300,
     "threshold": 0,
 }
 PRETRAIN_DATASETS = ["COCO", "Object365"]
@@ -75,9 +72,6 @@ def run(
             dataset = load_detections_dataset(DATASET_DIR)
 
         model = MODEL_DICT[model_id](
-            resolution=RUN_PARAMETERS["resolution"],
-            num_queries=RUN_PARAMETERS["num_queries"],
-            num_select=RUN_PARAMETERS["num_select"],
             device="cpu",
         )
         coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
@@ -103,6 +97,9 @@ def run(
         f1_result = f1_metric.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
+        RUN_PARAMETERS["resolution"] = model.model_config.resolution
+        RUN_PARAMETERS["num_queries"] = model.model_config.num_queries
+        RUN_PARAMETERS["num_select"] = model.model_config.num_select
         write_result_json(
             architecture=ARCHITECTURE,
             model_id=model_id,
