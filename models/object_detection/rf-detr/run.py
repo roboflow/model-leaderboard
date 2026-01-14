@@ -101,6 +101,15 @@ def run(
         model = MODEL_DICT[model_id](device=get_best_device())
         coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
         coco_id_vectorized_map = np.vectorize(coco_id_mapping.__getitem__)
+        RUN_PARAMETERS.update(
+            {
+                "resolution": model.model_config.resolution,
+                # compute optional fields safely
+                # (some model configs may not expose these attrs)
+                "num_queries": getattr(model.model_config, "num_queries", None),
+                "num_select": getattr(model.model_config, "num_select", None),
+            }
+        )
 
         predictions = []
         targets = []
@@ -122,14 +131,6 @@ def run(
         f1_result = f1_metric.update(predictions, targets).compute()
         mAP_result = mAP_metric.update(predictions, targets).compute()
 
-        RUN_PARAMETERS.update(
-            {
-                "resolution": model.model_config.resolution,
-                "num_queries": model.model_config.num_queries,
-                "num_select": model.model_config.num_select,
-            }
-        )
-
         write_result_json(
             architecture=ARCHITECTURE,
             model_id=model_id,
@@ -139,7 +140,7 @@ def run(
             model=model.model.model,
             mAP_result=mAP_result,
             f1_score_result=f1_result,
-            license=LICENSE if "X" not in model_id else "Commercial",
+            license=getattr(model.model_config, "license", LICENSE),
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
             extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
