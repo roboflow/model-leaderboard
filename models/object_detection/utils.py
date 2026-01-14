@@ -66,7 +66,7 @@ def write_result_json(
     model: "nn.Module",
     mAP_result: Optional["MeanAveragePrecisionResult"] = None,
     f1_score_result: Optional["F1ScoreResult"] = None,
-    license: str = "",
+    license: str = "",  # noqa: A002  # fixme
     run_parameters: Optional[Dict[str, Any]] = None,
     parameter_count: Optional[int] = None,
     pretrain_datasets: Optional[list[str]] = None,
