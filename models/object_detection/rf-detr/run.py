@@ -1,5 +1,6 @@
 import argparse
 import sys
+from functools import partial
 from pathlib import Path
 from typing import List, Optional
 
@@ -7,7 +8,14 @@ import numpy as np
 import supervision as sv
 import torch
 from PIL import Image
-from rfdetr import RFDETRNano, RFDETRSmall, RFDETRMedium, RFDETRBase, RFDETRLarge
+from rfdetr import (
+    RFDETR2XLarge,
+    RFDETRLarge,
+    RFDETRMedium,
+    RFDETRNano,
+    RFDETRSmall,
+    RFDETRXLarge,
+)
 from rfdetr.util.coco_classes import COCO_CLASSES
 from supervision.metrics import F1Score, MeanAveragePrecision
 from tqdm import tqdm
@@ -22,39 +30,24 @@ from utils import (
 )
 
 ARCHITECTURE = "RF-DETR"
-ARCHITECTURE_CHECKPOINTS = ["RF-DETR-N", "RF-DETR-S", "RF-DETR-M", "RF-DETR-B", "RF-DETR-L"]
+ARCHITECTURE_CHECKPOINTS = [
+    "RF-DETR-N",
+    "RF-DETR-S",
+    "RF-DETR-M",
+    "RF-DETR-L",
+    "RF-DETR-XL",
+    "RF-DETR-XXL",
+]
 MODEL_DICT = {
-    "RF-DETR-N": {
-        "model_name": "RF-DETR-N",
-        "resolution": 384,
-        "model_class": RFDETRNano
-    },
-    "RF-DETR-S": {
-        "model_name": "RF-DETR-S",
-        "resolution": 512,
-        "model_class": RFDETRSmall
-    },
-    "RF-DETR-M": {
-        "model_name": "RF-DETR-M",
-        "resolution": 576,
-        "model_class": RFDETRMedium
-    },
-    "RF-DETR-B": {
-        "model_name": "RF-DETR-B",
-        "resolution": 560,
-        "model_class": RFDETRBase
-    },
-    "RF-DETR-L": {
-        "model_name": "RF-DETR-L",
-        "resolution": 560,
-        "model_class": RFDETRLarge
-    },
+    "RF-DETR-N": RFDETRNano,
+    "RF-DETR-S": RFDETRSmall,
+    "RF-DETR-M": RFDETRMedium,
+    "RF-DETR-L": RFDETRLarge,
+    "RF-DETR-XL": partial(RFDETRXLarge, accept_platform_model_license=True),
+    "RF-DETR-XXL": partial(RFDETR2XLarge, accept_platform_model_license=True),
 }
-PRETRAIN_DATASETS = ["COCO", "Object365"]
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
-    "num_queries": 300,
-    "num_select": 300,
     "threshold": 0,
 }
 GIT_REPO_URL = "https://github.com/roboflow/rf-detr"
@@ -64,10 +57,9 @@ PAPER_URL = ""
 def get_best_device():
     if torch.cuda.is_available():
         return "cuda"
-    elif getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
+    if getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
         return "mps"
-    else:
-        return "cpu"
+    return "cpu"
 
 
 def create_coco_id_mapping(coco_id_to_name, coco_classes_list):
@@ -102,14 +94,18 @@ def run(
         if dataset is None:
             dataset = load_detections_dataset(DATASET_DIR)
 
-        model = model_class(
-            resolution=resolution,
-            num_queries=RUN_PARAMETERS["num_queries"],
-            num_select=RUN_PARAMETERS["num_select"],
-            device="cpu",
-        )
+        model = MODEL_DICT[model_id](device=get_best_device())
         coco_id_mapping = create_coco_id_mapping(COCO_CLASSES, dataset.classes)
         coco_id_vectorized_map = np.vectorize(coco_id_mapping.__getitem__)
+        RUN_PARAMETERS.update(
+            {
+                "resolution": model.model_config.resolution,
+                # compute optional fields safely
+                # (some model configs may not expose these attrs)
+                "num_queries": getattr(model.model_config, "num_queries", None),
+                "num_select": getattr(model.model_config, "num_select", None),
+            }
+        )
 
         predictions = []
         targets = []
@@ -140,8 +136,8 @@ def run(
             model=model.model.model,
             mAP_result=mAP_result,
             f1_score_result=f1_result,
-            license=LICENSE,
-            run_parameters=dict(RUN_PARAMETERS, resolution=resolution),
+            license=getattr(model.model_config, "license", LICENSE),
+            run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,
             extra_metadata={"architecture_checkpoints": ARCHITECTURE_CHECKPOINTS},
         )
