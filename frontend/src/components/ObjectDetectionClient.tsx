@@ -61,8 +61,8 @@ interface ModelResult {
 
       // DETR-style parameters
       resolution?: number
-      num_queries?: number
-      num_select?: number
+      num_queries?: number | null
+      num_select?: number | null
       threshold?: number
     }
   }
