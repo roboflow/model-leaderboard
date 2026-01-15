@@ -10,7 +10,6 @@ import torch
 from PIL import Image
 from rfdetr import (
     RFDETR2XLarge,
-    RFDETRBase,
     RFDETRLarge,
     RFDETRMedium,
     RFDETRNano,
@@ -32,7 +31,6 @@ from utils import (
 
 ARCHITECTURE = "RF-DETR"
 ARCHITECTURE_CHECKPOINTS = [
-    "RF-DETR-B",
     "RF-DETR-N",
     "RF-DETR-S",
     "RF-DETR-M",
@@ -41,7 +39,6 @@ ARCHITECTURE_CHECKPOINTS = [
     "RF-DETR-XXL",
 ]
 MODEL_DICT = {
-    "RF-DETR-B": RFDETRBase,
     "RF-DETR-N": RFDETRNano,
     "RF-DETR-S": RFDETRSmall,
     "RF-DETR-M": RFDETRMedium,
@@ -51,9 +48,6 @@ MODEL_DICT = {
 }
 LICENSE = "Apache-2.0"
 RUN_PARAMETERS = {
-    # "resolution": 560,
-    # "num_queries": 300,
-    # "num_select": 300,
     "threshold": 0,
 }
 PRETRAIN_DATASETS = ["COCO", "Object365"]
