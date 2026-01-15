@@ -1164,7 +1164,6 @@ const results = [
         "Object365"
       ],
       "architecture_checkpoints": [
-        "RF-DETR-B",
         "RF-DETR-N",
         "RF-DETR-S",
         "RF-DETR-M",
@@ -1250,7 +1249,6 @@ const results = [
         "Object365"
       ],
       "architecture_checkpoints": [
-        "RF-DETR-B",
         "RF-DETR-N",
         "RF-DETR-S",
         "RF-DETR-M",
@@ -1336,7 +1334,6 @@ const results = [
         "Object365"
       ],
       "architecture_checkpoints": [
-        "RF-DETR-B",
         "RF-DETR-N",
         "RF-DETR-S",
         "RF-DETR-M",
@@ -1422,7 +1419,6 @@ const results = [
         "Object365"
       ],
       "architecture_checkpoints": [
-        "RF-DETR-B",
         "RF-DETR-N",
         "RF-DETR-S",
         "RF-DETR-M",
@@ -1508,7 +1504,6 @@ const results = [
         "Object365"
       ],
       "architecture_checkpoints": [
-        "RF-DETR-B",
         "RF-DETR-N",
         "RF-DETR-S",
         "RF-DETR-M",
@@ -1594,7 +1589,6 @@ const results = [
         "Object365"
       ],
       "architecture_checkpoints": [
-        "RF-DETR-B",
         "RF-DETR-N",
         "RF-DETR-S",
         "RF-DETR-M",
