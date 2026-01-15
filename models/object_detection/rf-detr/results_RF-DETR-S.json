@@ -4,7 +4,7 @@
         "model": "RF-DETR-S",
         "license": "apache-2.0",
         "github_url": "https://github.com/roboflow/rf-detr",
-        "paper_url": "",
+        "paper_url": "https://arxiv.org/abs/2511.09554",
         "run_parameters": {
             "threshold": 0,
             "resolution": 512,

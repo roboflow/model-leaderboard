@@ -1150,7 +1150,7 @@ const results = [
       "model": "RF-DETR-XXL",
       "license": "PML-1.0",
       "github_url": "https://github.com/roboflow/rf-detr",
-      "paper_url": "",
+      "paper_url": "https://arxiv.org/abs/2511.09554",
       "run_parameters": {
         "threshold": 0,
         "resolution": 880,
@@ -1235,7 +1235,7 @@ const results = [
       "model": "RF-DETR-XL",
       "license": "PML-1.0",
       "github_url": "https://github.com/roboflow/rf-detr",
-      "paper_url": "",
+      "paper_url": "https://arxiv.org/abs/2511.09554",
       "run_parameters": {
         "threshold": 0,
         "resolution": 700,
@@ -1320,7 +1320,7 @@ const results = [
       "model": "RF-DETR-N",
       "license": "apache-2.0",
       "github_url": "https://github.com/roboflow/rf-detr",
-      "paper_url": "",
+      "paper_url": "https://arxiv.org/abs/2511.09554",
       "run_parameters": {
         "threshold": 0,
         "resolution": 384,
@@ -1405,7 +1405,7 @@ const results = [
       "model": "RF-DETR-M",
       "license": "apache-2.0",
       "github_url": "https://github.com/roboflow/rf-detr",
-      "paper_url": "",
+      "paper_url": "https://arxiv.org/abs/2511.09554",
       "run_parameters": {
         "threshold": 0,
         "resolution": 576,
@@ -1490,7 +1490,7 @@ const results = [
       "model": "RF-DETR-L",
       "license": "apache-2.0",
       "github_url": "https://github.com/roboflow/rf-detr",
-      "paper_url": "",
+      "paper_url": "https://arxiv.org/abs/2511.09554",
       "run_parameters": {
         "threshold": 0,
         "resolution": 704,
@@ -1575,7 +1575,7 @@ const results = [
       "model": "RF-DETR-S",
       "license": "apache-2.0",
       "github_url": "https://github.com/roboflow/rf-detr",
-      "paper_url": "",
+      "paper_url": "https://arxiv.org/abs/2511.09554",
       "run_parameters": {
         "threshold": 0,
         "resolution": 512,
