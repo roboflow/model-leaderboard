@@ -52,7 +52,7 @@ RUN_PARAMETERS = {
 }
 PRETRAIN_DATASETS = ["COCO", "Object365"]
 GIT_REPO_URL = "https://github.com/roboflow/rf-detr"
-PAPER_URL = ""
+PAPER_URL = "https://arxiv.org/abs/2511.09554"
 
 
 def get_best_device():
