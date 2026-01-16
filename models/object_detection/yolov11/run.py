@@ -36,7 +36,7 @@ RUN_PARAMETERS = dict(
     verbose=False,
 )
 GIT_REPO_URL = "https://github.com/ultralytics/ultralytics"
-PAPER_URL = ""
+PAPER_URL = "https://arxiv.org/abs/2511.09554"
 
 
 def run_on_image(model, image) -> sv.Detections:
