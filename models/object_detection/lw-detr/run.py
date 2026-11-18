@@ -11,7 +11,7 @@ import torch
 import torchvision.transforms as T
 from huggingface_hub import hf_hub_download
 from PIL import Image
-from supervision.metrics import F1Score, MeanAveragePrecision
+from supervision.metrics import MeanAveragePrecision
 from torchvision import transforms
 from tqdm import tqdm
 
@@ -27,6 +27,7 @@ from model_configs import (
     default_model_parameters,
 )
 from utils import (
+    compute_best_f1,
     load_detections_dataset,
     result_json_already_exists,
     write_result_json,
@@ -153,9 +154,7 @@ def run_single_model(
         targets.append(target_detections)
 
     mAP_metric = MeanAveragePrecision()
-    f1_metric = F1Score()
-
-    f1_result = f1_metric.update(predictions, targets).compute()
+    f1_result, f1_confidence_threshold = compute_best_f1(predictions, targets)
     mAP_result = mAP_metric.update(predictions, targets).compute()
 
     model_name = (
@@ -170,6 +169,7 @@ def run_single_model(
         model=model,
         mAP_result=mAP_result,
         f1_score_result=f1_result,
+        f1_confidence_threshold=f1_confidence_threshold,
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )

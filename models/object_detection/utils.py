@@ -2,11 +2,38 @@ import json
 import os
 import subprocess
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
+import numpy as np
 import supervision as sv
-from supervision.metrics import F1ScoreResult, MeanAveragePrecisionResult
+from supervision.metrics import F1Score, F1ScoreResult, MeanAveragePrecisionResult
 from torch import nn
+
+F1_CONFIDENCE_THRESHOLDS = np.round(np.arange(0.0, 1.0, 0.05), 2)
+
+
+def compute_best_f1(
+    predictions: List[sv.Detections],
+    targets: List[sv.Detections],
+    confidence_thresholds: np.ndarray = F1_CONFIDENCE_THRESHOLDS,
+) -> Tuple[F1ScoreResult, float]:
+    """F1 at the confidence threshold that gives the highest F1@50.
+
+    Unlike mAP, F1 depends on where low-confidence predictions are cut off. The
+    runners keep everything down to confidence 0 for mAP, so F1 on those
+    predictions mostly measures how many boxes a model returns per image (100 for
+    the Ultralytics models, 300 for the DETRs), not how good the boxes are.
+    """
+    best_result, best_threshold = None, 0.0
+    for threshold in confidence_thresholds:
+        result = (
+            F1Score()
+            .update([p[p.confidence >= threshold] for p in predictions], targets)
+            .compute()
+        )
+        if best_result is None or result.f1_50 > best_result.f1_50:
+            best_result, best_threshold = result, float(threshold)
+    return best_result, best_threshold
 
 
 def get_images_directory_path(dataset_dir: str) -> str:
@@ -66,6 +93,7 @@ def write_result_json(
     model: "nn.Module",
     mAP_result: Optional["MeanAveragePrecisionResult"] = None,
     f1_score_result: Optional["F1ScoreResult"] = None,
+    f1_confidence_threshold: Optional[float] = None,
     license: str = "",  # noqa: A002  # fixme
     run_parameters: Optional[Dict[str, Any]] = None,
     parameter_count: Optional[int] = None,
@@ -157,6 +185,7 @@ def write_result_json(
             "f1_75": f1_score_result.large_objects.f1_75,
         }
         result["f1_iou_thresholds"] = list(f1_score_result.iou_thresholds)
+        result["f1_confidence_threshold"] = f1_confidence_threshold
     else:
         result["f1_50"] = None
         result["f1_75"] = None
@@ -173,6 +202,7 @@ def write_result_json(
             "f1_75": None,
         }
         result["f1_iou_thresholds"] = None
+        result["f1_confidence_threshold"] = None
 
     result_file = _make_result_filename(model_id)
     if os.path.exists(result_file):
