@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 import supervision as sv
 import torch
-from supervision.metrics import F1Score, MeanAveragePrecision
+from supervision.metrics import MeanAveragePrecision
 from tqdm import tqdm
 from ultralytics import YOLO
 
@@ -17,6 +17,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from configs import DATASET_DIR
 from utils import (
+    compute_best_f1,
     download_file,
     load_detections_dataset,
     result_json_already_exists,
@@ -132,6 +133,8 @@ def run(
                 f"../{model_filename}",
                 "--name",
                 model_run_dir,
+                "--conf-thres",
+                str(RUN_PARAMETERS["conf"]),
                 "--save-txt",
                 "--save-conf",
             ],
@@ -154,8 +157,7 @@ def run(
             targets.append(target_detections)
 
         mAP_metric = MeanAveragePrecision()
-        f1_score = F1Score()
-        f1_score_result = f1_score.update(predictions, targets).compute()
+        f1_score_result, f1_confidence_threshold = compute_best_f1(predictions, targets)
         mAP_result = mAP_metric.update(predictions, targets).compute()
         model = YOLO(model_id)
 
@@ -168,6 +170,7 @@ def run(
             model=model,
             mAP_result=mAP_result,
             f1_score_result=f1_score_result,
+            f1_confidence_threshold=f1_confidence_threshold,
             license=LICENSE,
             run_parameters=RUN_PARAMETERS,
             pretrain_datasets=PRETRAIN_DATASETS,

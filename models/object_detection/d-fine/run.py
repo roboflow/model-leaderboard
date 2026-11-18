@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import torchvision.transforms as T
 from PIL import Image
-from supervision.metrics import F1Score, MeanAveragePrecision
+from supervision.metrics import MeanAveragePrecision
 from tqdm import tqdm
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -18,6 +18,7 @@ import multiprocessing
 
 from configs import CONFIDENCE_THRESHOLD, DATASET_DIR
 from utils import (
+    compute_best_f1,
     load_detections_dataset,
     result_json_already_exists,
     run_shell_command,
@@ -204,9 +205,7 @@ def evaluate_single_model(
         targets.append(target_detections)
 
     mAP_metric = MeanAveragePrecision()
-    f1_score = F1Score()
-
-    f1_score_result = f1_score.update(predictions, targets).compute()
+    f1_score_result, f1_confidence_threshold = compute_best_f1(predictions, targets)
     mAP_result = mAP_metric.update(predictions, targets).compute()
 
     write_result_json(
@@ -217,6 +216,7 @@ def evaluate_single_model(
         model=model,  # Consider if 'model' object needs to be passed, it might be large
         mAP_result=mAP_result,
         f1_score_result=f1_score_result,
+        f1_confidence_threshold=f1_confidence_threshold,
         license_name=LICENSE,
         run_parameters=RUN_PARAMETERS,
     )
